@@ -52,15 +52,16 @@ Here's an example integration test that's in the module.  You can run this by
 issuing the following commands at a prompt:
 ``````
 npm install webdriver-sync;
-#Follow any warningt to setup the environment
+#Follow any warning to setup the environment
 cd node_modules/webdriver-sync;
 npm install;
 npm test;
 ``````
 
-Note that require has the full path to the module.  This is because I use this
-during development of the module.  `require('webdriver-sync')` should do the
-trick after install.
+Note that the `require` call below has the full path to the module.  This is
+because I use this during development of the module.
+
+`require('webdriver-sync')` should do the trick after install.
 
 ``````
 var assert;
