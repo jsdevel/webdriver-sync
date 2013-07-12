@@ -60,33 +60,39 @@ if(hasMissingBinary){
 }
 
 function validateJava(){
-   var pathToLibJvmSo;
+   var pathToLibJvm;
    if(!javaHome){
       err("JAVA_HOME isn't set!  The java module can't build without it.");
       err("You must set this first before installing.");
       err("Exiting...");
       exit();
    }
-   switch(arch){
-   //TODO add other archs here as need requires.
-   case "64":
-      pathToLibJvmSo=path.resolve(
-         javaHome, 'jre', 'lib', 'amd64', 'server', 'libjvm.so'
+   if(isWin){
+      pathToLibJvm=path.resolve(
+         javaHome, 'jre', 'bin', 'server', 'jvm.dll'
       );
-      break;
-   case "32":
-      pathToLibJvmSo=path.resolve(
-         javaHome, 'jre', 'lib', 'i386', 'server', 'libjvm.so'
-      );
-      break;
-   default:
-      err("Your architecture isn't supported yet by this module!");
-      err("The architecture was listed as: "+arch);
-      showForkItToFixAndExit();
+   } else {
+      switch(arch){
+      //TODO add other archs here as need requires.
+      case "64":
+         pathToLibJvm=path.resolve(
+            javaHome, 'jre', 'lib', 'amd64', 'server', 'libjvm.so'
+         );
+         break;
+      case "32":
+         pathToLibJvm=path.resolve(
+            javaHome, 'jre', 'lib', 'i386', 'server', 'libjvm.so'
+         );
+         break;
+      default:
+         err("Your architecture isn't supported yet by this module!");
+         err("The architecture was listed as: "+arch);
+         showForkItToFixAndExit();
+      }
    }
 
-   if(!fs.statSync(pathToLibJvmSo).isFile()){
-      err("libjvm.so wasn't found using '"+pathToLibJvmSo+"'.");
+   if(!fs.existsSync(pathToLibJvm)){
+      err("libjvm.so wasn't found using '"+pathToLibJvm+"'.");
       err("Verify that $JAVA_HOME is set correctly and try again.");
       exit();
    }
