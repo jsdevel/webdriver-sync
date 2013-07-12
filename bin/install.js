@@ -29,7 +29,7 @@ log("JAVA_HOME is: "+javaHome);
 log("binaryDir is: "+binaryDir);
 log("");
 var arch=os.arch().replace(/[^0-9]/g, "");
-var pathToChromeDriver=path.resolve(binaryDir, 'chromedriver');
+var pathToChromeDriver=path.resolve(binaryDir,'chromedriver'+(isWin?".exe":""));
 var pathToSeleniumServerStandalone=path.resolve(binaryDir, 'selenium-server-standalone.jar');
 var hasMissingBinary=false;
 
