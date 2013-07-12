@@ -15,62 +15,46 @@
  */
 !function(){//prevent IDE's from adding these vars globally
 var javaHome=process.env['JAVA_HOME'];
-var pathToLibJvmSo;
 var os = require('os');
 var path = require('path');
 var fs = require('fs');
-var exec=require('child_process').exec;
 var arch=os.arch().replace(/[^0-9]/g, "");
-var platform=os.platform().replace(/[^a-z]/gi, "");
-var modulePath=path.resolve(__dirname, "..");
-var chromeDriverVersion=process.env.npm_package_config_chromedriverVersion;
+var homeDir=getUserHome();
+var pathToChromeDriver=path.resolve(homeDir, '.webdriver-sync', 'chromedriver');
+var pathToSeleniumServerStandalone=path.resolve(homeDir, '.webdriver-sync', 'selenium-server-standalone.jar');
+var hasMissingBinary=false;
 
-validateSystem();//sets pathToLibJvmSo on success
+validateJava();
 
-if(process.argv[2] === "pre"){//preinstall
+if(!fs.existsSync(pathToChromeDriver)){
+   hasMissingBinary=true;
+   showObtainBinaryMsg(
+      pathToChromeDriver,
+      "https://code.google.com/p/chromedriver/downloads/list"
+   );
+}
+if(!fs.existsSync(pathToSeleniumServerStandalone)){
+   hasMissingBinary=true;
+   showObtainBinaryMsg(
+      pathToSeleniumServerStandalone,
+      "https://code.google.com/p/selenium/downloads/list"
+   );
+}
+if(hasMissingBinary){
+   exit();
+}
+
+function getUserHome() {
+  return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+}
+function validateJava(){
+   var pathToLibJvmSo;
    if(!javaHome){
       err("JAVA_HOME isn't set!  The java module can't build without it.");
       err("You must set this first before installing.");
       err("Exiting...");
       exit();
    }
-   if(!fs.statSync(pathToLibJvmSo).isFile()){
-      err("libjvm.so wasn't found using '"+pathToLibJvmSo+"'.");
-      err("Verify that $JAVA_HOME is set correctly and try again.");
-      exit();
-   }
-   return;
-}
-//postinstall
-if(typeof chromeDriverVersion !== 'string'){
-   err("\"config.chromedriverVersion\" wasn't defined in package.json.");
-   err("Chrome will not be available without this defined.");
-} else {
-   !function(){
-      var pathToChromeDriverSource=path.resolve(
-         modulePath, 'lib', 'drivers', 'chrome',
-         chromeDriverVersion.replace(/\./g, "_"),
-         'chromedriver'+(
-            platform === 'linux'?
-               "_linux"+arch:
-            platform === 'mac'?
-               "_mac":
-            ".exe"
-         )
-      );
-      var pathToChromeDriver=path.resolve(modulePath, 'lib', 'chromedriver');
-      var command=(platform === 'win'?"copy /b ":"cp ")+
-         pathToChromeDriverSource+' '+pathToChromeDriver;
-      exec(command, function(error, stdout, stderr){
-         if(error){
-            err("Something happened while copying the chromedriver.");
-            err("The command used was: \""+command+"\"");
-            err(error);
-         }
-      });
-   }();
-}
-function validateSystem(){
    switch(arch){
    //TODO add other archs here as need requires.
    case "64":
@@ -85,15 +69,14 @@ function validateSystem(){
       break;
    default:
       err("Your architecture isn't supported yet by this module!");
+      err("The architecture was listed as: "+arch);
       showForkItToFixAndExit();
    }
-   switch(platform){
-      //TODO add support for platforms as required.
-      case "linux":
-         break;
-      default:
-         err("You're platform isn't supported yet.");
-         showForkItToFixAndExit();
+
+   if(!fs.statSync(pathToLibJvmSo).isFile()){
+      err("libjvm.so wasn't found using '"+pathToLibJvmSo+"'.");
+      err("Verify that $JAVA_HOME is set correctly and try again.");
+      exit();
    }
 }
 function err(msg){
@@ -101,6 +84,10 @@ function err(msg){
 }
 function exit(code){
    process.exit(code || 1);
+}
+function showObtainBinaryMsg(binary, suggested){
+   err("The following binary wasn't found: "+binary);
+   err("A suggested download URL is: "+suggested);
 }
 function showForkItToFixMsg(msg){
    err("This should be a simple fix in the bin/preinstall.js script.");

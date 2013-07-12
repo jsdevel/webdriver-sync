@@ -103,22 +103,18 @@ Requirements
 Installing
 ==============
 `npm install webdriver-sync`
-Currently I've only tested this on fedora linux 32 bit.  Your System Platform
-and Architecture is important, because node-java has to compile on the
-system you attempt to isntall it in.  The pre and post install scripts validate
-your environment to make sure $JAVA_HOME and the chromedriver are setup.
+
+You'll see some error messages about chromedriver and selenium-server-standalone
+not being found.  Grap the binaries and place them in the specified location,
+then run install again.
 
 The module is still in beta, so please fork, issue pull requests, and or submit
 issues as needed!
 
 LICENSE
 =============
-webdriver-sync is licensed under the Apache 2.0 license.  Where omitted, each
-file within this project (with the exception of third party binaries under the
-lib and node_modules directories) shall exist as if the following license were
-attached to it:
+webdriver-sync is licensed under the Apache 2.0 license.
 
-``````
 Copyright 2013 Joseph Spencer
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -132,21 +128,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-``````
 
-License Information for Third Party Binaries
-==============
-The following sources used by this module are licensed and were downloaded as
-follows:
-
-``````
-chromedriver:
-   LICENSE   http://opensource.org/licenses/BSD-3-Clause
-   DOWNLOAD  https://code.google.com/p/chromedriver/
-selenium-server-standalone:
-   LICENSE   http://www.apache.org/licenses/LICENSE-2.0
-   DOWNLOAD  https://code.google.com/p/selenium/
-``````
-
-The license information for the listed sources was obtained from the download
-site.
+CREDIT when it is due!
+============
+Special thanks to the developers of `node-java`!!!

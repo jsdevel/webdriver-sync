@@ -6,14 +6,9 @@
   "directories": {
     "test": "test"
   },
-  "config":{
-    "chromedriverVersion":"26.0.1383.0",
-    "seleniumServerStandaloneVersion":"2.33.0"
-  },
   "scripts": {
     "test": "$(npm bin)/tddforjs",
-    "preinstall":"node bin/install.js pre",
-    "postinstall":"node bin/install.js post"
+    "preinstall":"node bin/install.js pre"
   },
   "dependencies":{
     "java":"0.2.3"
