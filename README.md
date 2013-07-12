@@ -101,8 +101,16 @@ function we_should_be_able_to_type_some_keys_and_submit_a_form(){
 }
 //Test
 function we_should_be_able_to_get_a_list_of_divs(){
-   elements = driver.findElements(By.tagName('div'));
-   console.log(elements.length);
+   elements = driver.findElements(By.tagName('html'));
+   assert(elements.length > 0, "There were no divs on the page.");
+}
+//Test
+function we_should_be_able_to_get_the_current_url(){
+   assert(driver.getCurrentUrl(), "the current url was empty.");
+}
+//Test
+function we_should_be_able_to_get_the_page_source(){
+   driver.getPageSource();
 }
 ``````
 
