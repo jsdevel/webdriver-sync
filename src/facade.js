@@ -16,14 +16,11 @@
 !function(){
 var path = require("path");
 var java = require("java");
-var webdriverSyncBinaryDir=path.resolve(
-   process.env[(process.platform === 'win32')?'USERPROFILE':'HOME'],
-   '.webdriver-sync'
-);
+var libDir = path.resolve(process.cwd(), 'lib');
 var seleniumJarPath=path.resolve(
-   webdriverSyncBinaryDir, 'selenium-server-standalone.jar'
+   libDir, 'selenium-server-standalone.jar'
 );
-var pathToChromeDriver=path.resolve(webdriverSyncBinaryDir, 'chromedriver');
+var pathToChromeDriver=path.resolve(libDir, 'chromedriver');
 java.classpath.push(seleniumJarPath);
 java.callStaticMethodSync(
    "java.lang.System",
