@@ -343,11 +343,11 @@ var WebDriver=(function(){
       this.get=function(src){
          this._driver.getSync(src);
       };
-      this.getCurrentUrl=function(src){
-         this._driver.getCurrentUrlSync(src);
+      this.getCurrentUrl=function(){
+         return this._driver.getCurrentUrlSync();
       };
-      this.getPageSource=function(src){
-         this._driver.getPageSourceSync(src);
+      this.getPageSource=function(){
+         return this._driver.getPageSourceSync();
       };
       this.getTitle=function(){
          return this._driver.getTitleSync();
