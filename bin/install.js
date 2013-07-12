@@ -19,9 +19,9 @@ var os = require('os');
 var path = require('path');
 var fs = require('fs');
 var arch=os.arch().replace(/[^0-9]/g, "");
-var homeDir=getUserHome();
-var pathToChromeDriver=path.resolve(homeDir, '.webdriver-sync', 'chromedriver');
-var pathToSeleniumServerStandalone=path.resolve(homeDir, '.webdriver-sync', 'selenium-server-standalone.jar');
+var libDir=path.resolve(process.cwd(), 'lib');
+var pathToChromeDriver=path.resolve(libDir, 'chromedriver');
+var pathToSeleniumServerStandalone=path.resolve(libDir, 'selenium-server-standalone.jar');
 var hasMissingBinary=false;
 
 validateJava();
@@ -44,9 +44,6 @@ if(hasMissingBinary){
    exit();
 }
 
-function getUserHome() {
-  return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-}
 function validateJava(){
    var pathToLibJvmSo;
    if(!javaHome){
