@@ -72,7 +72,7 @@ var modulePath;
 var element;
 var By;
 
-function before(){
+function beforeSuite(){
    assert=require('assert');
    path = require('path');
    projectPath = path.resolve(__dirname, "..", "..", "..");
@@ -84,8 +84,8 @@ function before(){
    }
    driver.get("http://www.google.com");
 }
-function after(){
-
+function afterSuite(){
+   driver.quit();
 }
 //Test
 function we_should_be_able_to_show_the_google_title(){

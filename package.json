@@ -11,11 +11,9 @@
     "preinstall":"node bin/install.js pre"
   },
   "dependencies":{
-    "java":"0.2.3"
+    "java":"0.2.3",
+    "tddforjs":"x.x.x"
   },
-  "devDependencies":[
-    "tddforjs"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jsdevel/webdriver-sync.git"
