@@ -18,10 +18,19 @@ var javaHome=process.env['JAVA_HOME'];
 var os = require('os');
 var path = require('path');
 var fs = require('fs');
+var isWin=/win/.test(os.platform());
+var binaryDir = path.resolve(
+   process.env[isWin ? 'USERPROFILE':'HOME'],
+   '.webdriver-sync'
+);
+log("");
+log("Preparing to validate your environment.");
+log("JAVA_HOME is: "+javaHome);
+log("binaryDir is: "+binaryDir);
+log("");
 var arch=os.arch().replace(/[^0-9]/g, "");
-var libDir=path.resolve(process.cwd(), 'lib');
-var pathToChromeDriver=path.resolve(libDir, 'chromedriver');
-var pathToSeleniumServerStandalone=path.resolve(libDir, 'selenium-server-standalone.jar');
+var pathToChromeDriver=path.resolve(binaryDir, 'chromedriver');
+var pathToSeleniumServerStandalone=path.resolve(binaryDir, 'selenium-server-standalone.jar');
 var hasMissingBinary=false;
 
 validateJava();
@@ -32,6 +41,9 @@ if(!fs.existsSync(pathToChromeDriver)){
       pathToChromeDriver,
       "https://code.google.com/p/chromedriver/downloads/list"
    );
+} else {
+   log("Found: "+pathToChromeDriver);
+   log("");
 }
 if(!fs.existsSync(pathToSeleniumServerStandalone)){
    hasMissingBinary=true;
@@ -39,6 +51,9 @@ if(!fs.existsSync(pathToSeleniumServerStandalone)){
       pathToSeleniumServerStandalone,
       "https://code.google.com/p/selenium/downloads/list"
    );
+} else {
+   log("Found: "+pathToSeleniumServerStandalone);
+   log("");
 }
 if(hasMissingBinary){
    exit();
@@ -76,6 +91,9 @@ function validateJava(){
       exit();
    }
 }
+function log(msg){
+   console.log(msg);
+}
 function err(msg){
    console.error(msg);
 }
@@ -84,7 +102,9 @@ function exit(code){
 }
 function showObtainBinaryMsg(binary, suggested){
    err("The following binary wasn't found: "+binary);
+   log("");
    err("A suggested download URL is: "+suggested);
+   log("");
 }
 function showForkItToFixMsg(msg){
    err("This should be a simple fix in the bin/preinstall.js script.");

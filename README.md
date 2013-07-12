@@ -49,9 +49,18 @@ much know how to use this module.
 Example
 ==============
 Here's an example integration test that's in the module.  You can run this by
-`cd node_modules/webdriver-sync;npm test`.  Note that require has the full
-path to the module.  This is because I use this during development of the
-module.  `require('webdriver-sync')` should do the trick after installing.
+issuing the following commands at a prompt:
+``````
+npm install webdriver-sync;
+#Follow any warningt to setup the environment
+cd node_modules/webdriver-sync;
+npm install;
+npm test;
+``````
+
+Note that require has the full path to the module.  This is because I use this
+during development of the module.  `require('webdriver-sync')` should do the
+trick after install.
 
 ``````
 var assert;
@@ -99,13 +108,14 @@ function we_should_be_able_to_get_a_list_of_divs(){
 Requirements
 =============
 `npm` `node` `java`
+Third party binaries i.e. `selenium-server-standalone` and `chromedriver`.
 
 Installing
 ==============
 `npm install webdriver-sync`
 
 You'll see some error messages about chromedriver and selenium-server-standalone
-not being found.  Grap the binaries and place them in the specified location,
+not being found.  Grab the binaries and place them in the specified location,
 then run install again.
 
 The module is still in beta, so please fork, issue pull requests, and or submit
