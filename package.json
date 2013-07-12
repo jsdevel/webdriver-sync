@@ -1,0 +1,43 @@
+{
+  "name": "webdriver-sync",
+  "version": "0.1.0",
+  "description": "Porting the Java WebDriver to node for a completely synchronous selenium experience in node.js!",
+  "main": "src/facade.js",
+  "directories": {
+    "test": "test"
+  },
+  "config":{
+    "chromedriverVersion":"26.0.1383.0",
+    "seleniumServerStandaloneVersion":"2.33.0"
+  },
+  "scripts": {
+    "test": "$(npm bin)/tddforjs",
+    "preinstall":"node bin/install.js pre",
+    "postinstall":"node bin/install.js post"
+  },
+  "dependencies":{
+    "java":"0.2.3"
+  },
+  "devDependencies":[
+    "tddforjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsdevel/webdriver-sync.git"
+  },
+  "keywords": [
+    "webdriver",
+    "selenium",
+    "testing",
+    "sync",
+    "synchronous",
+    "api",
+    "chrome",
+    "driver"
+  ],
+  "author": "Joseph Spencer",
+  "license": "Apache2.0",
+  "bugs": {
+    "url": "https://github.com/jsdevel/webdriver-sync/issues"
+  }
+}
