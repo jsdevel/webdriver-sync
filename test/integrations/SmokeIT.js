@@ -29,7 +29,7 @@ function beforeSuite(){
    webdriverModule=require(modulePath);
    By=webdriverModule.By;
    if(!driver){
-      driver = new webdriverModule.ChromeDriver;
+      driver = new webdriverModule.HtmlUnitDriver;
    }
    driver.get("http://www.google.com");
 }
@@ -60,4 +60,14 @@ function we_should_be_able_to_get_the_current_url(){
 //Test
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
+}
+//Test
+function we_should_be_able_to_start_Chrome(){
+   var chromeDriver = new webdriverModule.ChromeDriver();
+   chromeDriver.quit();
+}
+//Test
+function we_should_be_able_to_start_Firefox(){
+   var firefoxDriver = new webdriverModule.FirefoxDriver();
+   firefoxDriver.quit();
 }
