@@ -37,6 +37,8 @@ var HtmlUnitDriverClass =
    java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
 var ChromeDriverClass =
    java.import('org.openqa.selenium.chrome.ChromeDriver');
+var FirefoxDriverClass=
+   java.import('org.openqa.selenium.firefox.FirefoxDriver');
 
 var findElements=function(base, by){
    return collectionToArray(base.findElementsSync(by), function(item){
@@ -398,6 +400,17 @@ var ChromeDriver=(function(){
    extend(ChromeDriver, WebDriver);
    return ChromeDriver;
 })();
+var FirefoxDriver=(function(){
+   function FirefoxDriver(){
+      var driver = new FirefoxDriverClass();
+      Object.defineProperty(this, '_driver', {
+         get:function(){return driver;}
+      });
+   }
+   extend(FirefoxDriver, WebDriver);
+   return FirefoxDriver;
+})();
+
 var HtmlUnitDriver=(function(){
    function HtmlUnitDriver(){
       var driver = new HtmlUnitDriverClass();
@@ -414,6 +427,7 @@ function extend(Child, Parent){
 }
 module.exports={
    ChromeDriver:ChromeDriver,
+   FirefoxDriver:FirefoxDriver,
    HtmlUnitDriver:HtmlUnitDriver,
    By:new By(),
    Credentials:UserAndPassword
