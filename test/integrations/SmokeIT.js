@@ -20,6 +20,7 @@ var driver;
 var modulePath;
 var element;
 var By;
+var Cookie;
 
 function beforeSuite(){
    assert=require('assert');
@@ -28,19 +29,20 @@ function beforeSuite(){
    modulePath = path.resolve(projectPath, 'src', 'facade');
    webdriverModule=require(modulePath);
    By=webdriverModule.By;
+   Cookie=webdriverModule.Cookie;
    if(!driver){
-      driver = new webdriverModule.HtmlUnitDriver;
+      driver = new webdriverModule.ChromeDriver;
    }
    driver.get("http://www.google.com");
 }
 function afterSuite(){
    driver.quit();
 }
-//Test
+///Test
 function we_should_be_able_to_show_the_google_title(){
    assert.equal(driver.getTitle(), "Google");//prints "Google"
 }
-//Test
+///Test
 function we_should_be_able_to_type_some_keys_and_submit_a_form(){
    element = driver.findElement(By.name("q"));
    element.sendKeys("Cheese!");
@@ -48,26 +50,82 @@ function we_should_be_able_to_type_some_keys_and_submit_a_form(){
    element = driver.findElement(By.name("q"));
    assert.equal(element.getAttribute('value'), "Cheese!");
 }
-//Test
+///Test
 function we_should_be_able_to_get_a_list_of_divs(){
    elements = driver.findElements(By.tagName('html'));
    assert(elements.length > 0, "There were no divs on the page.");
 }
-//Test
+///Test
 function we_should_be_able_to_get_the_current_url(){
    assert(driver.getCurrentUrl(), "the current url was empty.");
 }
-//Test
+///Test
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
 }
-//Test
-function we_should_be_able_to_start_Chrome(){
-   var chromeDriver = new webdriverModule.ChromeDriver();
-   chromeDriver.quit();
+////Test
+function we_should_be_able_to_start_HtmlUnit(){
+   var htmlDriver = new webdriverModule.HtmlUnitDriver();
+   htmlDriver.quit();
 }
-//Test
+///Test
 function we_should_be_able_to_start_Firefox(){
    var firefoxDriver = new webdriverModule.FirefoxDriver();
    firefoxDriver.quit();
+}
+///Test
+function we_should_be_able_to_work_with_driver_options(){
+   assert(driver.manage());
+}
+//Test
+function we_should_be_able_to_work_with_cookies(){
+   var cookie;
+   var options=driver.manage();
+   var date;
+   assert['throws'](function(){
+      new Cookie("asdf");
+   }, "createing a cookie without a name should fail.");
+   assert.equal(options.getCookieNamed("jack"), null);
+
+   //test 2 arguments
+   cookie=new Cookie("_2", "2");
+   options.addCookie(cookie);
+   assert.equal(options.getCookieNamed("_2").getValue(), "2");
+
+   //test 3 arguments and path
+   cookie=new Cookie("_3", "3", "/news");
+   options.addCookie(cookie);
+   driver.get("http://www.google.com/news/");
+   assert.equal(options.getCookieNamed("_3").getValue(), "3");
+   assert.equal(options.getCookieNamed("_3").getPath(), "/news");
+
+   //test 4 arguments
+   cookie=new Cookie("_4", "4", "/", 300);
+   options.addCookie(cookie);
+   driver.navigate().refresh();
+   assert.equal(options.getCookieNamed("_4").getExpiry().getTime(), cookie.getExpiry().getTime());
+
+   //test 4 arguments
+   cookie=new Cookie("_neg4", "neg4", "/", null);
+   options.addCookie(cookie);
+
+   //test 5 arguments
+   cookie=new Cookie("_5", "5", "maps.google.com", "/", 3600);
+   assert['throws'](function(){
+      options.addCookie(cookie);
+   }, "allowed to add a cookie for a different domain.");
+
+   //test 5 arguments
+   cookie=new Cookie("_6", "6", ".google.com", "/", 3600, true);
+   options.addCookie(cookie);
+   driver.navigate().refresh();
+   assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
+   driver.findElement(By.cssSelector(".gbit")).click();
+   assert(options.getCookieNamed("_6"),"secure cookies aren't seen on https");
+
+   options.deleteCookie(cookie);
+   options.deleteCookieNamed("_5");
+   options.deleteAllCookies();
+   assert(!options.getCookies().length, "deleting cookies failed.");
+
 }

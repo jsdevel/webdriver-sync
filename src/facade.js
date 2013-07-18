@@ -33,6 +33,12 @@ java.callStaticMethodSync(
    "webdriver.chrome.driver",
    pathToChromeDriver
 );
+
+//Classes imported from the classpath
+var DateClass =
+   java.import('java.util.Date');
+var CookieClass =
+   java.import('org.openqa.selenium.Cookie');
 var HtmlUnitDriverClass =
    java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
 var ChromeDriverClass =
@@ -40,26 +46,32 @@ var ChromeDriverClass =
 var FirefoxDriverClass=
    java.import('org.openqa.selenium.firefox.FirefoxDriver');
 
+
+//helper methods
 var findElements=function(base, by){
    return collectionToArray(base.findElementsSync(by), function(item){
       return new WebElement(item);
    });
 };
 var collectionToArray=function(collection, mapper){
-   var size=collection.sizeSync();
-   var i=0;
+   var iterator=collection.iteratorSync();
    var array=[];
    var _mapper=typeof mapper === 'function' ?
                         mapper :
                         function(item){return item;};
-   for(;i<size;i++){
+   while(iterator.hasNextSync()){
       array.push(
-         _mapper(collection.getSync(i))
+         _mapper(iterator.nextSync())
       );
    }
    return array;
 };
-
+function createDateClassFromSeconds(secs){
+   return new DateClass(
+      java.newInstanceSync("java.lang.Long", ""+((secs*1000)+(new Date()).getTime()))
+   );
+}
+//Begin Selenium API
 function UserAndPassword(username, password){
    this.getUsername=function(){
       return username;
@@ -97,47 +109,169 @@ var Alert=(function(){
    }
    return Alert;
 })();
+var Cookie=(function(){
+   function Cookie(
+      name,
+      value,
+      pathOrDomain,
+      secondsOrPath,
+      seconds,
+      isSecure
+   ){
+      var _name="";
+      var _value="";
+      var _domain=null;
+      var _path="/";
+      var _date=null;
+      var _isSecure=false;
+
+      var cookie;
+      var numOfArgs = arguments.length > 6?6:arguments.length;
+
+      if(numOfArgs>1){
+         validateArgIsString(name, "name");
+         validateArgIsString(value, "value");
+         _name=name;
+         _value=value;
+         switch(numOfArgs){
+         case 2:
+            cookie = new CookieClass(_name, _value);
+            break;
+         case 3:
+            validateArgIsString(pathOrDomain, "path");
+            _path=pathOrDomain;
+            cookie = new CookieClass(_name, _value, _path);
+            break;
+         case 4:
+            validateArgIsString(pathOrDomain, "path");
+            _path=pathOrDomain;
+            _date=typeof secondsOrPath === 'number'?
+                     createDateClassFromSeconds(secondsOrPath):
+                     null;
+            cookie = new CookieClass(_name, _value, _path, _date);
+            break;
+         case 5:
+            validateArgIsString(pathOrDomain, "domain");
+            validateArgIsString(secondsOrPath, "path");
+            _domain=pathOrDomain;
+            _path=secondsOrPath;
+            _date=typeof seconds === 'number'?
+                     createDateClassFromSeconds(seconds):
+                     null;
+            cookie=new CookieClass(_name, _value, _domain, _path, _date);
+            break;
+         case 6:
+            validateArgIsString(pathOrDomain, "domain");
+            validateArgIsString(secondsOrPath, "path");
+            validateArgIsBoolean(isSecure, "isSecure");
+            _domain=pathOrDomain;
+            _path=secondsOrPath;
+            _date=typeof seconds === 'number'?
+                     createDateClassFromSeconds(seconds):
+                     null;
+            _isSecure=isSecure;
+            cookie = new CookieClass(
+               _name,
+               _value,
+               _domain,
+               _path,
+               _date?_date:null,
+               _isSecure
+            );
+            break;
+         }
+      } else {
+         if(!name){
+            throw new Error("cookies require a name and a value at minimum.");
+         } else {
+            cookie = name;
+            _name=cookie.getNameSync();
+            _value=cookie.getValueSync();
+            _domain=cookie.getDomainSync();
+            _path=cookie.getPathSync();
+            _date=cookie.getExpirySync()?
+                     cookie.getExpirySync():
+                     null;
+            _isSecure=cookie.isSecureSync();
+         }
+      }
+
+      this.getDomain=function(){
+         return _domain;
+      };
+      this.getExpiry=function(){
+         return _date?new Date(new Date(_date.getTimeSync()).toGMTString()):null;
+      };
+      this.getName=function(){
+         return _name;
+      };
+      this.getPath=function(){
+         return _path;
+      };
+      this.getValue=function(){
+         return _value;
+      };
+      this.isSecure=function(){
+         return _isSecure;
+      };
+
+      Object.defineProperty(this, '_cookie', {
+         get:function(){return cookie;}
+      });
+   }
+   function validateArgIsBoolean(value, arg){
+      if(typeof value !== 'boolean'){
+         throw new Error(arg+" must be a boolean.");
+      }
+   }
+   function validateArgIsString(value, arg){
+      if(typeof value !== 'string'){
+         throw new Error(arg+" must be a string.");
+      }
+   }
+   return Cookie;
+})();
 var WebDriverOptions=(function(){
    function Options(options){
-      /** TODO
       this.addCookie=function(cookie){
-         options.addCookieSync(cookie);
+         validateIsCookie(cookie);
+         options.addCookieSync(cookie._cookie);
       };
-      */
       this.deleteAllCookies=function(){
          options.deleteAllCookiesSync();
       };
       this.deleteCookie=function(cookie){
-         options.deleteCookieSync(cookie);
+         validateIsCookie(cookie);
+         options.deleteCookieSync(cookie._cookie);
       };
       this.deleteCookieNamed=function(name){
          options.deleteCookieNamedSync(name);
       };
-      /**TODO
-      /
-       * @param {string} name
-       * @returns {org.openqa.selenium.Cookie}
-       /
       this.getCookieNamed=function(name){
-         options.getCookieNamedSync(name);
+         var proposedCookie=options.getCookieNamedSync(name);
+         if(proposedCookie){
+            return new Cookie(proposedCookie);
+         }
+         return null;
       };
       this.getCookies=function(){
-         return collectionToArray(navigation.getCookiesSync());
+         return collectionToArray(options.getCookiesSync(),function(item){
+            return new Cookie(item);
+         });
       };
-      */
-
 /**
 WebDriver.ImeHandler	ime()
-Returns the interface for controlling IME engines to generate complex-script input.
 Logs	logs()
-Gets the Logs interface used to fetch different types of logs.
 WebDriver.Timeouts	timeouts()
-Returns the interface for managing driver timeouts.
 WebDriver.Window	window()
-Returns the interface for managing the current window.
       */
    }
    return Options;
+   function validateIsCookie(cookie){
+      if(!(cookie instanceof Cookie)){
+         throw new Error("cookie wasn't an instance of Cookie.");
+      }
+   }
 })();
 var WebDriverNavigation=(function(){
    function Navigation(navigation){
@@ -430,6 +564,7 @@ module.exports={
    FirefoxDriver:FirefoxDriver,
    HtmlUnitDriver:HtmlUnitDriver,
    By:new By(),
-   Credentials:UserAndPassword
+   Credentials:UserAndPassword,
+   Cookie:Cookie
 };
 }();
