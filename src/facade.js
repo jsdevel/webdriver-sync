@@ -73,6 +73,12 @@ function createDateClassFromSeconds(secs){
       java.newInstanceSync("java.lang.Long", ""+((secs*1000)+(new Date()).getTime()))
    );
 }
+function assertIsCookie(cookie){
+   if(!(cookie instanceof Cookie)){
+      throw new Error("cookie wasn't an instance of Cookie.");
+   }
+}
+
 function assertIsWebElement(element){
    if(!(element instanceof WebElement)){
       throw new Error("element isn't an instance of WebElement.");
@@ -473,48 +479,41 @@ function ExpectedConditions(){
       );
    };
 }
-var WebDriverOptions=(function(){
-   function Options(options){
-      this.addCookie=function(cookie){
-         validateIsCookie(cookie);
-         options.addCookieSync(cookie._cookie);
-      };
-      this.deleteAllCookies=function(){
-         options.deleteAllCookiesSync();
-      };
-      this.deleteCookie=function(cookie){
-         validateIsCookie(cookie);
-         options.deleteCookieSync(cookie._cookie);
-      };
-      this.deleteCookieNamed=function(name){
-         options.deleteCookieNamedSync(name);
-      };
-      this.getCookieNamed=function(name){
-         var proposedCookie=options.getCookieNamedSync(name);
-         if(proposedCookie){
-            return new Cookie(proposedCookie);
-         }
-         return null;
-      };
-      this.getCookies=function(){
-         return collectionToArray(options.getCookiesSync(),function(item){
-            return new Cookie(item);
-         });
-      };
+function Options(options){
+   this.addCookie=function(cookie){
+      assertIsCookie(cookie);
+      options.addCookieSync(cookie._cookie);
+   };
+   this.deleteAllCookies=function(){
+      options.deleteAllCookiesSync();
+   };
+   this.deleteCookie=function(cookie){
+      assertIsCookie(cookie);
+      options.deleteCookieSync(cookie._cookie);
+   };
+   this.deleteCookieNamed=function(name){
+      options.deleteCookieNamedSync(name);
+   };
+   this.getCookieNamed=function(name){
+      var proposedCookie=options.getCookieNamedSync(name);
+      if(proposedCookie){
+         return new Cookie(proposedCookie);
+      }
+      return null;
+   };
+   this.getCookies=function(){
+      return collectionToArray(options.getCookiesSync(),function(item){
+         return new Cookie(item);
+      });
+   };
 /**
 WebDriver.ImeHandler	ime()
 Logs	logs()
 WebDriver.Timeouts	timeouts()
 WebDriver.Window	window()
-      */
-   }
-   return Options;
-   function validateIsCookie(cookie){
-      if(!(cookie instanceof Cookie)){
-         throw new Error("cookie wasn't an instance of Cookie.");
-      }
-   }
-})();
+   */
+}
+
 /**
  * @constructor
  * @param {WebDriver} driver
