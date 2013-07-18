@@ -39,6 +39,8 @@ var DateClass =
    java.import('java.util.Date');
 var CookieClass =
    java.import('org.openqa.selenium.Cookie');
+var WebDriverWaitClass =
+   java.import('org.openqa.selenium.support.ui.WebDriverWait');
 var HtmlUnitDriverClass =
    java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
 var ChromeDriverClass =
@@ -71,12 +73,26 @@ function createDateClassFromSeconds(secs){
       java.newInstanceSync("java.lang.Long", ""+((secs*1000)+(new Date()).getTime()))
    );
 }
-function ensureIsWebElement(element){
+function assertIsWebElement(element){
    if(!(element instanceof WebElement)){
       throw new Error("element isn't an instance of WebElement.");
    }
    return element;
 }
+function assertIsWebDriver(driver){
+   if(!(driver instanceof WebDriver)){
+      throw new Error("driver isn't an instance of WebDriver.");
+   }
+   return driver;
+}
+function assertIsNumber(num){
+   if(typeof num !== "number"){
+      throw new Error("num isn't a number.");
+   }
+   return num;
+}
+
+
 //Begin Selenium API
 function UserAndPassword(username, password){
    this.getUsername=function(){
@@ -370,7 +386,7 @@ function ExpectedConditions(){
     * @param {WebElement} webElement
     */
    this.stalenessOf=function(webElement){
-      ensureIsWebElement(webElement);
+      assertIsWebElement(webElement);
       return java.callStaticMethodSync(
          "org.openqa.selenium.support.ui.ExpectedConditions",
          "stalenessOf",
@@ -434,7 +450,7 @@ function ExpectedConditions(){
     * @param {WebElement} webElement
     */
    this.visibilityOf=function(webElement){
-      ensureIsWebElement(webElement);
+      assertIsWebElement(webElement);
       return java.callStaticMethodSync(
          "org.openqa.selenium.support.ui.ExpectedConditions",
          "visibilityOf",
@@ -496,6 +512,57 @@ WebDriver.Window	window()
       }
    }
 })();
+/**
+ * @constructor
+ * @param {WebDriver} driver
+ * @param {number} timeout in seconds
+ * @param {number} sleep in mills
+ */
+function WebDriverWait(driver, timeout, sleep){
+   var wait;
+
+   assertIsWebDriver(driver);
+   assertIsNumber(timeout);
+   if(sleep){
+      assertIsNumber(sleep);
+   }
+
+
+   switch(arguments.length){
+   case 2:
+      wait=new WebDriverWaitClass(
+         driver._driver,
+         java.newInstanceSync("java.lang.Long", timeout)
+      );
+      break;
+   case 3:
+      wait=new WebDriverWaitClass(
+         driver._driver,
+         java.newInstanceSync("java.lang.Long", timeout),
+         java.newInstanceSync("java.lang.Long", sleep)
+      );
+      break;
+   }
+
+   /**
+    * Repeatedly applies this instance's input value to the given function until
+    * one of the following occurs: the function returns neither null nor false,
+    * the function throws an unignored exception, the timeout expires, the
+    * current thread is interrupted.
+    *
+    * @param {ExpectedCondition} isTrue
+    */
+   this.until=function(isTrue){
+      return wait.untilSync(isTrue);
+   };
+   /**
+    * Sets the message to be displayed when time expires.
+    * @param {string} message
+    */
+   this.withMessage=function(message){
+      return wait.withMessageSync(message);
+   };
+}
 var WebDriverNavigation=(function(){
    function Navigation(navigation){
       this.back=function(){
@@ -791,6 +858,7 @@ module.exports={
    HtmlUnitDriver:HtmlUnitDriver,
    By:new By(),
    ExpectedConditions:new ExpectedConditions(),
+   WebDriverWait:WebDriverWait,
    Credentials:UserAndPassword,
    Cookie:Cookie
 };
