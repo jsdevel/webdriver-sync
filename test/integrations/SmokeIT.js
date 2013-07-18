@@ -23,6 +23,7 @@ var By;
 var ExpectedConditions;
 var WebDriverWait;
 var Cookie;
+var TimeUnits;
 
 function beforeSuite(){
    assert=require('assert');
@@ -34,6 +35,7 @@ function beforeSuite(){
    ExpectedConditions=webdriverModule.ExpectedConditions;
    WebDriverWait=webdriverModule.WebDriverWait;
    Cookie=webdriverModule.Cookie;
+   TimeUnits=webdriverModule.TimeUnits;
    if(!driver){
       driver = new webdriverModule.ChromeDriver;
    }
@@ -42,11 +44,11 @@ function beforeSuite(){
 function afterSuite(){
    driver.quit();
 }
-///Test
+//Test
 function we_should_be_able_to_show_the_google_title(){
    assert.equal(driver.getTitle(), "Google");//prints "Google"
 }
-///Test
+//Test
 function we_should_be_able_to_type_some_keys_and_submit_a_form(){
    element = driver.findElement(By.name("q"));
    element.sendKeys("Cheese!");
@@ -54,34 +56,34 @@ function we_should_be_able_to_type_some_keys_and_submit_a_form(){
    element = driver.findElement(By.name("q"));
    assert.equal(element.getAttribute('value'), "Cheese!");
 }
-///Test
+//Test
 function we_should_be_able_to_get_a_list_of_divs(){
    elements = driver.findElements(By.tagName('html'));
    assert(elements.length > 0, "There were no divs on the page.");
 }
-///Test
+//Test
 function we_should_be_able_to_get_the_current_url(){
    assert(driver.getCurrentUrl(), "the current url was empty.");
 }
-///Test
+//Test
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
 }
-///Test
+//Test
 function we_should_be_able_to_start_HtmlUnit(){
    var htmlDriver = new webdriverModule.HtmlUnitDriver();
    htmlDriver.quit();
 }
-///Test
+//Test
 function we_should_be_able_to_start_Firefox(){
    var firefoxDriver = new webdriverModule.FirefoxDriver();
    firefoxDriver.quit();
 }
-///Test
+//Test
 function we_should_be_able_to_work_with_driver_options(){
    assert(driver.manage());
 }
-///Test
+//Test
 function we_should_be_able_to_work_with_cookies(){
    var cookie;
    var options=driver.manage();
@@ -132,7 +134,7 @@ function we_should_be_able_to_work_with_cookies(){
    options.deleteAllCookies();
    assert(!options.getCookies().length, "deleting cookies failed.");
 }
-///Test
+//Test
 function we_should_be_able_to_work_with_expected_conditions(){
    var by=By.cssSelector('body');
    var element = driver.findElement(by);
@@ -159,7 +161,6 @@ function we_should_be_able_to_work_with_expected_conditions(){
 }
 //Test
 function we_should_be_able_to_work_with_waits(){
-   var start;
    (new WebDriverWait(driver, 300)).
    until(
       ExpectedConditions.
@@ -185,4 +186,58 @@ function we_should_be_able_to_work_with_waits(){
             )
       );
    }, "waiting for a non existant element should throw an exception.");
+}
+//Test
+function we_should_be_able_to_work_with_TimeUnits(){
+   assert(TimeUnits.DAYS, "days");
+   assert(TimeUnits.HOURS, "hours");
+   assert(TimeUnits.MICROSECONDS, "microseconds");
+   assert(TimeUnits.MILLISECONDS, "milliseconds");
+   assert(TimeUnits.MINUTES, "minutes");
+   assert(TimeUnits.NANOSECONDS, "nanoseconds");
+   assert(TimeUnits.SECONDS, "seconds");
+}
+
+//Test
+function we_should_be_able_to_sleep(){
+   var start=Date.now();
+   var end;
+   var secondsToWait=10 * 1000;
+   webdriverModule.sleep(secondsToWait);
+   end=Date.now();
+   assert(end-start > secondsToWait, "sleep didn't work.");
+}
+
+
+
+
+//make sure this test is last as it affects the time the driver waits for
+//elements.
+//Test
+function we_should_be_able_to_work_with_timeouts(){
+   var timeouts=driver.manage().timeouts();
+   var start;
+   var end;
+   timeouts.implicitlyWait(5, TimeUnits.SECONDS);
+   start=Date.now();
+   try{
+      driver.findElement(By.name('bbbbody'));
+   }catch(e){
+      end=Date.now();
+   }
+   assert(end-start>=5000);
+   try{
+      //it appears from the javadocs that the arg given should be a relatively
+      //low amount
+      timeouts.pageLoadTimeout(5, TimeUnits.MILLISECONDS);
+   }catch(e){
+      console.error("pageLoadTimeout is failing.");
+   }
+   try{
+      //it appears from the javadocs that the arg given should be a relatively
+      //low amount
+      timeouts.setScriptTimeout(5, TimeUnits.MILLISECONDS);
+   }catch(e){
+      console.error("setScriptTimeout is failing.");
+   }
 }

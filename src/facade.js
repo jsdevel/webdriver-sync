@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-!function(){
 var path = require("path");
 var java = require("java");
 var os   = require('os');
@@ -37,6 +36,10 @@ java.callStaticMethodSync(
 //Classes imported from the classpath
 var DateClass =
    java.import('java.util.Date');
+var Long =
+   java.import('java.lang.Long');
+var TimeUnitsClass =
+   java.import('java.util.concurrent.TimeUnit');
 var CookieClass =
    java.import('org.openqa.selenium.Cookie');
 var WebDriverWaitClass =
@@ -48,6 +51,15 @@ var ChromeDriverClass =
 var FirefoxDriverClass=
    java.import('org.openqa.selenium.firefox.FirefoxDriver');
 
+var TimeUnits={
+   get DAYS(){return TimeUnitsClass.DAYS;},
+   get HOURS(){return TimeUnitsClass.HOURS;},
+   get MICROSECONDS(){return TimeUnitsClass.MICROSECONDS;},
+   get MILLISECONDS(){return TimeUnitsClass.MILLISECONDS;},
+   get MINUTES(){return TimeUnitsClass.MINUTES;},
+   get NANOSECONDS(){return TimeUnitsClass.NANOSECONDS;},
+   get SECONDS(){return TimeUnitsClass.SECONDS;}
+};
 
 //helper methods
 var findElements=function(base, by){
@@ -506,14 +518,59 @@ function Options(options){
          return new Cookie(item);
       });
    };
+   this.timeouts=function(){
+      return new WebDriverTimeouts(options.timeoutsSync());
+   };
 /**
 WebDriver.ImeHandler	ime()
 Logs	logs()
-WebDriver.Timeouts	timeouts()
 WebDriver.Window	window()
    */
 }
 
+
+/**
+ * @constructor
+ * @param {WebDriver.Timeouts} timeouts
+ */
+function WebDriverTimeouts(timeouts){
+   /**
+    * Specifies the amount of time the driver should wait when searching for an
+    * element if it is not immediately present.
+    * @param {number} time
+    * @param {TimeUnits} unit
+    * @return {WebDriverTimeouts}
+    */
+   this.implicitlyWait=function(time, unit){
+      return new WebDriverTimeouts(
+         timeouts.implicitlyWaitSync(new Long(time), unit)
+      );
+   };
+   /**
+    * Sets the amount of time to wait for a page load to complete before
+    * throwing an error.
+    * @param {number} time
+    * @param {TimeUnits} unit
+    * @return {WebDriverTimeouts}
+    */
+   this.pageLoadTimeout=function(time, unit){
+      return new WebDriverTimeouts(
+         timeouts.pageLoadTimeoutSync(new Long(time), unit)
+      );
+   };
+   /**
+    * Sets the amount of time to wait for an asynchronous script to finish
+    * execution before throwing an error.
+    * @param {number} time
+    * @param {TimeUnits} unit
+    * @return {WebDriverTimeouts}
+    */
+   this.setScriptTimeout=function(time, unit){
+      return new WebDriverTimeouts(
+         timeouts.setScriptTimeoutSync(new Long(time), unit)
+      );
+   };
+}
 /**
  * @constructor
  * @param {WebDriver} driver
@@ -796,7 +853,7 @@ var WebDriver=(function(){
          return collectionToArray(this._driver.getWindowHandlesSync());
       };
       this.manage=function(){
-         return new WebDriverOptions(this._driver.manageSync());
+         return new Options(this._driver.manageSync());
       };
       this.navigate=function(){
          return new WebDriverNavigation(this._driver.navigateSync());
@@ -862,6 +919,16 @@ module.exports={
    ExpectedConditions:new ExpectedConditions(),
    WebDriverWait:WebDriverWait,
    Credentials:UserAndPassword,
-   Cookie:Cookie
+   Cookie:Cookie,
+   TimeUnits:TimeUnits,
+   /**
+    * @param {number} amount in mills to sleep for.
+    */
+   sleep:function(amount){
+      java.callStaticMethodSync(
+         "java.lang.Thread",
+         "sleep",
+         new Long(amount)
+      );
+   }
 };
-}();
