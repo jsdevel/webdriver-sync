@@ -21,6 +21,7 @@ var modulePath;
 var element;
 var By;
 var ExpectedConditions;
+var WebDriverWait;
 var Cookie;
 
 function beforeSuite(){
@@ -31,6 +32,7 @@ function beforeSuite(){
    webdriverModule=require(modulePath);
    By=webdriverModule.By;
    ExpectedConditions=webdriverModule.ExpectedConditions;
+   WebDriverWait=webdriverModule.WebDriverWait;
    Cookie=webdriverModule.Cookie;
    if(!driver){
       driver = new webdriverModule.ChromeDriver;
@@ -130,7 +132,7 @@ function we_should_be_able_to_work_with_cookies(){
    options.deleteAllCookies();
    assert(!options.getCookies().length, "deleting cookies failed.");
 }
-//Test
+///Test
 function we_should_be_able_to_work_with_expected_conditions(){
    var by=By.cssSelector('body');
    var element = driver.findElement(by);
@@ -154,4 +156,33 @@ function we_should_be_able_to_work_with_expected_conditions(){
    ExpectedConditions.titleIs("sdf");
    ExpectedConditions.visibilityOf(element);
    ExpectedConditions.visibilityOfElementLocated(by);
+}
+//Test
+function we_should_be_able_to_work_with_waits(){
+   var start;
+   (new WebDriverWait(driver, 300)).
+   until(
+      ExpectedConditions.
+         visibilityOf(
+            driver.findElement(By.tagName('body'))
+         )
+   );
+   (new WebDriverWait(driver, 300, 10)).
+   until(
+      ExpectedConditions.
+         visibilityOf(
+            driver.findElement(By.tagName('body'))
+         )
+   );
+   (new WebDriverWait(driver, 300)).
+   withMessage("hello there!");
+   assert['throws'](function(){
+      (new WebDriverWait(driver, 300)).
+      until(
+         ExpectedConditions.
+            visibilityOf(
+               driver.findElement(By.name('bbbbody'))
+            )
+      );
+   }, "waiting for a non existant element should throw an exception.");
 }
