@@ -263,6 +263,7 @@ function ExpectedConditions(){
    /**
     * An expectation for checking if the given element is selected.
     * @param {By|WebElement} arg
+    * @param {boolean} isSelected
     */
    this.elementSelectionStateToBe=function(arg, isSelected){
       return java.callStaticMethodSync(
@@ -277,6 +278,7 @@ function ExpectedConditions(){
    /**
     * An expectation for checking an element is visible and enabled such that
     * you can click it.
+    * @param {By} by
     */
    this.elementToBeClickable=function(by){
       return java.callStaticMethodSync(
@@ -312,6 +314,7 @@ function ExpectedConditions(){
    /**
     * An expectation for checking that an element is either invisible or not
     * present on the DOM.
+    * @param {By} by
     */
    this.invisibilityOfElementLocated=function(by){
       return java.callStaticMethodSync(
