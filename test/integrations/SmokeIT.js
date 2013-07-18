@@ -20,6 +20,7 @@ var driver;
 var modulePath;
 var element;
 var By;
+var ExpectedConditions;
 var Cookie;
 
 function beforeSuite(){
@@ -29,6 +30,7 @@ function beforeSuite(){
    modulePath = path.resolve(projectPath, 'src', 'facade');
    webdriverModule=require(modulePath);
    By=webdriverModule.By;
+   ExpectedConditions=webdriverModule.ExpectedConditions;
    Cookie=webdriverModule.Cookie;
    if(!driver){
       driver = new webdriverModule.ChromeDriver;
@@ -63,7 +65,7 @@ function we_should_be_able_to_get_the_current_url(){
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
 }
-////Test
+///Test
 function we_should_be_able_to_start_HtmlUnit(){
    var htmlDriver = new webdriverModule.HtmlUnitDriver();
    htmlDriver.quit();
@@ -77,7 +79,7 @@ function we_should_be_able_to_start_Firefox(){
 function we_should_be_able_to_work_with_driver_options(){
    assert(driver.manage());
 }
-//Test
+///Test
 function we_should_be_able_to_work_with_cookies(){
    var cookie;
    var options=driver.manage();
@@ -127,5 +129,29 @@ function we_should_be_able_to_work_with_cookies(){
    options.deleteCookieNamed("_5");
    options.deleteAllCookies();
    assert(!options.getCookies().length, "deleting cookies failed.");
-
+}
+//Test
+function we_should_be_able_to_work_with_expected_conditions(){
+   var by=By.cssSelector('body');
+   var element = driver.findElement(by);
+   ExpectedConditions.alertIsPresent();
+   ExpectedConditions.elementSelectionStateToBe(by, false);
+   ExpectedConditions.elementSelectionStateToBe(element, false);
+   ExpectedConditions.elementToBeClickable(by);
+   ExpectedConditions.elementToBeSelected(by);
+   ExpectedConditions.elementToBeSelected(element)
+   ExpectedConditions.frameToBeAvailableAndSwitchToIt("asdf");
+   ExpectedConditions.invisibilityOfElementLocated(by);
+   ExpectedConditions.invisibilityOfElementWithText(by, "adsf");
+   ExpectedConditions.not(ExpectedConditions.alertIsPresent());
+   ExpectedConditions.presenceOfAllElementsLocatedBy(by);
+   ExpectedConditions.presenceOfElementLocated(by);
+   ExpectedConditions.refreshed(ExpectedConditions.alertIsPresent());
+   ExpectedConditions.stalenessOf(element);
+   ExpectedConditions.textToBePresentInElement(by, "ads");
+   ExpectedConditions.textToBePresentInElementValue(by, "adsf");
+   ExpectedConditions.titleContains("asdf");
+   ExpectedConditions.titleIs("sdf");
+   ExpectedConditions.visibilityOf(element);
+   ExpectedConditions.visibilityOfElementLocated(by);
 }
