@@ -10,33 +10,31 @@ Prior to node, most of my testing was done in Java and JUnit.  I found the sync
 API to be much easier to follow and maintain, and I wasn't happy with all the
 async ceremony out there with the node API[s] (similar to the following):
 
-``````
-....
-browser.get("http://admc.io/wd/test-pages/guinea-pig.html", function() {
+``````javascript
+browser.get("http://foo.html", function() {
    browser.title(function(err, title) {
-   assert.ok(~title.indexOf('I am a page title - Sauce Labs'), 'Wrong title!');
+   assert.ok(~title.indexOf('foo title'), 'Wrong title!');
    browser.elementById('i am a link', function(err, el) {
       browser.clickElement(el, function() {
          browser.eval("window.location.href", function(err, href) {
-         assert.ok(~href.indexOf('guinea-pig2'));
+         assert.ok(~href.indexOf('foo title 2'));
          browser.quit();
          });
       });
    });
    });
 });
-....
 ``````
 
 I much prefer this:
 
-``````
-driver.get("http://admc.io/wd/test-pages/guinea-pig.html");
+``````javascript
+driver.get("http://foo.html");
 var title=driver.getTitle();
-assert(title.indexOf('I am a page title - Sauce Labs') > -1);
+assert(title.indexOf('foo title') > -1);
 var link=findElement(By.id('i am a link'));
 link.click();
-assert(driver.getCurrentUrl().indexOf('guinea-pig2') > -1);
+assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
 driver.quit();
 ``````
 
@@ -50,7 +48,7 @@ Example
 ==============
 Here's an example integration test that's in the module.  You can run this by
 issuing the following commands at a prompt:
-``````
+``````shell
 npm install webdriver-sync;
 #Follow any warning to setup the environment
 cd node_modules/webdriver-sync;
@@ -63,7 +61,7 @@ because I use this during development of the module.
 
 `require('webdriver-sync')` should do the trick after install.
 
-``````
+``````javascript
 var assert;
 var path;
 var webdriverModule;
