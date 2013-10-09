@@ -16,9 +16,8 @@
 var path = require("path");
 var java = require("java");
 var os   = require('os');
-var isWin=/win/.test(os.platform());
 var binaryDir = path.resolve(
-   process.env[isWin ? 'USERPROFILE':'HOME'],
+   process.env.USERPROFILE || process.env.HOME,
    '.webdriver-sync'
 );
 var seleniumJarPath=path.resolve(
@@ -68,14 +67,15 @@ var findElements=function(base, by){
    });
 };
 var collectionToArray=function(collection, mapper){
-   var iterator=collection.iteratorSync();
+   var size = collection.sizeSync();
+   var i;
    var array=[];
    var _mapper=typeof mapper === 'function' ?
                         mapper :
                         function(item){return item;};
-   while(iterator.hasNextSync()){
+   for(i=0;i<size;i++){
       array.push(
-         _mapper(iterator.nextSync())
+         _mapper(collection.getSync(i))
       );
    }
    return array;
