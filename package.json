@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "$(npm bin)/tddforjs",
+    "test": "node node_modules/tddforjs/build/TDDforJS.js",
     "preinstall":"node bin/install.js pre"
   },
   "dependencies":{
