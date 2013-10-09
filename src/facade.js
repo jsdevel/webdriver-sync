@@ -68,14 +68,15 @@ var findElements=function(base, by){
    });
 };
 var collectionToArray=function(collection, mapper){
-   var iterator=collection.iteratorSync();
+   var size = collection.sizeSync();
+   var i;
    var array=[];
    var _mapper=typeof mapper === 'function' ?
                         mapper :
                         function(item){return item;};
-   while(iterator.hasNextSync()){
+   for(i=0;i<size;i++){
       array.push(
-         _mapper(iterator.nextSync())
+         _mapper(collection.getSync(i))
       );
    }
    return array;
