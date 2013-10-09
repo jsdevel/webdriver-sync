@@ -18,7 +18,7 @@ var javaHome=process.env['JAVA_HOME'];
 var os = require('os');
 var path = require('path');
 var fs = require('fs');
-var isWin=/win/.test(os.platform());
+var isWin=/^win/i.test(os.platform());
 var binaryDir = path.resolve(
    process.env[isWin ? 'USERPROFILE':'HOME'],
    '.webdriver-sync'
@@ -60,38 +60,31 @@ if(hasMissingBinary){
 }
 
 function validateJava(){
+   var potentialLibJvmLocations=[
+      'jre\\bin\\server\\jvm.dll',
+      'jre/lib/amd64/server/libjvm.so',
+      'jre/lib/i386/server/libjvm.so',
+      'jre/lib/server/libjvm.dylib'
+   ];
+   var proposedPathToLibJvm;
    var pathToLibJvm;
+
    if(!javaHome){
       err("JAVA_HOME isn't set!  The java module can't build without it.");
       err("You must set this first before installing.");
       err("Exiting...");
       exit();
    }
-   if(isWin){
-      pathToLibJvm=path.resolve(
-         javaHome, 'jre', 'bin', 'server', 'jvm.dll'
-      );
-   } else {
-      switch(arch){
-      //TODO add other archs here as need requires.
-      case "64":
-         pathToLibJvm=path.resolve(
-            javaHome, 'jre', 'lib', 'amd64', 'server', 'libjvm.so'
-         );
+
+   while(potentialLibJvmLocations.length){
+      proposedPathToLibJvm=path.resolve(javaHome, potentialLibJvmLocations.shift());
+      if(fs.existsSync(proposedPathToLibJvm)){
+         pathToLibJvm=proposedPathToLibJvm;
          break;
-      case "32":
-         pathToLibJvm=path.resolve(
-            javaHome, 'jre', 'lib', 'i386', 'server', 'libjvm.so'
-         );
-         break;
-      default:
-         err("Your architecture isn't supported yet by this module!");
-         err("The architecture was listed as: "+arch);
-         showForkItToFixAndExit();
       }
    }
 
-   if(!fs.existsSync(pathToLibJvm)){
+   if(!pathToLibJvm || !fs.existsSync(pathToLibJvm)){
       err("libjvm.so wasn't found using '"+pathToLibJvm+"'.");
       err("Verify that $JAVA_HOME is set correctly and try again.");
       exit();
