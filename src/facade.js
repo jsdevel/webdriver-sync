@@ -16,9 +16,8 @@
 var path = require("path");
 var java = require("java");
 var os   = require('os');
-var isWin=/win/.test(os.platform());
 var binaryDir = path.resolve(
-   process.env[isWin ? 'USERPROFILE':'HOME'],
+   process.env.USERPROFILE || process.env.HOME,
    '.webdriver-sync'
 );
 var seleniumJarPath=path.resolve(

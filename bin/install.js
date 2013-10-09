@@ -18,7 +18,7 @@ var javaHome=process.env['JAVA_HOME'];
 var os = require('os');
 var path = require('path');
 var fs = require('fs');
-var isWin=/win/.test(os.platform());
+var isWin=/^win/i.test(os.platform());
 var binaryDir = path.resolve(
    process.env[isWin ? 'USERPROFILE':'HOME'],
    '.webdriver-sync'
