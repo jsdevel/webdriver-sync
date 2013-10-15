@@ -23,17 +23,9 @@ var binaryDir = path.resolve(
    process.env[isWin ? 'USERPROFILE':'HOME'],
    '.webdriver-sync'
 );
-log("");
-log("Preparing to validate your environment.");
-log("JAVA_HOME is: "+javaHome);
-log("binaryDir is: "+binaryDir);
-log("");
-var arch=os.arch().replace(/[^0-9]/g, "");
 var pathToChromeDriver=path.resolve(binaryDir,'chromedriver'+(isWin?".exe":""));
 var pathToSeleniumServerStandalone=path.resolve(binaryDir, 'selenium-server-standalone.jar');
 var hasMissingBinary=false;
-
-validateJava();
 
 if(!fs.existsSync(pathToChromeDriver)){
    hasMissingBinary=true;
@@ -45,6 +37,7 @@ if(!fs.existsSync(pathToChromeDriver)){
    log("Found: "+pathToChromeDriver);
    log("");
 }
+
 if(!fs.existsSync(pathToSeleniumServerStandalone)){
    hasMissingBinary=true;
    showObtainBinaryMsg(
@@ -55,11 +48,12 @@ if(!fs.existsSync(pathToSeleniumServerStandalone)){
    log("Found: "+pathToSeleniumServerStandalone);
    log("");
 }
-if(hasMissingBinary){
+
+if(hasMissingBinary || !isJavaValid()){
    exit();
 }
 
-function validateJava(){
+function isJavaValid(){
    var potentialLibJvmLocations=[
       'jre\\bin\\server\\jvm.dll',
       'jre/lib/amd64/server/libjvm.so',
@@ -69,11 +63,19 @@ function validateJava(){
    var proposedPathToLibJvm;
    var pathToLibJvm;
 
+   log([
+   "",
+   "Preparing to validate your environment.",
+   "JAVA_HOME is: "+javaHome,
+   "binaryDir is: "+binaryDir,
+   ""
+   ].toString('\n'));
+
    if(!javaHome){
       err("JAVA_HOME isn't set!  The java module can't build without it.");
       err("You must set this first before installing.");
       err("Exiting...");
-      exit();
+      return false;
    }
 
    while(potentialLibJvmLocations.length){
@@ -87,8 +89,9 @@ function validateJava(){
    if(!pathToLibJvm || !fs.existsSync(pathToLibJvm)){
       err("libjvm.so wasn't found using '"+pathToLibJvm+"'.");
       err("Verify that $JAVA_HOME is set correctly and try again.");
-      exit();
+      return false;
    }
+   return true;
 }
 function log(msg){
    console.log(msg);
@@ -104,11 +107,5 @@ function showObtainBinaryMsg(binary, suggested){
    log("");
    err("A suggested download URL is: "+suggested);
    log("");
-}
-function showForkItToFixMsg(msg){
-   err("This should be a simple fix in the bin/preinstall.js script.");
-   err("See if you can fix it, or file an issue on the github issues page.");
-   err("I'd love to see you fork and issue a pull request :P");
-   exit();
 }
 }();
