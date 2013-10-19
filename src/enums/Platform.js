@@ -21,6 +21,7 @@ module.exports=Platform;
 function Platform(instance){
    addFinalProp(this, "_instance", instance);
 }
+
 Platform.prototype.getMajorVersion=function(){
    return this._instance.getMajorVersionSync();
 };
@@ -37,35 +38,43 @@ Platform.prototype.is=function(compareWith){
    return this._instance.isSync(compareWith._instance);
 };
 
+Platform.ANDROID = Platform.prototype.ANDROID = new Platform(Class.ANDROID);
+Platform.ANY     = Platform.prototype.ANY     = new Platform(Class.ANY);
+Platform.LINUX   = Platform.prototype.LINUX   = new Platform(Class.LINUX);
+Platform.MAC     = Platform.prototype.MAC     = new Platform(Class.MAC);
+Platform.UNIX    = Platform.prototype.UNIX    = new Platform(Class.UNIX);
+Platform.VISTA   = Platform.prototype.VISTA   = new Platform(Class.VISTA);
+Platform.WIN8    = Platform.prototype.WIN8    = new Platform(Class.WIN8);
+Platform.WINDOWS = Platform.prototype.WINDOWS = new Platform(Class.WINDOWS);
+Platform.XP      = Platform.prototype.XP      = new Platform(Class.XP);
 
-addFinalProp(Platform, "ANDROID", new Platform(Class.ANDROID));
-addFinalProp(Platform, "ANY",     new Platform(Class.ANY));
-addFinalProp(Platform, "LINUX",   new Platform(Class.LINUX));
-addFinalProp(Platform, "MAC",     new Platform(Class.MAC));
-addFinalProp(Platform, "UNIX",    new Platform(Class.UNIX));
-addFinalProp(Platform, "VISTA",   new Platform(Class.VISTA));
-addFinalProp(Platform, "WIN8",    new Platform(Class.WIN8));
-addFinalProp(Platform, "WINDOWS", new Platform(Class.WINDOWS));
-addFinalProp(Platform, "XP",      new Platform(Class.XP));
 
-
-addFinalProp(Platform, "extractFromSysProperty", function(osName, osVersion){
+Platform.extractFromSysProperty
+   =Platform.prototype.extractFromSysProperty
+   =function(osName, osVersion){
    if(osVersion){
       return new Platform(Class.extractFromSysPropertySync(osName, osVersion));
    }
    return new Platform(Class.extractFromSysPropertySync(osName));
-});
+};
 
-addFinalProp(Platform, "getCurrent", function(){
+Platform.getCurrent
+   =Platform.prototype.getCurrent
+   =function(){
    return new Platform(Class.getCurrentSync(osName));
-});
+};
 
-addFinalProp(Platform, "valueOf", function(name){
+Platform.valueOf
+   =Platform.prototype.valueOf
+   =function(name){
    return new Platform(Class.valueOfSync(name));
-});
+};
 
-addFinalProp(Platform, "values", function(){
+Platform.values
+   =Platform.prototype.values
+   =function(){
    return Class.valuesSync.map(function(v){
       return new Platform(v);
    });
-});
+};
+
