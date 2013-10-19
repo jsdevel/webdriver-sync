@@ -21,12 +21,6 @@ var collectionToArray = utils.collectionToArray;
 
 
 
-function assertIsWebElement(element){
-   if(!(element instanceof WebElement)){
-      throw new Error("element isn't an instance of WebElement.");
-   }
-   return element;
-}
 function assertIsWebDriver(driver){
    if(!(driver instanceof WebDriver)){
       throw new Error("driver isn't an instance of WebDriver.");
@@ -96,69 +90,6 @@ function WebDriverWait(driver, timeout, sleep){
 }
 
 
-
-
-var By=(function(){
-   function By(){
-      this.className=function(name){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "className",
-            name
-         );
-      };
-      this.cssSelector=function(selector){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "cssSelector",
-            selector
-         );
-      };
-      this.id=function(id){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "id",
-            id
-         );
-      };
-      this.linkText=function(linkText){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "linkText",
-            linkText
-         );
-      };
-      this.name=function(name){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "name",
-            name
-         );
-      };
-      this.partialLink=function(partialLink){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "partialLink",
-            partialLink
-         );
-      };
-      this.tagName=function(tagName){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "tagName",
-            tagName
-         );
-      };
-      this.xpath=function(xpath){
-         return java.callStaticMethodSync(
-            "org.openqa.selenium.By",
-            "xpath",
-            xpath
-         );
-      };
-   }
-   return By;
-})();
 
 var DecoratedDriver=(function(){
    function DecoratedDriver(driver){
