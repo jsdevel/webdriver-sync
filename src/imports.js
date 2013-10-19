@@ -71,6 +71,7 @@ module.exports={
    helpers:{
       Map:java.import('me.joespencer.webdriversynchelpers.Map')
    },
+   By:java.import('org.openqa.selenium.By'),
    ChromeDriver:java.import('org.openqa.selenium.chrome.ChromeDriver'),
    Command:java.import('org.openqa.selenium.remote.Command'),
    Cookie:java.import('org.openqa.selenium.Cookie'),
