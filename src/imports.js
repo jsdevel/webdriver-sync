@@ -34,6 +34,15 @@ java.callStaticMethodSync(
    pathToChromeDriver
 );
 
+/*
+ * Class marked protected or otherwise implicitly private
+ * RemoteWebDriver.RemoteTargetLocator
+ * RemoteWebDriver.RemoteWebDriverOptions
+ * RemoteWebDriver.RemoteWebDriverOptions.RemoteInputMethodManager
+ * RemoteWebDriver.RemoteWebDriverOptions.RemoteTimeouts
+ * RemoteWebDriver.RemoteWebDriverOptions.RemoteWindow
+ */
+
 /* TODO
  * AndroidDriver
  * AndroidWebDriver
@@ -56,14 +65,8 @@ java.callStaticMethodSync(
  * IPhoneSimulatorDriver
  * MarionetteConnection
  * NewProfileExtensionConnection
- * RemoteWebDriver
  * RemoteKeyboard
  * RemoteWebElement
- * RemoteWebDriver.RemoteTargetLocator
- * RemoteWebDriver.RemoteWebDriverOptions
- * RemoteWebDriver.RemoteWebDriverOptions.RemoteInputMethodManager
- * RemoteWebDriver.RemoteWebDriverOptions.RemoteTimeouts
- * RemoteWebDriver.RemoteWebDriverOptions.RemoteWindow
  * SafariDriver
  */
 
@@ -86,6 +89,7 @@ module.exports={
    Response:java.import('org.openqa.selenium.remote.Response'),
    SessionId:java.import('org.openqa.selenium.remote.SessionId'),
    TimeUnit:java.import('java.util.concurrent.TimeUnit'),
+   URL:java.import('java.net.URL'),
    UserAndPassword:java.import('org.openqa.selenium.security.UserAndPassword'),
    WebDriverWait:java.import('org.openqa.selenium.support.ui.WebDriverWait')
 };
