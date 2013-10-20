@@ -49,6 +49,23 @@ var assert=function(proposal){
                return this;
             }
          };
+      },
+      isString:function(){
+         this.isValid=assert.isString(proposal);
+
+         return {
+            throws:throws,
+            or:function(string){
+               if(this.isValid)return this;
+               this.isValid=assert.isString(string);
+               return this;
+            },
+            and:function(string){
+               if(!this.isValid)return this;
+               this.isValid=assert.isString(string);
+               return this;
+            }
+         };
       }
    };
 };
