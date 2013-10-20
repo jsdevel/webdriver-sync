@@ -19,6 +19,8 @@ var addFinalProp          = require('../utils').addFinalProp;
 var extendAll             = require('../utils').extendAll;
 var assert                = require('../assert');
 
+var ErrorHandler          = require('./ErrorHandler');
+
 var Capabilities          = require('../interfaces/Capabilities');
 var CommandExecutor       = require('../interfaces/CommandExecutor');
 var HasCapabilities       = require('../interfaces/HasCapabilities');
@@ -141,16 +143,22 @@ RemoteWebDriver.prototype.getCommandExecutor=function(){
    );
 };
 
-/*
-ErrorHandler	getErrorHandler()
+RemoteWebDriver.prototype.getErrorHandler=function(){
+   return new ErrorHandler(this._instance.getErrorHandlerSync());
+};
+/*TODO What's the point of this?
 FileDetector	getFileDetector()
+*/
+/*
 RemoteStatus	getRemoteStatus()
 SessionId	getSessionId()
 void	setFileDetector(FileDetector detector)
-void	setLogLevel(java.util.logging.Level level)
 */
 
 
+RemoteWebDriver.prototype.setLogLevel=function(level){
+   this._instance.setLogLevelSync(level);
+};
 RemoteWebDriver.prototype.toString=function(){
    return this._instance.toStringSync();
 };
