@@ -82,6 +82,7 @@ module.exports={
    Dimension:java.import('org.openqa.selenium.Dimension'),
    ErrorHandler:java.import('org.openqa.selenium.remote.ErrorHandler'),
    ExpectedConditions:java.import('org.openqa.selenium.support.ui.ExpectedConditions'),
+   File:java.import('java.io.File'),
    FirefoxDriver:java.import('org.openqa.selenium.firefox.FirefoxDriver'),
    HtmlUnitDriver:java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver'),
    Level:java.import('java.util.logging.Level'),
