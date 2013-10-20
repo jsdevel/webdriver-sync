@@ -33,8 +33,8 @@ var assert=function(proposal){
             }
          };
       },
-      isNumber:function(number){
-         this.isValid=assert.isNumber(number);
+      isNumber:function(){
+         this.isValid=assert.isNumber(proposal);
 
          return {
             throws:throws,
@@ -43,7 +43,7 @@ var assert=function(proposal){
                this.isValid=assert.isNumber(number);
                return this;
             },
-            and:function(clazz){
+            and:function(number){
                if(!this.isValid)return this;
                this.isValid=assert.isNumber(number);
                return this;
