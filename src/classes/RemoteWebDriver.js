@@ -20,6 +20,8 @@ var extendAll             = require('../utils').extendAll;
 var assert                = require('../assert');
 
 var ErrorHandler          = require('./ErrorHandler');
+var Instance              = require('./Instance');
+var RemoteStatus          = require('./RemoteStatus');
 
 var Capabilities          = require('../interfaces/Capabilities');
 var CommandExecutor       = require('../interfaces/CommandExecutor');
@@ -146,15 +148,23 @@ RemoteWebDriver.prototype.getCommandExecutor=function(){
 RemoteWebDriver.prototype.getErrorHandler=function(){
    return new ErrorHandler(this._instance.getErrorHandlerSync());
 };
+
 /*TODO What's the point of this?
 FileDetector	getFileDetector()
-*/
-/*
-RemoteStatus	getRemoteStatus()
-SessionId	getSessionId()
 void	setFileDetector(FileDetector detector)
 */
 
+RemoteWebDriver.prototype.getRemoteStatus=function(){
+   return new RemoteStatus(
+      new Instance(this._instance.getRemoteStatusSync())
+   );
+};
+
+RemoteWebDriver.prototype.getSessionId=function(){
+   return new SessionId(
+      new Instance(this._instance.getSessionIdSync())
+   );
+};
 
 RemoteWebDriver.prototype.setLogLevel=function(level){
    this._instance.setLogLevelSync(level);
