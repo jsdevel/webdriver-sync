@@ -27,9 +27,9 @@ function RemoteStatus(statusMap){
       addFinalProp(this, "_instance", statusMap._instance);
       return this;
    }
-   assert(statusMap).isInstanceof(Object).throws(
-      "The first argument must be a map."
-   );
+   if(!(statusMap instanceof Object)){
+      throw new Error("The first argument must be a map.");
+   }
    addFinalProp(this, "_instance", new Class(objectToMap(statusMap)));
 }
 
