@@ -88,6 +88,7 @@ module.exports={
    Long:java.import('java.lang.Long'),
    Platform:java.import('org.openqa.selenium.Platform'),
    Point:java.import('org.openqa.selenium.Point'),
+   RemoteStatus:java.import('org.openqa.selenium.remote.RemoteStatus'),
    Response:java.import('org.openqa.selenium.remote.Response'),
    SessionId:java.import('org.openqa.selenium.remote.SessionId'),
    TimeUnit:java.import('java.util.concurrent.TimeUnit'),
