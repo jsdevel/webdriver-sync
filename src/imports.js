@@ -86,6 +86,7 @@ module.exports={
    HtmlUnitDriver:java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver'),
    Level:java.import('java.util.logging.Level'),
    Long:java.import('java.lang.Long'),
+   OutputType:java.import('org.openqa.selenium.OutputType'),
    Platform:java.import('org.openqa.selenium.Platform'),
    Point:java.import('org.openqa.selenium.Point'),
    RemoteStatus:java.import('org.openqa.selenium.remote.RemoteStatus'),
