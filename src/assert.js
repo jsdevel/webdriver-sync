@@ -17,34 +17,57 @@
 var assert=function(proposal){
    return {
       isInstanceof:function(clazz){
-         this.isValid=isInstanceof(proposal, clazz);
+         this.isValid=assert.isInstanceof(proposal, clazz);
 
          return {
             throws:throws,
             or:function(clazz){
                if(this.isValid)return this;
-               this.isValid=isInstanceof(proposal, clazz);
+               this.isValid=assert.isInstanceof(proposal, clazz);
                return this;
             },
             and:function(clazz){
                if(!this.isValid)return this;
-               this.isValid=isInstanceof(proposal, clazz);
+               this.isValid=assert.isInstanceof(proposal, clazz);
+               return this;
+            }
+         };
+      },
+      isNumber:function(number){
+         this.isValid=assert.isNumber(number);
+
+         return {
+            throws:throws,
+            or:function(number){
+               if(this.isValid)return this;
+               this.isValid=assert.isNumber(number);
+               return this;
+            },
+            and:function(clazz){
+               if(!this.isValid)return this;
+               this.isValid=assert.isNumber(number);
                return this;
             }
          };
       }
    };
 };
+
+assert.isNumber=function(number){
+   return typeof number === 'number';
+};
+
 assert.isString=function(str){
    return typeof str === 'string';
 };
 
-function isInstanceof(proposal, clazz){
+assert.isInstanceof=function(proposal, clazz){
    if(proposal instanceof clazz){
       return true;
    }
    return false;
-}
+};
+
 function throws(err){
    if(!this.isValid){
       throw new Error(err);
