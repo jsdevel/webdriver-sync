@@ -31,9 +31,12 @@ var assert=function(proposal){
                this.isValid=isInstanceof(proposal, clazz);
                return this;
             }
-         }
+         };
       }
    };
+};
+assert.isString=function(str){
+   return typeof str === 'string';
 };
 
 function isInstanceof(proposal, clazz){
