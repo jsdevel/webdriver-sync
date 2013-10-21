@@ -70,6 +70,10 @@ var assert=function(proposal){
    };
 };
 
+assert.isBool=function(bool){
+   return typeof bool === 'boolean';
+};
+
 assert.isNumber=function(number){
    return typeof number === 'number';
 };
