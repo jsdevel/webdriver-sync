@@ -19,23 +19,14 @@ var webdriverModule;
 var driver;
 var modulePath;
 var element;
-var By;
-var ExpectedConditions;
-var WebDriverWait;
-var Cookie;
-var TimeUnits;
 
 function beforeSuite(){
    assert=require('assert');
    path = require('path');
    projectPath = path.resolve(__dirname, "..", "..", "..");
-   modulePath = path.resolve(projectPath, 'src', 'facade');
+   modulePath = path.resolve(projectPath, 'src', 'webdriver-sync');
    webdriverModule=require(modulePath);
-   By=webdriverModule.By;
-   ExpectedConditions=webdriverModule.ExpectedConditions;
-   WebDriverWait=webdriverModule.WebDriverWait;
-   Cookie=webdriverModule.Cookie;
-   TimeUnits=webdriverModule.TimeUnits;
+   webdriverModule.importTo(this);
    if(!driver){
       driver = new webdriverModule.ChromeDriver;
    }
@@ -50,6 +41,7 @@ function we_should_be_able_to_show_the_google_title(){
 }
 //Test
 function we_should_be_able_to_type_some_keys_and_submit_a_form(){
+   console.log(By.name);
    element = driver.findElement(By.name("q"));
    element.sendKeys("Cheese!");
    element.submit();
@@ -188,14 +180,14 @@ function we_should_be_able_to_work_with_waits(){
    }, "waiting for a non existant element should throw an exception.");
 }
 //Test
-function we_should_be_able_to_work_with_TimeUnits(){
-   assert(TimeUnits.DAYS, "days");
-   assert(TimeUnits.HOURS, "hours");
-   assert(TimeUnits.MICROSECONDS, "microseconds");
-   assert(TimeUnits.MILLISECONDS, "milliseconds");
-   assert(TimeUnits.MINUTES, "minutes");
-   assert(TimeUnits.NANOSECONDS, "nanoseconds");
-   assert(TimeUnits.SECONDS, "seconds");
+function we_should_be_able_to_work_with_TimeUnit(){
+   assert(TimeUnit.DAYS, "days");
+   assert(TimeUnit.HOURS, "hours");
+   assert(TimeUnit.MICROSECONDS, "microseconds");
+   assert(TimeUnit.MILLISECONDS, "milliseconds");
+   assert(TimeUnit.MINUTES, "minutes");
+   assert(TimeUnit.NANOSECONDS, "nanoseconds");
+   assert(TimeUnit.SECONDS, "seconds");
 }
 
 //Test
@@ -218,7 +210,7 @@ function we_should_be_able_to_work_with_timeouts(){
    var timeouts=driver.manage().timeouts();
    var start;
    var end;
-   timeouts.implicitlyWait(5, TimeUnits.SECONDS);
+   timeouts.implicitlyWait(5, TimeUnit.SECONDS);
    start=Date.now();
    try{
       driver.findElement(By.name('bbbbody'));
@@ -229,14 +221,14 @@ function we_should_be_able_to_work_with_timeouts(){
    try{
       //it appears from the javadocs that the arg given should be a relatively
       //low amount
-      timeouts.pageLoadTimeout(5, TimeUnits.MILLISECONDS);
+      timeouts.pageLoadTimeout(5, TimeUnit.MILLISECONDS);
    }catch(e){
       console.error("pageLoadTimeout is failing.");
    }
    try{
       //it appears from the javadocs that the arg given should be a relatively
       //low amount
-      timeouts.setScriptTimeout(5, TimeUnits.MILLISECONDS);
+      timeouts.setScriptTimeout(5, TimeUnit.MILLISECONDS);
    }catch(e){
       console.error("setScriptTimeout is failing.");
    }

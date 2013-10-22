@@ -38,7 +38,7 @@ By.linkText=By.prototype.linkText=function(linkText){
    return new By(Class.linkTextSync(linkText));
 };
 
-By.name=By.prototype.name=function(name){
+By.prototype.name=function(name){
    return new By(Class.nameSync(name));
 };
 

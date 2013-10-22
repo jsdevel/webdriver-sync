@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 var Class                   = require('../imports').ChromeOptions;
-var File                    = require('../File');
+var File                    = require('./File');
 var toArray                 = require('../utils').toArray;
 var addFinalProp            = require('../utils').addFinalProp;
 var assert                  = require('../assert');

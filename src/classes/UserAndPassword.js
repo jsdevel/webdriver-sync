@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var Credentials   = require('../classes/Credentials');
+var Credentials   = require('../interfaces/Credentials');
 var addFinalProp  = require('../utils').addFinalProp;
 var extend        = require('../utils').extend;
 var Class         = require('../imports').UserAndPassword;

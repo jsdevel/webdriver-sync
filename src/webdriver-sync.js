@@ -13,38 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var imports           = require('./imports');
-var utils             = require('./utils');
+var java = require('java');
 
 module.exports={
-   By:imports.By,
-   ChromeDriver:imports.ChromeDriver,
-   ChromeDriverService:imports.ChromeDriverService,
-   ChromeOptions:imports.ChromeOptions,
-   Command:imports.Command,
-   Cookie:imports.Cookie,
-   Date:imports.Date,
-   Dimension:imports.Dimension,
-   DriverService:imports.DriverService,
-   ErrorHandler:imports.ErrorHandler,
-   ExpectedConditions:imports.ExpectedConditions,
-   File:imports.File,
-   FirefoxDriver:imports.FirefoxDriver,
-   HtmlUnitDriver:imports.HtmlUnitDriver,
-   Level:imports.Level,
-   LocalFileDetector:imports.LocalFileDetector,
-   Long:imports.Long,
-   OutputType:imports.OutputType,
-   Platform:imports.Platform,
-   Point:imports.Point,
-   RemoteStatus:imports.RemoteStatus,
-   Response:imports.Response,
-   SessionId:imports.SessionId,
-   TimeUnit:imports.TimeUnit,
-   URL:imports.URL,
-   UselessFileDetector:imports.UselessFileDetector,
-   UserAndPassword:imports.UserAndPassword,
-   WebDriverWait:imports.WebDriverWait,
+   By:new require('./classes/By'),
+   ChromeDriver:require('./classes/ChromeDriver'),
+   ChromeDriverService:require('./classes/ChromeDriverService'),
+   ChromeOptions:require('./classes/ChromeOptions'),
+   Command:require('./classes/Command'),
+   Cookie:require('./classes/Cookie'),
+   Dimension:require('./classes/Dimension'),
+   DriverService:require('./classes/DriverService'),
+   ErrorHandler:require('./classes/ErrorHandler'),
+   ExpectedConditions:require('./classes/ExpectedConditions'),
+   File:require('./classes/File'),
+   //FirefoxDriver:require('./classes/FirefoxDriver'),
+   //HtmlUnitDriver:require('./classes/HtmlUnitDriver'),
+   Level:require('./classes/Level'),
+   LocalFileDetector:require('./classes/LocalFileDetector'),
+   Platform:require('./enums/Platform'),
+   Point:require('./classes/Point'),
+   RemoteStatus:require('./classes/RemoteStatus'),
+   Response:require('./classes/Response'),
+   SessionId:require('./classes/SessionId'),
+   TimeUnit:require('./enums/TimeUnit'),
+   UselessFileDetector:require('./classes/UselessFileDetector'),
+   UserAndPassword:require('./classes/UserAndPassword'),
+   //WebDriverWait:require('./classes/WebDriverWait'),
    importTo:function(target){
       for(prop in this){
          if(prop === "importTo")continue;

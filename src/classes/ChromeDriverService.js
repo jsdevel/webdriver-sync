@@ -17,6 +17,7 @@ var Class                   = require('../imports').ChromeDriverService;
 var DriverService           = require('./DriverService');
 var Instance                = require('./Instance');
 var addFinalProp            = require('../utils').addFinalProp;
+var extendAll               = require('../utils').extendAll;
 var objectToMap             = require('../utils').objectToMap;
 
 module.exports = ChromeDriverService;
@@ -44,7 +45,7 @@ ChromeDriverService.createDefaultService
       return new ChromeDriverService(new Instance(Class.createDefaultServiceSync()));
    };
 
-ChromeDriverSerivce.Builder
+ChromeDriverService.Builder
    = ChromeDriverService.prototype.Builder
    = Builder;
 

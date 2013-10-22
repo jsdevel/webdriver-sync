@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 var Alert                = require('./Alert');
-var Dimension            = require('./Dimension');
-var Point                = require('./Point');
 var SearchContext        = require('./SearchContext');
 var WebElement           = require('./WebElement');
 var Cookie               = require('../classes/Cookie');
-var Long                 = require('../classes/Long');
+var Dimension            = require('../classes/Dimension');
+var Long                 = require('../imports').Long;
+var Point                = require('../classes/Point');
 var extend               = require('../utils').extend;
 var addFinalProp         = require('../utils').addFinalProp;
 var collectionToArray    = require('../utils').addFinalProp;

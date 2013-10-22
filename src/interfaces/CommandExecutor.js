@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 var addFinalProp            = require('../utils').addFinalProp;
-var fakeInstance            = require('../utils').fakeInstance;
 var Command                 = require('../classes/Command');
+var Instance                = require('../classes/Instance');
 var Response                = require('../classes/Response');
 
 module.exports = CommandExecutor;
@@ -27,5 +27,7 @@ CommandExecutor.prototype.execute=function(command){
    if(!(command instanceof Command)){
       throw new Error("command must be an instance of Command");
    }
-   return fakeInstance(Response, this._instance.executeSync(command._instance));
+   return new Response(
+      new Instance(this._instance.executeSync(command._instance))
+   );
 };
