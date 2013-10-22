@@ -90,16 +90,6 @@ function WebDriverWait(driver, timeout, sleep){
 }
 
 
-var ChromeDriver=(function(){
-   function ChromeDriver(){
-      var driver = new ChromeDriverClass();
-      Object.defineProperty(this, '_driver', {
-         get:function(){return driver;}
-      });
-   }
-   extend(ChromeDriver, WebDriver);
-   return ChromeDriver;
-})();
 var FirefoxDriver=(function(){
    function FirefoxDriver(){
       var driver = new FirefoxDriverClass();
