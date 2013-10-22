@@ -87,7 +87,7 @@ function objectToMap(obj){
    var map = Map.createWithStringKeys();
    for(key in obj){
       if(obj.hasOwnProperty(key)){
-         map.set(key, obj[key]);
+         map.setSync(key, obj[key]);
       }
    }
    return map;
