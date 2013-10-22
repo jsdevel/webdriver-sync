@@ -47,7 +47,6 @@ java.callStaticMethodSync(
  * AndroidDriver
  * AndroidWebDriver
  * AndroidWebElement
- * ChromeDriverService
  * DesiredCapabilities
  * DriverCommandExecutor
  * EventFiringKeyboard
@@ -77,11 +76,13 @@ module.exports={
    },
    By:java.import('org.openqa.selenium.By'),
    ChromeDriver:java.import('org.openqa.selenium.chrome.ChromeDriver'),
+   ChromeDriverService:java.import('org.openqa.selenium.chrome.ChromeDriverService'),
    ChromeOptions:java.import('org.openqa.selenium.chrome.ChromeOptions'),
    Command:java.import('org.openqa.selenium.remote.Command'),
    Cookie:java.import('org.openqa.selenium.Cookie'),
    Date:java.import('java.util.Date'),
    Dimension:java.import('org.openqa.selenium.Dimension'),
+   DriverService:java.import('org.openqa.selenium.remote.service.DriverService'),
    ErrorHandler:java.import('org.openqa.selenium.remote.ErrorHandler'),
    ExpectedConditions:java.import('org.openqa.selenium.support.ui.ExpectedConditions'),
    File:java.import('java.io.File'),
