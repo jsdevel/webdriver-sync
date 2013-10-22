@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-var assert=function(proposal){
+module.exports=assert;
+
+function assert(proposal){
    return {
       isInstanceof:function(clazz){
          this.isValid=assert.isInstanceof(proposal, clazz);
@@ -94,5 +96,3 @@ function throws(err){
       throw new Error(err);
    }
 }
-
-module.exports=assert;
