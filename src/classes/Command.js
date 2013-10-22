@@ -16,6 +16,7 @@
 var Class                   = require('../imports').Command;
 var SessionId               = require('./SessionId');
 var objectToMap             = require('../utils').objectToMap;
+var addFinalProp            = require('../utils').addFinalProp;
 
 module.exports=Command;
 

@@ -47,6 +47,7 @@ java.callStaticMethodSync(
  * AndroidDriver
  * AndroidWebDriver
  * AndroidWebElement
+ * ChromeDriverService
  * DesiredCapabilities
  * DriverCommandExecutor
  * EventFiringKeyboard
@@ -76,6 +77,7 @@ module.exports={
    },
    By:java.import('org.openqa.selenium.By'),
    ChromeDriver:java.import('org.openqa.selenium.chrome.ChromeDriver'),
+   ChromeOptions:java.import('org.openqa.selenium.chrome.ChromeOptions'),
    Command:java.import('org.openqa.selenium.remote.Command'),
    Cookie:java.import('org.openqa.selenium.Cookie'),
    Date:java.import('java.util.Date'),
@@ -86,6 +88,7 @@ module.exports={
    FirefoxDriver:java.import('org.openqa.selenium.firefox.FirefoxDriver'),
    HtmlUnitDriver:java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver'),
    Level:java.import('java.util.logging.Level'),
+   LocalFileDetector:java.import('org.openqa.selenium.remote.LocalFileDetector'),
    Long:java.import('java.lang.Long'),
    OutputType:java.import('org.openqa.selenium.OutputType'),
    Platform:java.import('org.openqa.selenium.Platform'),
@@ -95,6 +98,7 @@ module.exports={
    SessionId:java.import('org.openqa.selenium.remote.SessionId'),
    TimeUnit:java.import('java.util.concurrent.TimeUnit'),
    URL:java.import('java.net.URL'),
+   UselessFileDetector:java.import('org.openqa.selenium.remote.UselessFileDetector'),
    UserAndPassword:java.import('org.openqa.selenium.security.UserAndPassword'),
    WebDriverWait:java.import('org.openqa.selenium.support.ui.WebDriverWait')
 };

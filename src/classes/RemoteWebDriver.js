@@ -25,6 +25,7 @@ var RemoteStatus          = require('./RemoteStatus');
 
 var Capabilities          = require('../interfaces/Capabilities');
 var CommandExecutor       = require('../interfaces/CommandExecutor');
+var FileDetector          = require('../interfaces/FileDetector');
 var HasCapabilities       = require('../interfaces/HasCapabilities');
 var HasInputDevices       = require('../interfaces/HasInputDevices');
 var FindsByClassName      = require('../interfaces/FindsByClassName');
@@ -149,10 +150,9 @@ RemoteWebDriver.prototype.getErrorHandler=function(){
    return new ErrorHandler(this._instance.getErrorHandlerSync());
 };
 
-/*TODO What's the point of this?
-FileDetector	getFileDetector()
-void	setFileDetector(FileDetector detector)
-*/
+RemoteWebDriver.prototype.getFileDetector=function(){
+   return new FileDetector(this._instance.getFileDetectorSync());
+};
 
 RemoteWebDriver.prototype.getRemoteStatus=function(){
    return new RemoteStatus(
@@ -164,6 +164,13 @@ RemoteWebDriver.prototype.getSessionId=function(){
    return new SessionId(
       new Instance(this._instance.getSessionIdSync())
    );
+};
+
+RemoteWebDriver.prototype.setFileDetector=function(detector){
+   assert(detector).isInstanceof(FileDetector).throws(
+      "detector wasn't an instance of FileDetector"
+   );
+   this._instance.setFileDetectorSync(detector._instance);
 };
 
 RemoteWebDriver.prototype.setLogLevel=function(level){
