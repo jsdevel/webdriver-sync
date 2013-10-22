@@ -27,6 +27,7 @@ var helperJarPath=path.resolve(
 );
 var pathToChromeDriver=path.resolve(binaryDir, 'chromedriver');
 java.classpath.push(seleniumJarPath);
+java.classpath.push(helperJarPath);
 java.callStaticMethodSync(
    "java.lang.System",
    "setProperty",

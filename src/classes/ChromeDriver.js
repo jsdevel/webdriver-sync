@@ -15,9 +15,10 @@
  */
 var Class                   = require('../imports').ChromeDriver;
 var Capabilities            = require('../interfaces/Capabilities');
-var ChromeDriverService     = require('../ChromeDriverService');
+var ChromeDriverService     = require('./ChromeDriverService');
 var TakesScreenshot         = require('../interfaces/TakesScreenshot');
 var RemoteWebDriver         = require('./RemoteWebDriver');
+var extendAll               = require('../utils').extendAll;
 var addFinalProp            = require('../utils').addFinalProp;
 
 module.exports=ChromeDriver;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 var Class                 = require('../imports').LocalFileDetector;
-var FileDetector          = require('./classes/FileDetector');
+var FileDetector          = require('../interfaces/FileDetector');
 var Instance              = require('./Instance');
 var extendAll               = require('../utils').extendAll;
 var addFinalProp            = require('../utils').addFinalProp;

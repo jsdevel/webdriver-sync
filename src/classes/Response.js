@@ -16,13 +16,16 @@
 var addFinalProp                = require('../utils').addFinalProp;
 var Class                       = require('../imports').Response;
 var SessionId                   = require('./SessionId');
+var Instance                    = require('./Instance');
 
 module.exports=Response;
 
 function Response(sessionId){
    var instance;
-   if(sessionId instanceof SessionId){
+   if(assert(sessionId).isInstanceof(SessionId).isValid){
       instance = new Class(sessionId._instance);
+   } else if(assert(sessionId).isInstanceof(Instance).isValid){
+      instance = sessionId._instance;
    } else {
       instance = new Class();
    }

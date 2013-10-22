@@ -104,7 +104,6 @@ module.exports.addFinalProp=addFinalProp;
 module.exports.collectionToArray=collectionToArray;
 module.exports.extend=extend;
 module.exports.extendAll=extendAll;
-module.exports.fakeInstance=fakeInstance;
 module.exports.mapToObject=mapToObject;
 module.exports.objectToMap=objectToMap;
 module.exports.toArray=toArray;

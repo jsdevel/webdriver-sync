@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 var File                   = require('../classes/File');
-var Instance               = require('./Instance');
+var Instance               = require('../classes/Instance');
 var OutputType             = require('./OutputType');
 var addFinalProp           = require('../utils').addFinalProp;
 var assert                 = require('../assert');
