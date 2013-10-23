@@ -16,11 +16,18 @@
    },
    "src":{
       "base":"../src",
-      "js":"./"
+      "js":"./",
+      "names":[
+         ".*\\.js"
+      ]
    },
    "test":{
       "base":"../test",
       "integrations":"./integrations",
-      "units":"./units"
+      "units":"./units",
+      "names":{
+         "units":[".*\\.js"],
+         "integrations":[".*\\IT?.js"]
+      }
    }
 }

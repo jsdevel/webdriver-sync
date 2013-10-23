@@ -17,7 +17,7 @@ var Map                = require('./imports').helpers.Map;
 
 var addFinalProp=function(obj, prop, val){
    if(val){
-      Object.defineProperty(obj, prop, {get:function(){return val;}});
+      obj[prop]=val;
    }
 };
 var collectionToArray=function(collection, mapper){
@@ -34,38 +34,39 @@ var collectionToArray=function(collection, mapper){
    }
    return array;
 };
-function fakeInstace(Class, _instance){
-   var response;
-   function _Class(){}
-   _Class.prototype=Class.prototype;
-   response = new _Class();
-   addFinalProp(response, "_instance", _instance);
-   return response;
-}
+
 function extend(Child, Parent){
-   extendAll(Child, Parent);
+   var prop;
+   var __extends;
+
+   if(!Child.__extends){
+      Child.__extends=Child.prototype.__extends={};
+   }
+
+   for(prop in Parent){
+      if(!(prop in Child)){
+         Child[prop] = Parent[prop];
+      }
+   }
+   for(prop in Parent.prototype){
+      if(!(prop in Child.prototype)){
+         Child.prototype[prop] = Parent.prototype[prop];
+      }
+   }
+   Child.__extends[Parent.name]=true;
 }
 function extendAll(){
    var args = toArray(arguments);
+   var Child = args.splice(0,1)[0];
    var len=args.length;
-   var Child=args[0];
    var i;
-   var extended={};
-   var prototype;
-   var prop;
    if(!len){
       return;
    }
-   for(i=len-1;i>-1;i--){
-      prototype=args[i].prototype;
-      for(prop in prototype){
-         if(prototype.hasOwnProperty(prop)){
-            extended[prop] = prototype[prop];
-         }
-      }
+
+   for(i=0;i<len;i++){
+      extend(Child, args[i]);
    }
-   Child.prototype=extended;
-   Child.prototype.constructor=Child;
 }
 function mapToObject(map, mapper){
    var keys = map.keySetSync();

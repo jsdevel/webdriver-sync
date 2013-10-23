@@ -22,19 +22,19 @@ function By(instance){
    addFinalProp(this, "_instance", instance);
 }
 
-By.className=By.prototype.className=function(name){
+By.prototype.className=function(name){
    return new By(Class.classNameSync(name));
 };
 
-By.cssSelector=By.prototype.cssSelector=function(selector){
+By.prototype.cssSelector=function(selector){
    return new By(Class.cssSelectorSync(selector));
 };
 
-By.id=By.prototype.id=function(id){
+By.prototype.id=function(id){
    return new By(Class.idSync(id));
 };
 
-By.linkText=By.prototype.linkText=function(linkText){
+By.prototype.linkText=function(linkText){
    return new By(Class.linkTextSync(linkText));
 };
 
@@ -42,14 +42,14 @@ By.prototype.name=function(name){
    return new By(Class.nameSync(name));
 };
 
-By.partialLink=By.prototype.partialLink=function(partialLink){
+By.prototype.partialLink=function(partialLink){
    return new By(Class.partialLinkSync(partialLink));
 };
 
-By.tagName=By.prototype.tagName=function(tagName){
+By.prototype.tagName=function(tagName){
    return new By(Class.tagNameSync(tagName));
 };
 
-By.xpath=By.prototype.xpath=function(xpath){
+By.prototype.xpath=function(xpath){
    return new By(Class.xpathSync(xpath));
 };

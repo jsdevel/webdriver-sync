@@ -23,6 +23,7 @@ var java          = require('java');
 module.exports = WebElement;
 
 extend(WebElement, SearchContext);
+
 function WebElement(instance){
    addFinalProp(this, "_instance", instance);
 }

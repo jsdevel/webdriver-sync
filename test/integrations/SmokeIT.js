@@ -19,6 +19,13 @@ var webdriverModule;
 var driver;
 var modulePath;
 var element;
+var By;
+var ChromeDriver;
+var Cookie;
+var ExpectdContidions;
+var TimeUnit;
+
+
 
 function beforeSuite(){
    assert=require('assert');
@@ -26,9 +33,14 @@ function beforeSuite(){
    projectPath = path.resolve(__dirname, "..", "..", "..");
    modulePath = path.resolve(projectPath, 'src', 'webdriver-sync');
    webdriverModule=require(modulePath);
-   webdriverModule.importTo(this);
+   //webdriverModule.importTo(this);
+   By = webdriverModule.By;
+   ChromeDriver = webdriverModule.ChromeDriver;
+   Cookie = webdriverModule.Cookie;
+   ExpectedConditions = webdriverModule.ExpectedConditions;
+   TimeUnit = webdriverModule.TimeUnit;
    if(!driver){
-      driver = new webdriverModule.ChromeDriver;
+      driver = new ChromeDriver;
    }
    driver.get("http://www.google.com");
 }
@@ -41,7 +53,6 @@ function we_should_be_able_to_show_the_google_title(){
 }
 //Test
 function we_should_be_able_to_type_some_keys_and_submit_a_form(){
-   console.log(By.name);
    element = driver.findElement(By.name("q"));
    element.sendKeys("Cheese!");
    element.submit();
@@ -61,12 +72,12 @@ function we_should_be_able_to_get_the_current_url(){
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
 }
-//Test
+///Test
 function we_should_be_able_to_start_HtmlUnit(){
    var htmlDriver = new webdriverModule.HtmlUnitDriver();
    htmlDriver.quit();
 }
-//Test
+///Test
 function we_should_be_able_to_start_Firefox(){
    var firefoxDriver = new webdriverModule.FirefoxDriver();
    firefoxDriver.quit();
@@ -91,30 +102,30 @@ function we_should_be_able_to_work_with_cookies(){
    assert.equal(options.getCookieNamed("_2").getValue(), "2");
 
    //test 3 arguments and path
+   driver.get("http://www.google.com/news/");
    cookie=new Cookie("_3", "3", "/news");
    options.addCookie(cookie);
-   driver.get("http://www.google.com/news/");
    assert.equal(options.getCookieNamed("_3").getValue(), "3");
    assert.equal(options.getCookieNamed("_3").getPath(), "/news");
 
    //test 4 arguments
-   cookie=new Cookie("_4", "4", "/", 300);
+   cookie=new Cookie("_4", "4", "/", new Date(Date.now()+3000));
    options.addCookie(cookie);
    driver.navigate().refresh();
-   assert.equal(options.getCookieNamed("_4").getExpiry().getTime(), cookie.getExpiry().getTime());
+   assert.equal(options.getCookieNamed("_4").getExpiry().getTime(), cookie.getExpiry().getTime(), "cookie added via options");
 
    //test 4 arguments
    cookie=new Cookie("_neg4", "neg4", "/", null);
    options.addCookie(cookie);
 
    //test 5 arguments
-   cookie=new Cookie("_5", "5", "maps.google.com", "/", 3600);
+   cookie=new Cookie("_5", "5", "maps.google.com", "/", new Date(Date.now()+(3600*1000)));
    assert['throws'](function(){
       options.addCookie(cookie);
    }, "allowed to add a cookie for a different domain.");
 
    //test 5 arguments
-   cookie=new Cookie("_6", "6", ".google.com", "/", 3600, true);
+   cookie=new Cookie("_6", "6", ".google.com", "/", new Date(Date.now()+(3600*1000)), true);
    options.addCookie(cookie);
    driver.navigate().refresh();
    assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
@@ -151,7 +162,7 @@ function we_should_be_able_to_work_with_expected_conditions(){
    ExpectedConditions.visibilityOf(element);
    ExpectedConditions.visibilityOfElementLocated(by);
 }
-//Test
+///Test
 function we_should_be_able_to_work_with_waits(){
    (new WebDriverWait(driver, 300)).
    until(
@@ -205,7 +216,7 @@ function we_should_be_able_to_sleep(){
 
 //make sure this test is last as it affects the time the driver waits for
 //elements.
-//Test
+///Test
 function we_should_be_able_to_work_with_timeouts(){
    var timeouts=driver.manage().timeouts();
    var start;

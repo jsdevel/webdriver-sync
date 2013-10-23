@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 var Alert                = require('./Alert');
+var Instance             = require('../classes/Instance');
 var SearchContext        = require('./SearchContext');
 var WebElement           = require('./WebElement');
 var Cookie               = require('../classes/Cookie');
@@ -129,13 +130,13 @@ Options.prototype.deleteCookieNamed=function(name){
 Options.prototype.getCookieNamed=function(name){
    var proposedCookie=this._instance.getCookieNamedSync(name);
    if(proposedCookie){
-      return new Cookie(proposedCookie);
+      return new Cookie(new Instance(proposedCookie));
    }
    return null;
 };
 Options.prototype.getCookies=function(){
    return collectionToArray(this._instance.getCookiesSync(),function(item){
-      return new Cookie(item);
+      return new Cookie(new Instance(item));
    });
 };
 Options.prototype.ime=function(){
