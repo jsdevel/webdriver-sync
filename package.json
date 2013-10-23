@@ -10,11 +10,13 @@
     "test": "node node_modules/tddforjs/build/TDDforJS.js",
     "preinstall":"node bin/install.js pre"
   },
-  "dependencies":{
-    "java":"0.2.3"
-  },
+  "dependencies":[
+    "java"
+  ],
   "devDependencies":[
-      "tddforjs"
+      "tddforjs",
+      "proxyquire",
+      "sinon"
   ],
   "repository": {
     "type": "git",

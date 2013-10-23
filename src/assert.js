@@ -18,10 +18,29 @@ module.exports=assert;
 
 function assert(proposal){
    return {
+      extends:function(clazz){
+         this.isValid=assert.extends(proposal, clazz);
+
+         return {
+            isValid:this.isValid,
+            throws:throws,
+            or:function(clazz){
+               if(this.isValid)return this;
+               this.isValid=assert.extends(proposal, clazz);
+               return this;
+            },
+            and:function(clazz){
+               if(!this.isValid)return this;
+               this.isValid=assert.extends(proposal, clazz);
+               return this;
+            }
+         };
+      },
       isInstanceof:function(clazz){
          this.isValid=assert.isInstanceof(proposal, clazz);
 
          return {
+            isValid:this.isValid,
             throws:throws,
             or:function(clazz){
                if(this.isValid)return this;
@@ -39,6 +58,7 @@ function assert(proposal){
          this.isValid=assert.isNumber(proposal);
 
          return {
+            isValid:this.isValid,
             throws:throws,
             or:function(number){
                if(this.isValid)return this;
@@ -56,6 +76,7 @@ function assert(proposal){
          this.isValid=assert.isString(proposal);
 
          return {
+            isValid:this.isValid,
             throws:throws,
             or:function(string){
                if(this.isValid)return this;
@@ -70,6 +91,14 @@ function assert(proposal){
          };
       }
    };
+};
+
+assert.extends=function(Child, Parent){
+   try {
+      return !!Child.__extends[Parent.name];
+   } catch(e) {
+      return false;
+   }
 };
 
 assert.isBool=function(bool){

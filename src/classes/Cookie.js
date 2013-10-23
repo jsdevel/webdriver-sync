@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var addFinalProp          = require('../utils').addFinalProp;
+var Instance              = require('./Instance');
 var Class                 = require('../imports').Cookie;
 var DateClass             = require('../imports').Date;
 var Long                  = require('../imports').Long;
+var addFinalProp          = require('../utils').addFinalProp;
+var assert                = require('../assert');
 
 module.exports = Cookie;
 
@@ -39,74 +41,73 @@ function Cookie(
    var cookie;
    var numOfArgs = arguments.length > 6?6:arguments.length;
 
-   validateArgIsString(name, "name");
-   validateArgIsString(value, "value");
-   _name=name;
-   _value=value;
-   switch(numOfArgs){
-   case 2:
-      cookie = new Class(_name, _value);
-      break;
-   case 3:
-      validateArgIsString(pathOrDomain, "path");
-      _path=pathOrDomain;
-      cookie = new Class(_name, _value, _path);
-      break;
-   case 4:
-      validateArgIsString(pathOrDomain, "path");
-      _path=pathOrDomain;
-      if(dateOrPath instanceof Date){
-         _date=createDate(dateOrPath);
-         _expiry=dateOrPath;
-      }
-      cookie = new Class(_name, _value, _path, _date);
-      break;
-   case 5:
-      validateArgIsString(pathOrDomain, "domain");
-      validateArgIsString(dateOrPath, "path");
-      _domain=pathOrDomain;
-      _path=dateOrPath;
-      if(date instanceof Date){
-         _date=createDate(date);
-         _expiry=date;
-      }
-      cookie=new Class(_name, _value, _domain, _path, _date);
-      break;
-   case 6:
-      validateArgIsString(pathOrDomain, "domain");
-      validateArgIsString(dateOrPath, "path");
-      validateArgIsBoolean(isSecure, "isSecure");
-      _domain=pathOrDomain;
-      _path=dateOrPath;
-      if(date instanceof Date){
-         _date=createDate(date);
-         _expiry=date;
-      }
-      _isSecure=isSecure;
-      cookie = new Class(
-         _name,
-         _value,
-         _domain,
-         _path,
-         _date?_date:null,
-         _isSecure
-      );
-      break;
-   default:
-      if(!name){
+   if(assert(name).isInstanceof(Instance).isValid){
+      cookie = name._instance;
+      _name=cookie.getNameSync();
+      _value=cookie.getValueSync();
+      _domain=cookie.getDomainSync();
+      _path=cookie.getPathSync();
+      _expiry=cookie.getExpirySync()?
+               new Date(cookie.getExpirySync().getTimeSync):
+               null;
+      _isSecure=cookie.isSecureSync();
+   } else {
+      validateArgIsString(name, "name");
+      validateArgIsString(value, "value");
+      _name=name;
+      _value=value;
+      switch(numOfArgs){
+      case 2:
+         cookie = new Class(_name, _value);
+         break;
+      case 3:
+         validateArgIsString(pathOrDomain, "path");
+         _path=pathOrDomain;
+         cookie = new Class(_name, _value, _path);
+         break;
+      case 4:
+         validateArgIsString(pathOrDomain, "path");
+         _path=pathOrDomain;
+         if(dateOrPath instanceof Date){
+            _date=createDate(dateOrPath);
+            _expiry=dateOrPath;
+         }
+         cookie = new Class(_name, _value, _path, _date);
+         break;
+      case 5:
+         validateArgIsString(pathOrDomain, "domain");
+         validateArgIsString(dateOrPath, "path");
+         _domain=pathOrDomain;
+         _path=dateOrPath;
+         if(date instanceof Date){
+            _date=createDate(date);
+            _expiry=date;
+         }
+         cookie=new Class(_name, _value, _domain, _path, _date);
+         break;
+      case 6:
+         validateArgIsString(pathOrDomain, "domain");
+         validateArgIsString(dateOrPath, "path");
+         validateArgIsBoolean(isSecure, "isSecure");
+         _domain=pathOrDomain;
+         _path=dateOrPath;
+         if(date instanceof Date){
+            _date=createDate(date);
+            _expiry=date;
+         }
+         _isSecure=isSecure;
+         cookie = new Class(
+            _name,
+            _value,
+            _domain,
+            _path,
+            _date?_date:null,
+            _isSecure
+         );
+         break;
+      default:
          throw new Error("cookies require a name and a value at minimum.");
-      } else {
-         cookie = name;
-         _name=cookie.getNameSync();
-         _value=cookie.getValueSync();
-         _domain=cookie.getDomainSync();
-         _path=cookie.getPathSync();
-         _expiry=cookie.getExpirySync()?
-                  new Date(cookie.getExpirySync().getTimeSync):
-                  null;
-         _isSecure=cookie.isSecureSync();
       }
-      throw new Error("cookies require a name and a value at minimum.");
    }
 
    addFinalProp(this, "_instance", cookie);
@@ -201,7 +202,8 @@ Builder.prototype.path=function(path){
 };
 
 function createDate(date){
-   return new DateClass(new Long(date.getTime()));
+   var time=date.getTime();
+   return new DateClass(new Long(""+time));
 }
 
 function validateArgIsBoolean(value, arg){

@@ -73,34 +73,92 @@ java.callStaticMethodSync(
 
 module.exports={
    helpers:{
-      Map:java.import('me.joespencer.webdriversynchelpers.Map')
+      get Map(){
+         return java.import('me.joespencer.webdriversynchelpers.Map');
+      }
    },
-   By:java.import('org.openqa.selenium.By'),
-   ChromeDriver:java.import('org.openqa.selenium.chrome.ChromeDriver'),
-   ChromeDriverService:java.import('org.openqa.selenium.chrome.ChromeDriverService'),
-   ChromeOptions:java.import('org.openqa.selenium.chrome.ChromeOptions'),
-   Command:java.import('org.openqa.selenium.remote.Command'),
-   Cookie:java.import('org.openqa.selenium.Cookie'),
-   Date:java.import('java.util.Date'),
-   Dimension:java.import('org.openqa.selenium.Dimension'),
-   DriverService:java.import('org.openqa.selenium.remote.service.DriverService'),
-   ErrorHandler:java.import('org.openqa.selenium.remote.ErrorHandler'),
-   ExpectedConditions:java.import('org.openqa.selenium.support.ui.ExpectedConditions'),
-   File:java.import('java.io.File'),
-   FirefoxDriver:java.import('org.openqa.selenium.firefox.FirefoxDriver'),
-   HtmlUnitDriver:java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver'),
-   Level:java.import('java.util.logging.Level'),
-   LocalFileDetector:java.import('org.openqa.selenium.remote.LocalFileDetector'),
-   Long:java.import('java.lang.Long'),
-   OutputType:java.import('org.openqa.selenium.OutputType'),
-   Platform:java.import('org.openqa.selenium.Platform'),
-   Point:java.import('org.openqa.selenium.Point'),
-   RemoteStatus:java.import('org.openqa.selenium.remote.RemoteStatus'),
-   Response:java.import('org.openqa.selenium.remote.Response'),
-   SessionId:java.import('org.openqa.selenium.remote.SessionId'),
-   TimeUnit:java.import('java.util.concurrent.TimeUnit'),
-   URL:java.import('java.net.URL'),
-   UselessFileDetector:java.import('org.openqa.selenium.remote.UselessFileDetector'),
-   UserAndPassword:java.import('org.openqa.selenium.security.UserAndPassword'),
-   WebDriverWait:java.import('org.openqa.selenium.support.ui.WebDriverWait')
+   get By(){
+      return java.import('org.openqa.selenium.By');
+   },
+   get ChromeDriver(){
+      return java.import('org.openqa.selenium.chrome.ChromeDriver');
+   },
+   get ChromeDriverService(){
+      return java.import('org.openqa.selenium.chrome.ChromeDriverService');
+   },
+   get ChromeOptions(){
+      return java.import('org.openqa.selenium.chrome.ChromeOptions');
+   },
+   get Command(){
+      return java.import('org.openqa.selenium.remote.Command');
+   },
+   get Cookie(){
+      return java.import('org.openqa.selenium.Cookie');
+   },
+   get Date(){
+      return java.import('java.util.Date');
+   },
+   get Dimension(){
+      return java.import('org.openqa.selenium.Dimension');
+   },
+   get DriverService(){
+      return java.import('org.openqa.selenium.remote.service.DriverService');
+   },
+   get ErrorHandler(){
+      return java.import('org.openqa.selenium.remote.ErrorHandler');
+   },
+   get ExpectedConditions(){
+      return java.import('org.openqa.selenium.support.ui.ExpectedConditions');
+   },
+   get File(){
+      return java.import('java.io.File');
+   },
+   get FirefoxDriver(){
+      return java.import('org.openqa.selenium.firefox.FirefoxDriver');
+   },
+   get HtmlUnitDriver(){
+      return java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
+   },
+   get Level(){
+      return java.import('java.util.logging.Level');
+   },
+   get LocalFileDetector(){
+      return java.import('org.openqa.selenium.remote.LocalFileDetector');
+   },
+   get Long(){
+      return java.import('java.lang.Long');
+   },
+   get OutputType(){
+      return java.import('org.openqa.selenium.OutputType');
+   },
+   get Platform(){
+      return java.import('org.openqa.selenium.Platform');
+   },
+   get Point(){
+      return java.import('org.openqa.selenium.Point');
+   },
+   get RemoteStatus(){
+      return java.import('org.openqa.selenium.remote.RemoteStatus');
+   },
+   get Response(){
+      return java.import('org.openqa.selenium.remote.Response');
+   },
+   get SessionId(){
+      return java.import('org.openqa.selenium.remote.SessionId');
+   },
+   get TimeUnit(){
+      return java.import('java.util.concurrent.TimeUnit');
+   },
+   get URL(){
+      return java.import('java.net.URL');
+   },
+   get UselessFileDetector(){
+      return java.import('org.openqa.selenium.remote.UselessFileDetector');
+   },
+   get UserAndPassword(){
+      return java.import('org.openqa.selenium.security.UserAndPassword');
+   },
+   get WebDriverWait(){
+      return java.import('org.openqa.selenium.support.ui.WebDriverWait');
+   }
 };

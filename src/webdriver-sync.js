@@ -13,32 +13,76 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var java = require('java');
+var java    = require('java');
+var imports = require('./imports');
+var Long    = imports.Long;
 
 module.exports={
-   By:new require('./classes/By'),
-   ChromeDriver:require('./classes/ChromeDriver'),
-   ChromeDriverService:require('./classes/ChromeDriverService'),
-   ChromeOptions:require('./classes/ChromeOptions'),
-   Command:require('./classes/Command'),
-   Cookie:require('./classes/Cookie'),
-   Dimension:require('./classes/Dimension'),
-   DriverService:require('./classes/DriverService'),
-   ErrorHandler:require('./classes/ErrorHandler'),
-   ExpectedConditions:require('./classes/ExpectedConditions'),
-   File:require('./classes/File'),
+   get By(){
+      return new (require('./classes/By'));
+   },
+   get ChromeDriver(){
+      return require('./classes/ChromeDriver');
+   },
+   get ChromeDriverService(){
+      return require('./classes/ChromeDriverService');
+   },
+   get ChromeOptions(){
+      return require('./classes/ChromeOptions');
+   },
+   get Command(){
+      return require('./classes/Command');
+   },
+   get Cookie(){
+      return require('./classes/Cookie');
+   },
+   get Dimension(){
+      return require('./classes/Dimension');
+   },
+   get DriverService(){
+      return require('./classes/DriverService');
+   },
+   get ErrorHandler(){
+      return require('./classes/ErrorHandler');
+   },
+   get ExpectedConditions(){
+      return require('./classes/ExpectedConditions');
+   },
+   get File(){
+      return require('./classes/File');
+   },
    //FirefoxDriver:require('./classes/FirefoxDriver'),
    //HtmlUnitDriver:require('./classes/HtmlUnitDriver'),
-   Level:require('./classes/Level'),
-   LocalFileDetector:require('./classes/LocalFileDetector'),
-   Platform:require('./enums/Platform'),
-   Point:require('./classes/Point'),
-   RemoteStatus:require('./classes/RemoteStatus'),
-   Response:require('./classes/Response'),
-   SessionId:require('./classes/SessionId'),
-   TimeUnit:require('./enums/TimeUnit'),
-   UselessFileDetector:require('./classes/UselessFileDetector'),
-   UserAndPassword:require('./classes/UserAndPassword'),
+   get Level(){
+      return require('./classes/Level');
+   },
+   get LocalFileDetector(){
+      return require('./classes/LocalFileDetector');
+   },
+   get Platform(){
+      return require('./enums/Platform');
+   },
+   get Point(){
+      return require('./classes/Point');
+   },
+   get RemoteStatus(){
+      return require('./classes/RemoteStatus');
+   },
+   get Response(){
+      return require('./classes/Response');
+   },
+   get SessionId(){
+      return require('./classes/SessionId');
+   },
+   get TimeUnit(){
+      return require('./enums/TimeUnit');
+   },
+   get UselessFileDetector(){
+      return require('./classes/UselessFileDetector');
+   },
+   get UserAndPassword(){
+      return require('./classes/UserAndPassword');
+   },
    //WebDriverWait:require('./classes/WebDriverWait'),
    importTo:function(target){
       for(prop in this){
