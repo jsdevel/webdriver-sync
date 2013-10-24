@@ -23,7 +23,7 @@ var Long                 = require('../imports').Long;
 var Point                = require('../classes/Point');
 var extend               = require('../utils').extend;
 var addFinalProp         = require('../utils').addFinalProp;
-var collectionToArray    = require('../utils').addFinalProp;
+var collectionToArray    = require('../utils').collectionToArray;
 
 module.exports=WebDriver;
 
@@ -135,9 +135,11 @@ Options.prototype.getCookieNamed=function(name){
    return null;
 };
 Options.prototype.getCookies=function(){
-   return collectionToArray(this._instance.getCookiesSync(),function(item){
+   var cookies=this._instance.getCookiesSync();
+   var arr = collectionToArray(cookies,function(item){
       return new Cookie(new Instance(item));
    });
+   return arr;
 };
 Options.prototype.ime=function(){
    return new ImeHandler(this._instance.imeSync());

@@ -24,8 +24,7 @@ var ChromeDriver;
 var Cookie;
 var ExpectdContidions;
 var TimeUnit;
-
-
+var options;
 
 function beforeSuite(){
    assert=require('assert');
@@ -41,12 +40,19 @@ function beforeSuite(){
    TimeUnit = webdriverModule.TimeUnit;
    if(!driver){
       driver = new ChromeDriver;
+      options = driver.manage();
    }
    driver.get("http://www.google.com");
 }
+
 function afterSuite(){
    driver.quit();
 }
+
+function before(){
+   options.deleteAllCookies();
+}
+
 //Test
 function we_should_be_able_to_show_the_google_title(){
    assert.equal(driver.getTitle(), "Google");//prints "Google"
@@ -86,57 +92,7 @@ function we_should_be_able_to_start_Firefox(){
 function we_should_be_able_to_work_with_driver_options(){
    assert(driver.manage());
 }
-//Test
-function we_should_be_able_to_work_with_cookies(){
-   var cookie;
-   var options=driver.manage();
-   var date;
-   assert['throws'](function(){
-      new Cookie("asdf");
-   }, "createing a cookie without a name should fail.");
-   assert.equal(options.getCookieNamed("jack"), null);
 
-   //test 2 arguments
-   cookie=new Cookie("_2", "2");
-   options.addCookie(cookie);
-   assert.equal(options.getCookieNamed("_2").getValue(), "2");
-
-   //test 3 arguments and path
-   driver.get("http://www.google.com/news/");
-   cookie=new Cookie("_3", "3", "/news");
-   options.addCookie(cookie);
-   assert.equal(options.getCookieNamed("_3").getValue(), "3");
-   assert.equal(options.getCookieNamed("_3").getPath(), "/news");
-
-   //test 4 arguments
-   cookie=new Cookie("_4", "4", "/", new Date(Date.now()+3000));
-   options.addCookie(cookie);
-   driver.navigate().refresh();
-   assert.equal(options.getCookieNamed("_4").getExpiry().getTime(), cookie.getExpiry().getTime(), "cookie added via options");
-
-   //test 4 arguments
-   cookie=new Cookie("_neg4", "neg4", "/", null);
-   options.addCookie(cookie);
-
-   //test 5 arguments
-   cookie=new Cookie("_5", "5", "maps.google.com", "/", new Date(Date.now()+(3600*1000)));
-   assert['throws'](function(){
-      options.addCookie(cookie);
-   }, "allowed to add a cookie for a different domain.");
-
-   //test 5 arguments
-   cookie=new Cookie("_6", "6", ".google.com", "/", new Date(Date.now()+(3600*1000)), true);
-   options.addCookie(cookie);
-   driver.navigate().refresh();
-   assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
-   driver.findElement(By.cssSelector(".gbit")).click();
-   assert(options.getCookieNamed("_6"),"secure cookies aren't seen on https");
-
-   options.deleteCookie(cookie);
-   options.deleteCookieNamed("_5");
-   options.deleteAllCookies();
-   assert(!options.getCookies().length, "deleting cookies failed.");
-}
 //Test
 function we_should_be_able_to_work_with_expected_conditions(){
    var by=By.cssSelector('body');
@@ -190,6 +146,7 @@ function we_should_be_able_to_work_with_waits(){
       );
    }, "waiting for a non existant element should throw an exception.");
 }
+
 //Test
 function we_should_be_able_to_work_with_TimeUnit(){
    assert(TimeUnit.DAYS, "days");
