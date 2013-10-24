@@ -22,6 +22,9 @@ var assert                = require('../assert');
 
 module.exports = Cookie;
 
+/**
+ * Cookie Dates always round down to the nearest second.
+ */
 function Cookie(
    name,
    value,
@@ -48,7 +51,7 @@ function Cookie(
       _domain=cookie.getDomainSync();
       _path=cookie.getPathSync();
       _expiry=cookie.getExpirySync()?
-               new Date(cookie.getExpirySync().getTimeSync):
+               new Date(cookie.getExpirySync().getTimeSync()):
                null;
       _isSecure=cookie.isSecureSync();
    } else {
@@ -69,6 +72,7 @@ function Cookie(
          validateArgIsString(pathOrDomain, "path");
          _path=pathOrDomain;
          if(dateOrPath instanceof Date){
+            dateOrPath = roundDateToSeconds(dateOrPath);
             _date=createDate(dateOrPath);
             _expiry=dateOrPath;
          }
@@ -80,6 +84,7 @@ function Cookie(
          _domain=pathOrDomain;
          _path=dateOrPath;
          if(date instanceof Date){
+            date = roundDateToSeconds(date);
             _date=createDate(date);
             _expiry=date;
          }
@@ -92,6 +97,7 @@ function Cookie(
          _domain=pathOrDomain;
          _path=dateOrPath;
          if(date instanceof Date){
+            date = roundDateToSeconds(date);
             _date=createDate(date);
             _expiry=date;
          }
@@ -163,14 +169,15 @@ Builder.prototype.build=function(){
       this._name,
       this._value,
       this._domain||null,
-      this._path||null,
+      this._path||"/",
       this._date||null,
-      this._isSecure||null
+      this._isSecure||false
    );
    return builtCookie;
 };
+
 Builder.prototype.domain=function(host){
-   var match=/((?:[^.]+)\.[^.]+)$/.exec(host)
+   var match=/((?:[^.]+)\.[^.]+)$/.exec(host);
    if(!match){
       throw new Error("host must be a host or domain");
    }
@@ -201,9 +208,17 @@ Builder.prototype.path=function(path){
    return this;
 };
 
+function roundDateToSeconds(date){
+   var time = date.getTime();
+   return new Date(time - (time%1000));
+}
+
 function createDate(date){
    var time=date.getTime();
-   return new DateClass(new Long(""+time));
+   var long=new Long(""+time);
+   var instance=new DateClass();
+   instance.setTimeSync(long);
+   return instance;
 }
 
 function validateArgIsBoolean(value, arg){

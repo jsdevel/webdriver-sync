@@ -22,12 +22,14 @@ var collectionToArray=function(collection, mapper){
    var size = collection.sizeSync();
    var i;
    var array=[];
+   var item;
    var _mapper=typeof mapper === 'function' ?
                         mapper :
                         function(item){return item;};
    for(i=0;i<size;i++){
+      item=collection.getSync(i);
       array.push(
-         _mapper(collection.getSync(i))
+         _mapper(item)
       );
    }
    return array;
