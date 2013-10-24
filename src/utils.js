@@ -16,9 +16,7 @@
 var Map                = require('./imports').helpers.Map;
 
 var addFinalProp=function(obj, prop, val){
-   if(val){
-      obj[prop]=val;
-   }
+   obj[prop]=val;
 };
 var collectionToArray=function(collection, mapper){
    var size = collection.sizeSync();
