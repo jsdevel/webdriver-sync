@@ -173,6 +173,7 @@ Builder.prototype.build=function(){
       this._date||null,
       this._isSecure||false
    );
+   addFinalFor(buildCookie, "_instance", _instance);
    return builtCookie;
 };
 
@@ -190,6 +191,7 @@ Builder.prototype.expiresOn=function(date){
    if(!(date instanceof Date)){
       throw new Error("argument must be a Date");
    }
+   date = roundDateToSeconds(date);
    if(!this._date){
       addFinalFor(this, "_date", createDate(date));
    }
