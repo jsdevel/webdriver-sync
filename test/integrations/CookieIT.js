@@ -20,7 +20,6 @@ var driver;
 var modulePath;
 var element;
 var By;
-var ChromeDriver;
 var Cookie;
 var options;
 
@@ -31,12 +30,9 @@ function beforeSuite(){
    webdriverModule=require(modulePath);
    //webdriverModule.importTo(this);
    By = webdriverModule.By;
-   ChromeDriver = webdriverModule.ChromeDriver;
    Cookie = webdriverModule.Cookie;
-   if(!driver){
-      driver = new ChromeDriver;
-      options = driver.manage();
-   }
+   driver = require(path.resolve('test', 'lib', 'driver')).driver;
+   options = driver.manage();
    driver.get("http://www.google.com");
 }
 

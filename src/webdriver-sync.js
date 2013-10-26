@@ -36,6 +36,9 @@ module.exports={
    get Cookie(){
       return require('./classes/Cookie');
    },
+   get DesiredCapabilities(){
+      return require('./classes/DesiredCapabilities');
+   },
    get Dimension(){
       return require('./classes/Dimension');
    },
@@ -67,6 +70,9 @@ module.exports={
    },
    get RemoteStatus(){
       return require('./classes/RemoteStatus');
+   },
+   get RemoteWebDriver(){
+      return require('./classes/RemoteWebDriver');
    },
    get Response(){
       return require('./classes/Response');

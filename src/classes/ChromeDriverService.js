@@ -19,6 +19,7 @@ var Instance                = require('./Instance');
 var addFinalProp            = require('../utils').addFinalProp;
 var extendAll               = require('../utils').extendAll;
 var objectToMap             = require('../utils').objectToMap;
+var assert                  = require('../assert');
 
 module.exports = ChromeDriverService;
 
@@ -28,7 +29,7 @@ function ChromeDriverService(instance){
    assert(instance).isInstanceof(Instance).throws(
       "ChromeDriverService has no public constructor."
    );
-   addFinalProp(this, "_instance", instance);
+   addFinalProp(this, "_instance", instance._instance);
 }
 
 ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY
