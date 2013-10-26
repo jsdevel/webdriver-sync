@@ -17,7 +17,7 @@ function beforeSuite(){
    };
 
    mod = prequire(
-      path.resolve(__dirname, '..', '..', '..', 'src', 'utils'),
+      path.resolve('src', 'utils'),
       {'./imports':importsStub}
    );
 }

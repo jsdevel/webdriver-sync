@@ -29,8 +29,7 @@ var options;
 function beforeSuite(){
    assert=require('assert');
    path = require('path');
-   projectPath = path.resolve(__dirname, "..", "..", "..");
-   modulePath = path.resolve(projectPath, 'src', 'webdriver-sync');
+   modulePath = path.resolve('src', 'webdriver-sync');
    webdriverModule=require(modulePath);
    //webdriverModule.importTo(this);
    By = webdriverModule.By;
