@@ -14,6 +14,9 @@
          }
       }
    },
+   "project":{
+      "base":"../"
+   },
    "src":{
       "base":"../src",
       "js":"./",
@@ -27,7 +30,7 @@
       "units":"./units",
       "names":{
          "units":[".*\\.js"],
-         "integrations":[".*\\IT?.js"]
+         "integrations":[".*\\IT.js"]
       }
    }
 }
