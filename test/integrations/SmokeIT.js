@@ -37,10 +37,8 @@ function beforeSuite(){
    Cookie = webdriverModule.Cookie;
    ExpectedConditions = webdriverModule.ExpectedConditions;
    TimeUnit = webdriverModule.TimeUnit;
-   if(!driver){
-      driver = new ChromeDriver;
-      options = driver.manage();
-   }
+   driver = require(path.resolve('test', 'lib', 'driver')).driver;
+   options = driver.manage();
    driver.get("http://www.google.com");
 }
 

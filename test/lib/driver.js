@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright 2013 Joseph Spencer.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,25 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+var path = require('path');
+var webdriver = require(path.resolve('..', 'webdriver-sync'));
+var DesiredCapabilities = webdriver.DesiredCapabilities;
+var RemoteWebDriver = webdriver.RemoteWebDriver;
+var service = webdriver.ChromeDriverService.createDefaultService();
+service.start();
 
-module.exports = DriverService;
-
-function DriverService(){
-   throw new Error("DriverService has a protected constructor.");
-}
-
-DriverService.prototype.getUrl=function(){
-   return this._instance.getUrlSync().toStringSync();
-};
-
-DriverService.prototype.isRunning=function(){
-   return this._instance.isRunningSync();
-};
-
-DriverService.prototype.start=function(){
-   this._instance.startSync();
-};
-
-DriverService.prototype.stop=function(){
-   this._instance.stopSync();
+console.log(service.getUrl());
+module.exports={
+   get driver(){
+      return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
+   }
 };

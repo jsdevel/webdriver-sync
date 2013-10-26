@@ -101,6 +101,9 @@ function RemoteWebDriver(
    }
    switch(len){
       case 1:
+         assert(first).isInstanceof(Instance).throws(
+            "a single agument must be an instance of Instance"
+         );
          instance=new Class(first._instance);
          break;
       case 2:

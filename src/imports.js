@@ -98,6 +98,9 @@ module.exports={
    get Date(){
       return java.import('java.util.Date');
    },
+   get DesiredCapabilities(){
+      return java.import('org.openqa.selenium.remote.DesiredCapabilities');
+   },
    get Dimension(){
       return java.import('org.openqa.selenium.Dimension');
    },
@@ -139,6 +142,9 @@ module.exports={
    },
    get RemoteStatus(){
       return java.import('org.openqa.selenium.remote.RemoteStatus');
+   },
+   get RemoteWebDriver(){
+      return java.import('org.openqa.selenium.remote.RemoteWebDriver');
    },
    get Response(){
       return java.import('org.openqa.selenium.remote.Response');
