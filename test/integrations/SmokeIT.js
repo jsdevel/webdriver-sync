@@ -20,30 +20,36 @@ var driver;
 var modulePath;
 var element;
 var By;
-var ExpectedConditions;
-var WebDriverWait;
+var ChromeDriver;
 var Cookie;
-var TimeUnits;
+var ExpectdContidions;
+var TimeUnit;
+var options;
 
 function beforeSuite(){
    assert=require('assert');
    path = require('path');
-   projectPath = path.resolve(__dirname, "..", "..", "..");
-   modulePath = path.resolve(projectPath, 'src', 'facade');
+   modulePath = path.resolve('src', 'webdriver-sync');
    webdriverModule=require(modulePath);
-   By=webdriverModule.By;
-   ExpectedConditions=webdriverModule.ExpectedConditions;
-   WebDriverWait=webdriverModule.WebDriverWait;
-   Cookie=webdriverModule.Cookie;
-   TimeUnits=webdriverModule.TimeUnits;
-   if(!driver){
-      driver = new webdriverModule.ChromeDriver;
-   }
+   //webdriverModule.importTo(this);
+   By = webdriverModule.By;
+   ChromeDriver = webdriverModule.ChromeDriver;
+   Cookie = webdriverModule.Cookie;
+   ExpectedConditions = webdriverModule.ExpectedConditions;
+   TimeUnit = webdriverModule.TimeUnit;
+   driver = require(path.resolve('test', 'lib', 'driver')).driver;
+   options = driver.manage();
    driver.get("http://www.google.com");
 }
+
 function afterSuite(){
    driver.quit();
 }
+
+function before(){
+   options.deleteAllCookies();
+}
+
 //Test
 function we_should_be_able_to_show_the_google_title(){
    assert.equal(driver.getTitle(), "Google");//prints "Google"
@@ -83,57 +89,7 @@ function we_should_be_able_to_start_Firefox(){
 function we_should_be_able_to_work_with_driver_options(){
    assert(driver.manage());
 }
-//Test
-function we_should_be_able_to_work_with_cookies(){
-   var cookie;
-   var options=driver.manage();
-   var date;
-   assert['throws'](function(){
-      new Cookie("asdf");
-   }, "createing a cookie without a name should fail.");
-   assert.equal(options.getCookieNamed("jack"), null);
 
-   //test 2 arguments
-   cookie=new Cookie("_2", "2");
-   options.addCookie(cookie);
-   assert.equal(options.getCookieNamed("_2").getValue(), "2");
-
-   //test 3 arguments and path
-   cookie=new Cookie("_3", "3", "/news");
-   options.addCookie(cookie);
-   driver.get("http://www.google.com/news/");
-   assert.equal(options.getCookieNamed("_3").getValue(), "3");
-   assert.equal(options.getCookieNamed("_3").getPath(), "/news");
-
-   //test 4 arguments
-   cookie=new Cookie("_4", "4", "/", 300);
-   options.addCookie(cookie);
-   driver.navigate().refresh();
-   assert.equal(options.getCookieNamed("_4").getExpiry().getTime(), cookie.getExpiry().getTime());
-
-   //test 4 arguments
-   cookie=new Cookie("_neg4", "neg4", "/", null);
-   options.addCookie(cookie);
-
-   //test 5 arguments
-   cookie=new Cookie("_5", "5", "maps.google.com", "/", 3600);
-   assert['throws'](function(){
-      options.addCookie(cookie);
-   }, "allowed to add a cookie for a different domain.");
-
-   //test 5 arguments
-   cookie=new Cookie("_6", "6", ".google.com", "/", 3600, true);
-   options.addCookie(cookie);
-   driver.navigate().refresh();
-   assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
-   driver.findElement(By.cssSelector(".gbit")).click();
-   assert(options.getCookieNamed("_6"),"secure cookies aren't seen on https");
-
-   options.deleteCookie(cookie);
-   options.deleteCookieNamed("_5");
-   options.deleteAllCookies();
-   assert(!options.getCookies().length, "deleting cookies failed.");
-}
 //Test
 function we_should_be_able_to_work_with_expected_conditions(){
    var by=By.cssSelector('body');
@@ -159,7 +115,7 @@ function we_should_be_able_to_work_with_expected_conditions(){
    ExpectedConditions.visibilityOf(element);
    ExpectedConditions.visibilityOfElementLocated(by);
 }
-//Test
+///Test
 function we_should_be_able_to_work_with_waits(){
    (new WebDriverWait(driver, 300)).
    until(
@@ -187,15 +143,16 @@ function we_should_be_able_to_work_with_waits(){
       );
    }, "waiting for a non existant element should throw an exception.");
 }
+
 //Test
-function we_should_be_able_to_work_with_TimeUnits(){
-   assert(TimeUnits.DAYS, "days");
-   assert(TimeUnits.HOURS, "hours");
-   assert(TimeUnits.MICROSECONDS, "microseconds");
-   assert(TimeUnits.MILLISECONDS, "milliseconds");
-   assert(TimeUnits.MINUTES, "minutes");
-   assert(TimeUnits.NANOSECONDS, "nanoseconds");
-   assert(TimeUnits.SECONDS, "seconds");
+function we_should_be_able_to_work_with_TimeUnit(){
+   assert(TimeUnit.DAYS, "days");
+   assert(TimeUnit.HOURS, "hours");
+   assert(TimeUnit.MICROSECONDS, "microseconds");
+   assert(TimeUnit.MILLISECONDS, "milliseconds");
+   assert(TimeUnit.MINUTES, "minutes");
+   assert(TimeUnit.NANOSECONDS, "nanoseconds");
+   assert(TimeUnit.SECONDS, "seconds");
 }
 
 //Test
@@ -213,12 +170,12 @@ function we_should_be_able_to_sleep(){
 
 //make sure this test is last as it affects the time the driver waits for
 //elements.
-//Test
+///Test
 function we_should_be_able_to_work_with_timeouts(){
    var timeouts=driver.manage().timeouts();
    var start;
    var end;
-   timeouts.implicitlyWait(5, TimeUnits.SECONDS);
+   timeouts.implicitlyWait(5, TimeUnit.SECONDS);
    start=Date.now();
    try{
       driver.findElement(By.name('bbbbody'));
@@ -229,14 +186,14 @@ function we_should_be_able_to_work_with_timeouts(){
    try{
       //it appears from the javadocs that the arg given should be a relatively
       //low amount
-      timeouts.pageLoadTimeout(5, TimeUnits.MILLISECONDS);
+      timeouts.pageLoadTimeout(5, TimeUnit.MILLISECONDS);
    }catch(e){
       console.error("pageLoadTimeout is failing.");
    }
    try{
       //it appears from the javadocs that the arg given should be a relatively
       //low amount
-      timeouts.setScriptTimeout(5, TimeUnits.MILLISECONDS);
+      timeouts.setScriptTimeout(5, TimeUnit.MILLISECONDS);
    }catch(e){
       console.error("setScriptTimeout is failing.");
    }
