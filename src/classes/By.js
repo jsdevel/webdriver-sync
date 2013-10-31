@@ -42,8 +42,8 @@ By.prototype.name=function(name){
    return new By(Class.nameSync(name));
 };
 
-By.prototype.partialLink=function(partialLink){
-   return new By(Class.partialLinkSync(partialLink));
+By.prototype.partialLinkText=function(partialLinkText){
+   return new By(Class.partialLinkTextSync(partialLinkText));
 };
 
 By.prototype.tagName=function(tagName){
