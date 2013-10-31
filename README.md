@@ -2,11 +2,10 @@ webdriver-sync
 ==============
 
 `webdriver-sync` is a complete wrapper around all the classes found in the java API.
-This allows you to write your selenium tests in the same synchronous fassion that
+This allows you to write your selenium tests in the same synchronous fasion that
 you normally would without all the ceremony involved in asynchronous testing.
 
-View the source code to see the classes that have been ported over.  It's organized
-in a logical fassion and is optimized for performance.
+View the source code to see the classes that have been ported over.  It's organized and is optimized for performance.
 
 Please report any issues that you may encounter.
 
@@ -14,12 +13,9 @@ Example
 =============
 ````javascript
 /*
-Currently ChromeDriver is the only one I've implemented, but it's very easy to
-implement the rest.  Following are the drivers that will become available in future 
-releases:
+Following are the drivers that will become available in future releases:
 
-FirefoxDriver
-HtmlUnitDriver
+AndroidDriver
 InternetExplorerDriver
 IpadDriver
 IphoneDriver
