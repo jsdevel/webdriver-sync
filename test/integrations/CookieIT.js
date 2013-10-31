@@ -159,7 +159,7 @@ function we_should_be_able_to_work_with_cookies(){
    options.addCookie(cookie);
    driver.navigate().refresh();
    assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
-   driver.findElement(By.cssSelector(".gbit")).click();
+   driver.findElement(By.partialLinkText("Sign")).click();
    assert(options.getCookieNamed("_6"),"secure cookies aren't seen on https");
 
    options.deleteCookie(cookie);
