@@ -1,8 +1,76 @@
 webdriver-sync
 ==============
 
-Porting WebDriver to node to provide a completely synchronous selenium
-experience in node.js!
+`webdriver-sync` is a complete wrapper around all the classes found in the java API.
+This allows you to write your selenium tests in the same synchronous fassion that
+you normally would without all the ceremony involved in asynchronous testing.
+
+View the source code to see the classes that have been ported over.  It's organized
+in a logical fassion and is optimized for performance.
+
+Please report any issues that you may encounter.
+
+Example
+=============
+````javascript
+/*
+Currently ChromeDriver is the only one I've implemented, but it's very easy to
+implement the rest.  Following are the drivers that will become available in future 
+releases:
+
+FirefoxDriver
+HtmlUnitDriver
+InternetExplorerDriver
+IpadDriver
+IphoneDriver
+PhantomJSDriver
+*/
+var title;
+var link;
+var ChromeDriver = require('webdriver-sync').ChromeDriver;
+var driver= new ChromeDriver;
+
+driver.get("http://foo.html");
+title=driver.getTitle();
+link=findElement(By.id('i am a link'));
+link.click();
+
+assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
+assert(title.indexOf('foo title') > -1);
+driver.quit();
+````
+
+Installation
+==============
+Brief:
+
+`npm install webdriver-sync`
+
+Details:
+
+Ulike most other implementations, `webdriver-sync` directly calls the java API
+provided by the Selenium organization.  The module relies on the `java` module 
+to accomplish this.
+
+Installing the `java` module can be a bit tricky, but here are a few items to take into consideration:
+* Install JDK on your system and set `JAVA_HOME` in your environment to point to the JDK location
+* If you're on windows, you'll need to find where the `jvm.dll` binary is and place it's directory in your `PATH`.
+* If you're on mac, you'll need xcode installed and `make` must be available from the command line.
+* If you're on linux, make must be installed.
+
+I recommend installing the `java` module somewhere on your system before installing
+`webdriver-sync` to isolate any potential issues.  You'll then need
+to place the `selenium-standalone-server.jar` (renamed without the version), and
+the `chromedriver` binary within the following directory `~/.webdriver-sync`.
+
+If you're still running into issues installing the module, the problem is likely with the `java`
+module.  In addition to filing a bug here, please see https://github.com/nearinfinity/node-java
+for additional help.
+
+Testing the Install
+=============
+Once you've installed the module, you can easily test it by navigating to the
+module root and running `npm test`.
 
 Why Sync?
 ==============
@@ -29,104 +97,21 @@ browser.get("http://foo.html", function() {
 I much prefer this:
 
 ``````javascript
+var title;
+var link;
+var driver = new require('webdriver-sync').ChromeDriver;
 driver.get("http://foo.html");
-var title=driver.getTitle();
-assert(title.indexOf('foo title') > -1);
-var link=findElement(By.id('i am a link'));
+title=driver.getTitle();
+link=findElement(By.id('i am a link'));
 link.click();
 assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
+assert(title.indexOf('foo title') > -1);
 driver.quit();
 ``````
 
 And that's exactly what `webdriver-sync` aims to achieve.  It should look just
 like the java API provided by the Selenium organization.
 
-If you've used the Selenium Java API, or have access to it, then you pretty
-much know how to use this module.
-
-Example
-==============
-Here's an example integration test that's in the module.  You can run this by
-issuing the following commands at a prompt:
-``````shell
-npm install webdriver-sync;
-#Follow any warning to setup the environment
-cd node_modules/webdriver-sync;
-npm install;
-npm test;
-``````
-
-Note that the `require` call below has the full path to the module.  This is
-because I use this during development of the module.
-
-`require('webdriver-sync')` should do the trick after install.
-
-``````javascript
-var assert;
-var path;
-var webdriverModule;
-var driver;
-var modulePath;
-var element;
-var By;
-
-function beforeSuite(){
-   assert=require('assert');
-   path = require('path');
-   projectPath = path.resolve(__dirname, "..", "..", "..");
-   modulePath = path.resolve(projectPath, 'src', 'facade');
-   webdriverModule=require(modulePath);
-   By=webdriverModule.By;
-   if(!driver){
-      driver = new webdriverModule.ChromeDriver;
-   }
-   driver.get("http://www.google.com");
-}
-function afterSuite(){
-   driver.quit();
-}
-//Test
-function we_should_be_able_to_show_the_google_title(){
-   assert.equal(driver.getTitle(), "Google");//prints "Google"
-}
-//Test
-function we_should_be_able_to_type_some_keys_and_submit_a_form(){
-   element = driver.findElement(By.name("q"));
-   element.sendKeys("Cheese!");
-   element.submit();
-   element = driver.findElement(By.name("q"));
-   assert.equal(element.getAttribute('value'), "Cheese!");
-}
-//Test
-function we_should_be_able_to_get_a_list_of_divs(){
-   elements = driver.findElements(By.tagName('html'));
-   assert(elements.length > 0, "There were no divs on the page.");
-}
-//Test
-function we_should_be_able_to_get_the_current_url(){
-   assert(driver.getCurrentUrl(), "the current url was empty.");
-}
-//Test
-function we_should_be_able_to_get_the_page_source(){
-   driver.getPageSource();
-}
-``````
-
-Requirements
-=============
-`npm` `node` `java`
-Third party binaries i.e. `selenium-server-standalone` and `chromedriver`.
-
-Installing
-==============
-`npm install webdriver-sync`
-
-You'll see some error messages about chromedriver and selenium-server-standalone
-not being found.  Grab the binaries and place them in the specified location,
-then run install again.
-
-The module is still in beta, so please fork, issue pull requests, and or submit
-issues as needed!
 
 LICENSE
 =============
