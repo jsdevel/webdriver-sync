@@ -75,12 +75,12 @@ function we_should_be_able_to_get_the_current_url(){
 function we_should_be_able_to_get_the_page_source(){
    driver.getPageSource();
 }
-///Test
+//Test
 function we_should_be_able_to_start_HtmlUnit(){
    var htmlDriver = new webdriverModule.HtmlUnitDriver();
    htmlDriver.quit();
 }
-///Test
+//Test
 function we_should_be_able_to_start_Firefox(){
    var firefoxDriver = new webdriverModule.FirefoxDriver();
    firefoxDriver.quit();
