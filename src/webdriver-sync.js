@@ -57,7 +57,9 @@ module.exports={
    get FirefoxDriver(){
       return require('./classes/FirefoxDriver');
    },
-   //HtmlUnitDriver:require('./classes/HtmlUnitDriver'),
+   get HtmlUnitDriver(){
+      return require('./classes/HtmlUnitDriver');
+   },
    get Level(){
       return require('./classes/Level');
    },
