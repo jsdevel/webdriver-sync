@@ -5,7 +5,7 @@ webdriver-sync
 This allows you to write your selenium tests in the same synchronous fassion that
 you normally would without all the ceremony involved in asynchronous testing.
 
-View the soruce code to see the classes that have been ported over.  It's organized
+View the source code to see the classes that have been ported over.  It's organized
 in a logical fassion and is optimized for performance.
 
 Please report any issues that you may encounter.
@@ -52,7 +52,7 @@ Ulike most other implementations, `webdriver-sync` directly calls the java API
 provided by the Selenium organization.  The module relies on the `java` module 
 to accomplish this.
 
-Installing the `java` module can be a bit tricky, here are a few items to take into consideration:
+Installing the `java` module can be a bit tricky, but here are a few items to take into consideration:
 * Install JDK on your system and set `JAVA_HOME` in your environment to point to the JDK location
 * If you're on windows, you'll need to find where the `jvm.dll` binary is and place it's directory in your `PATH`.
 * If you're on mac, you'll need xcode installed and `make` must be available from the command line.
