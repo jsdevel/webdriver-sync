@@ -16,7 +16,6 @@ Example
 Following are the drivers that will become available in future releases:
 
 AndroidDriver
-InternetExplorerDriver
 IpadDriver
 IphoneDriver
 PhantomJSDriver
@@ -45,7 +44,7 @@ Brief:
 Details:
 
 Ulike most other implementations, `webdriver-sync` directly calls the java API
-provided by the Selenium organization.  The module relies on the `java` module 
+provided by the Selenium organization.  The module relies on the `java` module
 to accomplish this.
 
 Installing the `java` module can be a bit tricky, but here are a few items to take into consideration:

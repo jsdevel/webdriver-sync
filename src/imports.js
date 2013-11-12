@@ -121,6 +121,9 @@ module.exports={
    get HtmlUnitDriver(){
       return java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
    },
+   get InternetExplorerDriver(){
+      return java.import('org.openqa.selenium.ie.InternetExplorerDriver');
+   },
    get Level(){
       return java.import('java.util.logging.Level');
    },

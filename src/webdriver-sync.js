@@ -60,6 +60,9 @@ module.exports={
    get HtmlUnitDriver(){
       return require('./classes/HtmlUnitDriver');
    },
+   get InternetExplorerDriver(){
+      return require('./classes/InternetExplorerDriver');
+   },
    get Level(){
       return require('./classes/Level');
    },
