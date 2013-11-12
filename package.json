@@ -1,6 +1,6 @@
 {
   "name": "webdriver-sync",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Porting the Java WebDriver to node for a completely synchronous selenium experience in node.js!",
   "main": "src/webdriver-sync.js",
   "directories": {
@@ -30,6 +30,11 @@
     "synchronous",
     "api",
     "chrome",
+    "safari",
+    "internet explorer",
+    "explorer",
+    "internet",
+    "ie",
     "driver",
     "node",
     "javascript"
