@@ -81,6 +81,9 @@ module.exports={
    get Response(){
       return require('./classes/Response');
    },
+   get SafariDriver(){
+      return require('./classes/SafariDriver');
+   },
    get SessionId(){
       return require('./classes/SessionId');
    },

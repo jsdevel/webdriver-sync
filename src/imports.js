@@ -68,7 +68,6 @@ java.callStaticMethodSync(
  * NewProfileExtensionConnection
  * RemoteKeyboard
  * RemoteWebElement
- * SafariDriver
  */
 
 module.exports={
@@ -148,6 +147,9 @@ module.exports={
    },
    get Response(){
       return java.import('org.openqa.selenium.remote.Response');
+   },
+   get SafariDriver(){
+      return java.import('org.openqa.selenium.safari.SafariDriver');
    },
    get SessionId(){
       return java.import('org.openqa.selenium.remote.SessionId');
