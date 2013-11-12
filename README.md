@@ -10,8 +10,9 @@ View the source code to see the classes that have been ported over.  It's organi
 
 * You can write selenium in javascript!
 * You can use `mocha` for writing test suites!
+* You can reduce code by embracing a synchronous API
 * You can reduce verbosity found in statically typed langs like java and c#
-* Your QA team can embrace the future i.e. javascript
+* Your QA team can embrace javascript :)
 
 ## Example
 
@@ -75,6 +76,12 @@ the `chromedriver` binary within the following directory `~/.webdriver-sync`.
 If you're still running into issues installing the module, the problem is likely with the `java`
 module.  In addition to filing a bug here, please see https://github.com/nearinfinity/node-java
 for additional help.
+
+## Challenges
+Selenium is in constant flux.  Browser updates may force unexpected updates
+to `selenium-standalone-server.jar` and affected driver binaries I.E. `chromedriver`.  Any bridge, be it ruby
+or python, will be affected by these updates as well as `webdriver-sync`.  It therefore falls on you, the 
+user of this module, to file bugs as accurately and as promptly as you can.
 
 ## Testing the Install
 
