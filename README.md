@@ -25,12 +25,12 @@ IpadDriver
 IphoneDriver
 PhantomJSDriver
 */
-var title;
-var link;
 var webdriverSync = require('webdriver-sync');
 var By            = webdriverSync.By;
 var ChromeDriver  = webdriverSync.ChromeDriver;
 var driver        = new ChromeDriver;
+var title;
+var link;
 
 driver.get("http://foo.html");
 title=driver.getTitle();
