@@ -17,6 +17,7 @@ var Class                   = require('../imports').SafariDriver;
 var Capabilities            = require('../interfaces/Capabilities');
 var TakesScreenshot         = require('../interfaces/TakesScreenshot');
 var RemoteWebDriver         = require('./RemoteWebDriver');
+var messages                = require('../messages');
 var extendAll               = require('../utils').extendAll;
 var addFinalProp            = require('../utils').addFinalProp;
 
@@ -39,11 +40,11 @@ function SafariDriver(capabilities){
          assert(capabilities)
             .isInstanceof(Capabilities)
             .throws(
-            "The first argument wasn't an instanceof Capabilities"
+            messages.UN_FINISHED_CONSTRUCTOR
          );
          instance = new Class(capabilities._instance);
    } else {
-      throw new Error("The wrong number of arguments was given.");
+      throw new Error(messages.UN_FINISHED_CONSTRUCTOR);
    }
 
    addFinalProp(this, "_instance", instance);
