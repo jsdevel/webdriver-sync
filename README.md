@@ -149,3 +149,7 @@ limitations under the License.
 ## CREDIT when it is due!
 
 Special thanks to the developers of `node-java`!!!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
