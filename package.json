@@ -7,14 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node node_modules/tddforjs/build/TDDforJS.js",
+    "test": "node_modules/.bin/mocha -t 8000 test/*.js",
     "preinstall":"node bin/install.js pre"
   },
   "dependencies":[
     "java"
   ],
   "devDependencies":[
-      "tddforjs",
+      "mocha",
       "proxyquire",
       "sinon"
   ],

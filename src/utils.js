@@ -19,25 +19,20 @@ var addFinalProp=function(obj, prop, val){
    obj[prop]=val;
 };
 var collectionToArray=function(collection, mapper){
-   var size = collection.sizeSync();
-   var i;
    var array=[];
-   var item;
-   var _mapper=typeof mapper === 'function' ?
-                        mapper :
-                        function(item){return item;};
-   for(i=0;i<size;i++){
-      item=collection.getSync(i);
-      array.push(
-         _mapper(item)
-      );
+   var _mapper = typeof mapper === 'function'
+    ? mapper
+    : function(item){return item;};
+
+   if(collection){
+     array = collection.toArraySync().map(_mapper);
    }
+
    return array;
 };
 
 function extend(Child, Parent){
    var prop;
-   var __extends;
 
    if(!Child.__extends){
       Child.__extends=Child.prototype.__extends={};
