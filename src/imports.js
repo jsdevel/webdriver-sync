@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var java = require("java");
-var path = require("path");
-var binaryDir = path.resolve(
+var java       = require("java");
+var path       = require("path");
+var classPaths = require('./classPaths');
+var binaryDir  = path.resolve(
    process.env.USERPROFILE || process.env.HOME,
    '.webdriver-sync'
 );
@@ -77,99 +78,99 @@ module.exports={
       }
    },
    get By(){
-      return java.import('org.openqa.selenium.By');
+      return java.import(classPaths.By);
    },
    get ChromeDriver(){
-      return java.import('org.openqa.selenium.chrome.ChromeDriver');
+      return java.import(classPaths.ChromeDriver);
    },
    get ChromeDriverService(){
-      return java.import('org.openqa.selenium.chrome.ChromeDriverService');
+      return java.import(classPaths.ChromeDriverService);
    },
    get ChromeOptions(){
-      return java.import('org.openqa.selenium.chrome.ChromeOptions');
+      return java.import(classPaths.ChromeOptions);
    },
    get Command(){
-      return java.import('org.openqa.selenium.remote.Command');
+      return java.import(classPaths.Command);
    },
    get Cookie(){
-      return java.import('org.openqa.selenium.Cookie');
+      return java.import(classPaths.Cookie);
    },
    get Date(){
-      return java.import('java.util.Date');
+      return java.import(classPaths.Date);
    },
    get DesiredCapabilities(){
-      return java.import('org.openqa.selenium.remote.DesiredCapabilities');
+      return java.import(classPaths.DesiredCapabilities);
    },
    get Dimension(){
-      return java.import('org.openqa.selenium.Dimension');
+      return java.import(classPaths.Dimension);
    },
    get DriverService(){
-      return java.import('org.openqa.selenium.remote.service.DriverService');
+      return java.import(classPaths.DriverService);
    },
    get ErrorHandler(){
-      return java.import('org.openqa.selenium.remote.ErrorHandler');
+      return java.import(classPaths.ErrorHandler);
    },
    get ExpectedConditions(){
-      return java.import('org.openqa.selenium.support.ui.ExpectedConditions');
+      return java.import(classPaths.ExpectedConditions);
    },
    get File(){
-      return java.import('java.io.File');
+      return java.import(classPaths.File);
    },
    get FirefoxDriver(){
-      return java.import('org.openqa.selenium.firefox.FirefoxDriver');
+      return java.import(classPaths.FirefoxDriver);
    },
    get HtmlUnitDriver(){
-      return java.import('org.openqa.selenium.htmlunit.HtmlUnitDriver');
+      return java.import(classPaths.HtmlUnitDriver);
    },
    get InternetExplorerDriver(){
-      return java.import('org.openqa.selenium.ie.InternetExplorerDriver');
+      return java.import(classPaths.InternetExplorerDriver);
    },
    get Level(){
-      return java.import('java.util.logging.Level');
+      return java.import(classPaths.Level);
    },
    get LocalFileDetector(){
-      return java.import('org.openqa.selenium.remote.LocalFileDetector');
+      return java.import(classPaths.LocalFileDetector);
    },
    get Long(){
-      return java.import('java.lang.Long');
+      return java.import(classPaths.Long);
    },
    get OutputType(){
-      return java.import('org.openqa.selenium.OutputType');
+      return java.import(classPaths.OutputType);
    },
    get Platform(){
-      return java.import('org.openqa.selenium.Platform');
+      return java.import(classPaths.Platform);
    },
    get Point(){
-      return java.import('org.openqa.selenium.Point');
+      return java.import(classPaths.Point);
    },
    get RemoteStatus(){
-      return java.import('org.openqa.selenium.remote.RemoteStatus');
+      return java.import(classPaths.RemoteStatus);
    },
    get RemoteWebDriver(){
-      return java.import('org.openqa.selenium.remote.RemoteWebDriver');
+      return java.import(classPaths.RemoteWebDriver);
    },
    get Response(){
-      return java.import('org.openqa.selenium.remote.Response');
+      return java.import(classPaths.Response);
    },
    get SafariDriver(){
-      return java.import('org.openqa.selenium.safari.SafariDriver');
+      return java.import(classPaths.SafariDriver);
    },
    get SessionId(){
-      return java.import('org.openqa.selenium.remote.SessionId');
+      return java.import(classPaths.SessionId);
    },
    get TimeUnit(){
-      return java.import('java.util.concurrent.TimeUnit');
+      return java.import(classPaths.TimeUnit);
    },
    get URL(){
-      return java.import('java.net.URL');
+      return java.import(classPaths.URL);
    },
    get UselessFileDetector(){
-      return java.import('org.openqa.selenium.remote.UselessFileDetector');
+      return java.import(classPaths.UselessFileDetector);
    },
    get UserAndPassword(){
-      return java.import('org.openqa.selenium.security.UserAndPassword');
+      return java.import(classPaths.UserAndPassword);
    },
    get WebDriverWait(){
-      return java.import('org.openqa.selenium.support.ui.WebDriverWait');
+      return java.import(classPaths.WebDriverWait);
    }
 };

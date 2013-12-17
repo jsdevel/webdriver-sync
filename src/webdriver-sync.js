@@ -69,6 +69,9 @@ module.exports={
    get LocalFileDetector(){
       return require('./classes/LocalFileDetector');
    },
+   get Long(){
+      return imports.Long;
+   },
    get Platform(){
       return require('./enums/Platform');
    },
@@ -98,6 +101,9 @@ module.exports={
    },
    get UserAndPassword(){
       return require('./classes/UserAndPassword');
+   },
+   get WebElement(){
+      return require('./interfaces/WebElement');
    },
    //WebDriverWait:require('./classes/WebDriverWait'),
    importTo:function(target){

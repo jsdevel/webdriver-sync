@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha -t 8000 test/*.js",
+    "test": "node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
     "preinstall":"node bin/install.js pre"
   },
   "dependencies":[
