@@ -16,7 +16,7 @@
 describe("Cookie", function(){
   var assert;
   var path;
-  var webdriverModule;
+  var wd;
   var driver;
   var modulePath;
   var element;
@@ -27,12 +27,12 @@ describe("Cookie", function(){
   before(function(){
     assert=require('assert');
     path = require('path');
-    modulePath = path.resolve(__dirname, '..', 'src', 'webdriver-sync');
-    webdriverModule=require(modulePath);
-    //webdriverModule.importTo(this);
-    By = webdriverModule.By;
-    Cookie = webdriverModule.Cookie;
-    driver = require("./lib/driver").driver;
+    modulePath = path.resolve(__dirname, '..', '..', 'src', 'webdriver-sync');
+    wd=require(modulePath);
+    //wd.importTo(this);
+    By = wd.By;
+    Cookie = wd.Cookie;
+    driver = require("../lib/driver").driver;
     options = driver.manage();
     options.deleteAllCookies();
     driver.get("http://www.google.com");
@@ -160,7 +160,9 @@ describe("Cookie", function(){
     //test 6 arguments
     cookie=new Cookie("_6", "6", ".google.com", "/", new Date(Date.now()+(3600*1000)), true);
     options.addCookie(cookie);
+    wd.sleep(2000);
     driver.navigate().refresh();
+    wd.sleep(2000);
     driver.get("http://www.google.com/news/");
     assert(!options.getCookieNamed("_6"),"secure cookies aren't added appropriately");
     driver.findElement(By.partialLinkText("Sign")).click();
