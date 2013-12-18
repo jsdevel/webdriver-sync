@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var WebElement             = require('./WebElement');
-var addFinalProp           = require('../utils').addFinalProp;
+var WebElement = require('./WebElement');
+var addFinalProp = require('../utils').addFinalProp;
 var collectionsToArrayList = require('../utils').collectionsToArrayList;
 
 module.exports = FindsByClassName;
 
-function FindsByClassName(instance){
-   addFinalProp(this, "_instance", instance);
+function FindsByClassName(instance) {
+  addFinalProp(this, "_instance", instance);
 }
 
-FindsByClassName.prototype.findElementByClassName=function(using){
-   return new WebElement(this._instance.findElementByClassNameSync(using));
+FindsByClassName.prototype.findElementByClassName = function(using) {
+  return new WebElement(this._instance.findElementByClassNameSync(using));
 };
-FindsByClassName.prototype.findElementsByClassName=function(using){
-   return collectionsToArrayList(
-      this._instance.findElementsByClassNameSync(using),
-      function(item){return new WebElement(item);}
-   );
+FindsByClassName.prototype.findElementsByClassName = function(using) {
+  return collectionsToArrayList(
+    this._instance.findElementsByClassNameSync(using),
+    function(item) {
+      return new WebElement(item);
+    }
+  );
 };

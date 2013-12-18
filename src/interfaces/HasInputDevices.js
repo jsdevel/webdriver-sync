@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var addFinalProp          = require('../utils').addFinalProp;
-var Keyboard              = require('./Keyboard');
-var Mouse                 = require('./Mouse');
+var addFinalProp = require('../utils').addFinalProp;
+var Keyboard = require('./Keyboard');
+var Mouse = require('./Mouse');
 
 module.exports = HasInputDevices;
 
-function HasInputDevices(instance){
-   addFinalProp(this, "_instance", instance);
+function HasInputDevices(instance) {
+  addFinalProp(this, "_instance", instance);
 }
-HasInputDevices.prototype.getKeyboard=function(){
-   return new Keyboard(this._instance.getKeyboardSync());
+HasInputDevices.prototype.getKeyboard = function() {
+  return new Keyboard(this._instance.getKeyboardSync());
 };
-HasInputDevices.prototype.getMouse=function(){
-   return new Mouse(this._instance.getMouseSync());
+HasInputDevices.prototype.getMouse = function() {
+  return new Mouse(this._instance.getMouseSync());
 };

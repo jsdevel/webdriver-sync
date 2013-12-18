@@ -15,11 +15,11 @@
  */
 var addFinalProp = require('../utils').addFinalProp;
 
-module.exports=Killable;
+module.exports = Killable;
 
-function Killable(instance){
-   addFinalProp(this, "_instance", instance);
+function Killable(instance) {
+  addFinalProp(this, "_instance", instance);
 }
-Killable.prototype.kill=function(){
-   this._instance.killSync();
+Killable.prototype.kill = function() {
+  this._instance.killSync();
 };

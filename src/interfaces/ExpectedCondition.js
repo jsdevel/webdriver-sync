@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var addFinalProp          = require('../utils').addFinalProp;
+var addFinalProp = require('../utils').addFinalProp;
 
-module.exports=ExpectedCondition;
+module.exports = ExpectedCondition;
 
-function ExpectedCondition(instance){
-   addFinalProp(this, "_instance", instance);
+function ExpectedCondition(instance) {
+  addFinalProp(this, "_instance", instance);
 }

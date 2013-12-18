@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-describe("utils", function(){
+describe("utils", function() {
   var mod;
   var sinon;
   var prequire;
@@ -21,50 +21,53 @@ describe("utils", function(){
   var assert;
   var importsStub;
 
-  before(function(){
+  before(function() {
     sinon = require('sinon');
     prequire = require('proxyquire');
     path = require('path');
     assert = require('assert');
-    importsStub={
-        helpers:{
-          Map:{}
-        }
+    importsStub = {
+      helpers: {
+        Map: {}
+      }
     };
 
     mod = prequire(
-        path.resolve('src', 'utils.js'),
-        {'./imports':importsStub}
+      path.resolve('src', 'utils.js'),
+      {'./imports': importsStub}
     );
   });
 
-  describe("#addFinalProp", function(){
-    it("should set the prop to the given value", function(){
+  describe("#addFinalProp", function() {
+    it("should set the prop to the given value", function() {
       var obj = {};
       mod.addFinalProp(obj, "a", "asdf");
       assert.equal(obj.a, "asdf");
     });
 
-    it("should not set the prop when the given value is undefined", function(){
+    it("should not set the prop when the given value is undefined", function() {
       var obj = {};
       mod.addFinalProp(obj, "a", ({}).asdf);
       assert.equal(obj.a, void 0);
     });
   });
 
-  describe("#extendAll", function(){
-    it("is callable", function(){
-      function A(){}
-      function B(){}
-      function C(){}
-      B.bar="bar";
-      A.prototype.name="A";
-      B.prototype.name="B";
-      C.prototype.name="C";
-      B.prototype.bar="bar";
-      B.prototype.foo="boo";
-      C.prototype.foo="foo";
-      mod.extendAll(A,B,C);
+  describe("#extendAll", function() {
+    it("is callable", function() {
+      function A() {
+      }
+      function B() {
+      }
+      function C() {
+      }
+      B.bar = "bar";
+      A.prototype.name = "A";
+      B.prototype.name = "B";
+      C.prototype.name = "C";
+      B.prototype.bar = "bar";
+      B.prototype.foo = "boo";
+      C.prototype.foo = "foo";
+      mod.extendAll(A, B, C);
       var instance = new A();
       assert.equal(instance.name, "A");
       assert.equal(instance.bar, "bar");

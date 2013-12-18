@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var addFinalProp             = require('../utils').addFinalProp;
-var Capabilities             = require('./Capabilities');
+var addFinalProp = require('../utils').addFinalProp;
+var Capabilities = require('./Capabilities');
 
-module.exports=HasCapabilities;
+module.exports = HasCapabilities;
 
-function HasCapabilities(instance){
-   addFinalProp(this, "_instance", instance);
+function HasCapabilities(instance) {
+  addFinalProp(this, "_instance", instance);
 }
-HasCapabilities.prototype.getCapabilities=function(){
-   return new Capabilities(this._instance.getCapabilitiesSync());
+HasCapabilities.prototype.getCapabilities = function() {
+  return new Capabilities(this._instance.getCapabilitiesSync());
 };

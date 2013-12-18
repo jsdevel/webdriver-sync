@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var File                    = require('../classes/File');
-var Instance                = require('../classes/Instance');
-var addFinalProp            = require('../utils').addFinalProp;
+var File = require('../classes/File');
+var Instance = require('../classes/Instance');
+var addFinalProp = require('../utils').addFinalProp;
 
-function FileDetector(instance){
-   addFinalProp(this, "_instance", instance);
+function FileDetector(instance) {
+  addFinalProp(this, "_instance", instance);
 }
 
-FileDetector.prototype.getLocalFile=function(string){
-   return new File(new Instance(this._instance.getLocalFileSync(string)));
+FileDetector.prototype.getLocalFile = function(string) {
+  return new File(new Instance(this._instance.getLocalFileSync(string)));
 };

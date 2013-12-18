@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var addFinalProp                = require('../utils').addFinalProp;
-var Point                       = require('../classes/Point');
+var addFinalProp = require('../utils').addFinalProp;
+var Point = require('../classes/Point');
 
-module.exports=Coordinates;
+module.exports = Coordinates;
 
-function Coordinates(instance){
-   addFinalProp(this, "_instance", instance);
+function Coordinates(instance) {
+  addFinalProp(this, "_instance", instance);
 }
-Coordinates.prototype.getAuxiliary=function(){
-   return this._instance.getAuxillarySync();
+Coordinates.prototype.getAuxiliary = function() {
+  return this._instance.getAuxillarySync();
 };
-Coordinates.prototype.inViewPort=function(){
-   return new Point(this._instance.inViewPortSync());
+Coordinates.prototype.inViewPort = function() {
+  return new Point(this._instance.inViewPortSync());
 };
-Coordinates.prototype.onPage=function(){
-   return new Point(this._instance.onPageSync());
+Coordinates.prototype.onPage = function() {
+  return new Point(this._instance.onPageSync());
 };
-Coordinates.prototype.onScreen=function(){
-   return new Point(this._instance.onScreenSync());
+Coordinates.prototype.onScreen = function() {
+  return new Point(this._instance.onScreenSync());
 };

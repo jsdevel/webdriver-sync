@@ -13,42 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var Class                   = require('../imports').HtmlUnitDriver;
-var Capabilities            = require('../interfaces/Capabilities');
-var TakesScreenshot         = require('../interfaces/TakesScreenshot');
-var RemoteWebDriver         = require('./RemoteWebDriver');
-var extendAll               = require('../utils').extendAll;
-var addFinalProp            = require('../utils').addFinalProp;
+var Class = require('../imports').HtmlUnitDriver;
+var Capabilities = require('../interfaces/Capabilities');
+var TakesScreenshot = require('../interfaces/TakesScreenshot');
+var RemoteWebDriver = require('./RemoteWebDriver');
+var extendAll = require('../utils').extendAll;
+var assert = require('../assert');
+var addFinalProp = require('../utils').addFinalProp;
 
-module.exports=HtmlUnitDriver;
+module.exports = HtmlUnitDriver;
 
 extendAll(
-   HtmlUnitDriver,
-   RemoteWebDriver
-);
+  HtmlUnitDriver,
+  RemoteWebDriver
+  );
 
 //TODO: Finish constructor arguments
 function HtmlUnitDriver(
-   desiredCapabilitiesOrEnableJavascript
-){
-   var instance;
-   var first = desiredCapabilitiesOrEnableJavascript;
-   var len=arguments.length;
+  desiredCapabilitiesOrEnableJavascript
+  ) {
+  var instance;
+  var first = desiredCapabilitiesOrEnableJavascript;
+  var len = arguments.length;
 
-   if(!len){
-      instance = new Class();
-   } else if(len === 1){
-      if(assert(first).isInstanceof(Capabilities).isValid){
-         instance = new Class(first._instance);
-      } else if(assert.isBool(first)){
-         instance = new Class(first);
-      } else {
-         throw new Error("The first argument must be an instance of Capabilities or a boolean.");
-      }
-   } else {
-      throw new Error("The wrong number of arguments was given.");
-   }
+  if (!len) {
+    instance = new Class();
+  } else if (len === 1) {
+    if (assert(first).isInstanceof(Capabilities).isValid) {
+      instance = new Class(first._instance);
+    } else if (assert.isBool(first)) {
+      instance = new Class(first);
+    } else {
+      throw new Error(
+        "The first argument must be an instance of Capabilities or a boolean."
+       );
+    }
+  } else {
+    throw new Error("The wrong number of arguments was given.");
+  }
 
-   addFinalProp(this, "_instance", instance);
+  addFinalProp(this, "_instance", instance);
 }
 //TODO: finish static fields

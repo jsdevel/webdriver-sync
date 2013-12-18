@@ -18,7 +18,6 @@ describe("webdriver-sync", function(){
   var path;
   var webdriverModule;
   var driver;
-  var modulePath;
   var element;
   var By;
   var ChromeDriver;
@@ -30,7 +29,9 @@ describe("webdriver-sync", function(){
   before(function(){
     assert=require('assert');
     path = require('path');
-    webdriverModule=require(path.resolve(__dirname, '..', 'src', 'webdriver-sync'));
+    webdriverModule=require(
+      path.resolve(__dirname, '..', 'src', 'webdriver-sync')
+    );
     //webdriverModule.importTo(this);
     By = webdriverModule.By;
     ChromeDriver = webdriverModule.ChromeDriver;
@@ -97,7 +98,7 @@ describe("webdriver-sync", function(){
     ExpectedConditions.elementSelectionStateToBe(element, false);
     ExpectedConditions.elementToBeClickable(by);
     ExpectedConditions.elementToBeSelected(by);
-    ExpectedConditions.elementToBeSelected(element)
+    ExpectedConditions.elementToBeSelected(element);
     ExpectedConditions.frameToBeAvailableAndSwitchToIt("asdf");
     ExpectedConditions.invisibilityOfElementLocated(by);
     ExpectedConditions.invisibilityOfElementWithText(by, "adsf");
@@ -127,7 +128,7 @@ describe("webdriver-sync", function(){
   it("should be albe to sleep", function(){
     var start=Date.now();
     var end;
-    var secondsToWait=10 * 1000;
+    var secondsToWait=2 * 1000;
     webdriverModule.sleep(secondsToWait);
     end=Date.now();
     assert(end-start > secondsToWait, "sleep didn't work.");

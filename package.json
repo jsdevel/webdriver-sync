@@ -7,16 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
-    "preinstall":"node bin/install.js pre"
+    "test": "jshint --config .jshintrc src/**/*.js && jshint --config .test-jshintrc test/**/*.js && node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
+    "preinstall": "node bin/install.js pre"
   },
-  "dependencies":[
+  "dependencies": [
     "java"
   ],
-  "devDependencies":[
-      "mocha",
-      "proxyquire",
-      "sinon"
+  "devDependencies": [
+    "mocha",
+    "proxyquire",
+    "sinon"
   ],
   "repository": {
     "type": "git",
