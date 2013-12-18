@@ -33,8 +33,8 @@ var title;
 var link;
 
 driver.get("http://foo.html");
-title=driver.getTitle();
-link=findElement(By.id('i am a link'));
+title= driver.getTitle();
+link = driver.findElement(By.id('i am a link'));
 link.click();
 
 assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
@@ -115,7 +115,7 @@ I much prefer this:
 ``````javascript
 driver.get("http://foo.html");
 title = driver.getTitle();
-link  = findElement(By.id('i am a link'));
+link  = driver.findElement(By.id('i am a link'));
 link.click();
 assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
 assert(title.indexOf('foo title') > -1);
