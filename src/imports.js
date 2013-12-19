@@ -119,6 +119,9 @@ module.exports = {
   get FirefoxDriver() {
     return java.import(classPaths.FirefoxDriver);
   },
+  get PhantomJSDriver() {
+    return java.import(classPaths.PhantomJSDriver);
+  },
   get HtmlUnitDriver() {
     return java.import(classPaths.HtmlUnitDriver);
   },

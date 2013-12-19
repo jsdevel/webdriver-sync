@@ -65,6 +65,9 @@ module.exports = {
   get FirefoxDriver() {
     return require('./classes/FirefoxDriver');
   },
+  get PhantomJSDriver() {
+    return require('./classes/PhantomJSDriver');
+  },
   get HtmlUnitDriver() {
     return require('./classes/HtmlUnitDriver');
   },
