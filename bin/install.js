@@ -69,7 +69,7 @@
       "JAVA_HOME is: " + javaHome,
       "binaryDir is: " + binaryDir,
       ""
-    ].toString('\n'));
+    ].join('\n'));
 
     if (!javaHome) {
       err("JAVA_HOME isn't set!  The java module can't build without it.");
