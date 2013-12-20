@@ -15,6 +15,7 @@
  */
 var java = require("java");
 var path = require("path");
+var which = require('which');
 var classPaths = require('./classPaths');
 var binaryDir = path.resolve(
   process.env.USERPROFILE || process.env.HOME,
@@ -29,12 +30,16 @@ var helperJarPath = path.resolve(
 var pathToChromeDriver = path.resolve(binaryDir, 'chromedriver');
 java.classpath.push(seleniumJarPath);
 java.classpath.push(helperJarPath);
-java.callStaticMethodSync(
-  "java.lang.System",
-  "setProperty",
-  "webdriver.chrome.driver",
-  pathToChromeDriver
-  );
+which("chromedriver", function(err, path){
+  if(!err && path) {
+    java.callStaticMethodSync(
+      "java.lang.System",
+      "setProperty",
+      "webdriver.chrome.driver",
+      path
+    );
+  }
+});
 
 /*
  * Class marked protected or otherwise implicitly private
