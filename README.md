@@ -70,8 +70,9 @@ Installing the `java` module can be a bit tricky, so here are a few items to tak
 
 I recommend installing the `java` module somewhere on your system before installing
 `webdriver-sync` to isolate any potential issues.  You'll then need
-to place the `selenium-standalone-server.jar` (renamed without the version), and
-the `chromedriver` binary within the following directory `~/.webdriver-sync`.
+to place the `selenium-standalone-server.jar` (renamed without the version) in the directory `~/.webdriver-sync`.
+
+If you want to drive tests with Chrome, make sure to have the chromedriver executable on your path ([download here](http://chromedriver.storage.googleapis.com/index.html)).
 
 If you're still running into issues installing the module, the problem is likely with the `java`
 module.  In addition to filing a bug here, please see https://github.com/nearinfinity/node-java
