@@ -16,25 +16,21 @@
 var java = require("java");
 var path = require("path");
 var classPaths = require('./classPaths');
-var binaryDir = path.resolve(
-  process.env.USERPROFILE || process.env.HOME,
-  '.webdriver-sync'
+var findsChromeDriver = require('./lib/finds-chrome-driver');
+var staticDependencyPaths = require('./static-dependency-paths');
+
+java.classpath.push(staticDependencyPaths.seleniumJar);
+java.classpath.push(staticDependencyPaths.helperJar);
+
+chromeDriverPath = findsChromeDriver.find()
+if(chromeDriverPath) {
+  java.callStaticMethodSync(
+    "java.lang.System",
+    "setProperty",
+    "webdriver.chrome.driver",
+    chromeDriverPath
   );
-var seleniumJarPath = path.resolve(
-  binaryDir, 'selenium-server-standalone.jar'
-  );
-var helperJarPath = path.resolve(
-  __dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar"
-  );
-var pathToChromeDriver = path.resolve(binaryDir, 'chromedriver');
-java.classpath.push(seleniumJarPath);
-java.classpath.push(helperJarPath);
-java.callStaticMethodSync(
-  "java.lang.System",
-  "setProperty",
-  "webdriver.chrome.driver",
-  pathToChromeDriver
-  );
+}
 
 /*
  * Class marked protected or otherwise implicitly private

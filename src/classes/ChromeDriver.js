@@ -22,6 +22,7 @@ var RemoteWebDriver = require('./RemoteWebDriver');
 var extendAll = require('../utils').extendAll;
 var addFinalProp = require('../utils').addFinalProp;
 var assert = require('../assert');
+var findsChromeDriver = require('./../lib/finds-chrome-driver')
 
 module.exports = ChromeDriver;
 
@@ -38,6 +39,10 @@ function ChromeDriver(
   var instance;
   var first = capabilitiesOrOptionsOrChromeDriverService;
   var len = arguments.length;
+
+  if(!findsChromeDriver.find()) {
+    throw new Error("`chromedriver` could not be found on the PATH. Download Chrome driver from: http://chromedriver.storage.googleapis.com/index.html");
+  }
 
   if (!len) {
     instance = new Class();

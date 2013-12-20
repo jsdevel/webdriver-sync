@@ -23,20 +23,8 @@
     process.env[isWin ? 'USERPROFILE' : 'HOME'],
     '.webdriver-sync'
   );
-  var pathToChromeDriver = path.resolve(binaryDir, 'chromedriver' + (isWin ? ".exe" : ""));
   var pathToSeleniumServerStandalone = path.resolve(binaryDir, 'selenium-server-standalone.jar');
   var hasMissingBinary = false;
-
-  if (!fs.existsSync(pathToChromeDriver)) {
-    hasMissingBinary = true;
-    showObtainBinaryMsg(
-      pathToChromeDriver,
-      "https://code.google.com/p/chromedriver/downloads/list"
-    );
-  } else {
-    log("Found: " + pathToChromeDriver);
-    log("");
-  }
 
   if (!fs.existsSync(pathToSeleniumServerStandalone)) {
     hasMissingBinary = true;
