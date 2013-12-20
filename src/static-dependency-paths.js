@@ -1,9 +1,12 @@
 var path = require('path'),
-    home = process.env.USERPROFILE || process.env.HOME,
+    os = require('os'),
+    isWin = /^win/i.test(os.platform()),
+    home = process.env[isWin ? 'USERPROFILE' : 'HOME'],
     binaryDir = path.resolve(home, '.webdriver-sync');
 
 module.exports = {
-  chromeDriver: path.resolve(binaryDir, 'chromedriver'),
+  binaryDir: binaryDir,
+  chromeDriver: path.resolve(binaryDir, 'chromedriver' + (isWin ? '.exe' : '')),
   seleniumJar: process.env.SELENIUM_SERVER_STANDALONE_JAR || path.resolve(binaryDir, 'selenium-server-standalone.jar'),
   helperJar: path.resolve(__dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar")
 };
