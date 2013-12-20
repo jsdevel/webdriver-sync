@@ -4,6 +4,6 @@ var path = require('path'),
 
 module.exports = {
   chromeDriver: path.resolve(binaryDir, 'chromedriver'),
-  seleniumJar: path.resolve(binaryDir, 'selenium-server-standalone.jar'),
+  seleniumJar: process.env.SELENIUM_SERVER_STANDALONE_JAR || path.resolve(binaryDir, 'selenium-server-standalone.jar'),
   helperJar: path.resolve(__dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar")
 };
