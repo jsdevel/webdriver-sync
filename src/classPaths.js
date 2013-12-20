@@ -29,6 +29,7 @@ module.exports = {
   ExpectedConditions: 'org.openqa.selenium.support.ui.ExpectedConditions',
   File: 'java.io.File',
   FirefoxDriver: 'org.openqa.selenium.firefox.FirefoxDriver',
+  PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',
   InternetExplorerDriver: 'org.openqa.selenium.ie.InternetExplorerDriver',
   Level: 'java.util.logging.Level',
