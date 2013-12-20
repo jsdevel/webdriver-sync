@@ -16,20 +16,11 @@
 var java = require("java");
 var path = require("path");
 var classPaths = require('./classPaths');
-var findsChromeDriver = require('./lib/finds-chrome-driver')
-var binaryDir = path.resolve(
-  process.env.USERPROFILE || process.env.HOME,
-  '.webdriver-sync'
-  );
-var seleniumJarPath = path.resolve(
-  binaryDir, 'selenium-server-standalone.jar'
-  );
-var helperJarPath = path.resolve(
-  __dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar"
-  );
+var findsChromeDriver = require('./lib/finds-chrome-driver');
+var staticDependencyPaths = require('./static-dependency-paths');
 
-java.classpath.push(seleniumJarPath);
-java.classpath.push(helperJarPath);
+java.classpath.push(staticDependencyPaths.seleniumJar);
+java.classpath.push(staticDependencyPaths.helperJar);
 
 chromeDriverPath = findsChromeDriver.find()
 if(chromeDriverPath) {
