@@ -18,8 +18,14 @@
   var path = require('path');
   var fs = require('fs');
   var staticDependencyPaths = require('./../src/static-dependency-paths');
+  var findsSeleniumJar = require('./../src/lib/finds-selenium-jar');
 
-  complainIfSeleniumJarIsNotFound()
+  var seleniumJar = findsSeleniumJar.find()
+  if(seleniumJar) {
+    console.log("Found standalone Selenium server jar: " + seleniumJar + "\n")
+  } else {
+    console.warn(findsSeleniumJar.errorMessage)
+  }
 
   if (!isJavaValid()) {
     exit();
@@ -64,16 +70,6 @@
       return false;
     }
     return true;
-  }
-  function complainIfSeleniumJarIsNotFound() {
-    if (!fs.existsSync(staticDependencyPaths.seleniumJar)) {
-      err("The Selenium standalone server jar is required at runtime, but wasn't found at $SELENIUM_SERVER_STANDALONE_JAR or '" + staticDependencyPaths.seleniumJar + "'");
-      log("");
-      err("A suggested download URL is: https://code.google.com/p/selenium/downloads/list");
-    } else {
-      log("Found: " + staticDependencyPaths.seleniumJar);
-    }
-    log("");
   }
   function log(msg) {
     console.log(msg);

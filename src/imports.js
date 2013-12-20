@@ -17,9 +17,14 @@ var java = require("java");
 var path = require("path");
 var classPaths = require('./classPaths');
 var findsChromeDriver = require('./lib/finds-chrome-driver');
+var findsSeleniumJar = require('./lib/finds-selenium-jar');
 var staticDependencyPaths = require('./static-dependency-paths');
 
-java.classpath.push(staticDependencyPaths.seleniumJar);
+var seleniumJar = findsSeleniumJar.find()
+if(!seleniumJar) {
+  throw new Error(findsSeleniumJar.errorMessage)
+}
+java.classpath.push(seleniumJar);
 java.classpath.push(staticDependencyPaths.helperJar);
 
 chromeDriverPath = findsChromeDriver.find()
