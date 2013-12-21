@@ -5,7 +5,9 @@ var webdriver = require(
 var findsChromeDriver = require(
   path.resolve(__dirname, '..', '..', 'src', 'lib', 'finds-chrome-driver')
 );
+var ChromeDriver = webdriver.ChromeDriver;
 var ChromeDriverService = webdriver.ChromeDriverService;
+var ChromeOptions = webdriver.ChromeOptions;
 var DesiredCapabilities = webdriver.DesiredCapabilities;
 var File = webdriver.File;
 var RemoteWebDriver = webdriver.RemoteWebDriver;
@@ -27,6 +29,8 @@ service.start();
 
 module.exports = {
   get driver() {
-    return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
+    var chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments('--no-sandbox');
+    return new ChromeDriver(service, chromeOptions);
   }
 };
