@@ -1,8 +1,6 @@
 language: node_js
 node_js:
   - "0.10"
-env:
-  - HEADLESS=true SELENIUM_VERSION=2.39.0
 before_install:
   - "Xvfb :99 > /dev/null &"
 install: "npm install"
