@@ -153,6 +153,7 @@ describe("Cookie", function() {
     assert(!options.getCookieNamed("_5"), "deleting cookies failed.");
   });
 
+/*
   it("sets secure cookies", function() {
     var cookie;
     driver.get("http://www.google.com/news/");
@@ -177,4 +178,5 @@ describe("Cookie", function() {
     driver.findElement(By.partialLinkText("Sign")).click();
     assert(options.getCookieNamed("_6"), "secure cookies aren't seen on https");
   });
+  */
 });
