@@ -3,11 +3,13 @@ var path = require('path'),
     os = require('os'),
     isWin = /^win/i.test(os.platform()),
     home = process.env[isWin ? 'USERPROFILE' : 'HOME'],
-    binaryDir = path.resolve(home, '.webdriver-sync');
+    binaryDir = path.resolve(home, '.webdriver-sync'),
+    chromeDriverFileName = 'chromedriver' + (isWin ? '.exe' : '');
 
 module.exports = {
   binaryDir: binaryDir,
-  chromeDriver: path.resolve(binaryDir, 'chromedriver' + (isWin ? '.exe' : '')),
+  chromeDriverFileName: chromeDriverFileName,
+  chromeDriver: path.resolve(binaryDir, chromeDriverFileName),
   seleniumJar: path.resolve(binaryDir, config.selenium.jar),
   helperJar: path.resolve(__dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar")
 };

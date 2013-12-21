@@ -4,10 +4,14 @@ var which = require('which'),
 
 module.exports = {
   find: function() {
-    if(fs.existsSync(staticDependencyPaths.chromeDriver)) {
-      return staticDependencyPaths.chromeDriver;
-    } else {
-      return null;
+    try {
+      return which.find(staticDependencyPaths.chromeDriverFileName);
+    } catch(e) {
+      if(fs.existsSync(staticDependencyPaths.chromeDriver)) {
+        return staticDependencyPaths.chromeDriver;
+      } else {
+        return null;
+      }
     }
   }
 };
