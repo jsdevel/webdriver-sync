@@ -69,14 +69,26 @@ function mapToObject(map, mapper) {
 }
 function objectToMap(obj) {
   var key;
-  var map = Map.createWithStringKeys();
+  var map = Map.createWithStringKeysSync();
   for (key in obj) {
     if (obj.hasOwnProperty(key)) {
-      map.setSync(key, obj[key]);
+      map.putSync(key, obj[key]);
     }
   }
   return map;
 }
+
+function objectToMapStringString(obj) {
+  var key;
+  var map = Map.createWithStringKeysStringValuesSync();
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      map.putSync(""+key, ""+obj[key]);
+    }
+  }
+  return map;
+}
+
 function toArray(arr) {
   return Array.prototype.slice.call(arr);
 }
@@ -91,5 +103,6 @@ module.exports.extend = extend;
 module.exports.extendAll = extendAll;
 module.exports.mapToObject = mapToObject;
 module.exports.objectToMap = objectToMap;
+module.exports.objectToMapStringString = objectToMapStringString;
 module.exports.toArray = toArray;
 module.exports.toStringArray = toStringArray;

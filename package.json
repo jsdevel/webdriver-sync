@@ -7,7 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/jshint --config .jshintrc src/**/*.js && node_modules/.bin/jshint --config .test-jshintrc test/**/*.js && node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
+    "lint-src":"node_modules/.bin/jshint --config .jshintrc src/**/*.js",
+    "lint-test":"node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
+    "mocha":"node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
+    "test": "npm run-script lint-src && npm run-script lint-test && npm run-script mocha",
     "preinstall": "node bin/install.js",
     "install": "node bin/postInstall.js"
   },

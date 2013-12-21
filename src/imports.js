@@ -72,6 +72,9 @@ module.exports = {
   get ChromeDriverService() {
     return java.import(classPaths.ChromeDriverService);
   },
+  get ChromeDriverServiceBuilder() {
+    return java.import(classPaths.ChromeDriverServiceBuilder);
+  },
   get ChromeOptions() {
     return java.import(classPaths.ChromeOptions);
   },

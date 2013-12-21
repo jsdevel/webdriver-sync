@@ -2,6 +2,7 @@ module.exports = {
   By: 'org.openqa.selenium.By',
   ChromeDriver: 'org.openqa.selenium.chrome.ChromeDriver',
   ChromeDriverService: 'org.openqa.selenium.chrome.ChromeDriverService',
+  ChromeDriverServiceBuilder: 'org.openqa.selenium.chrome.ChromeDriverService$Builder',
   ChromeOptions: 'org.openqa.selenium.chrome.ChromeOptions',
   Command: 'org.openqa.selenium.remote.Command',
   Cookie: 'org.openqa.selenium.Cookie',

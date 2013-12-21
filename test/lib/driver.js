@@ -2,21 +2,29 @@ var path = require('path');
 var webdriver = require(
   path.resolve(__dirname, '..', '..', 'src', 'webdriver-sync')
 );
+var findsChromeDriver = require(
+  path.resolve(__dirname, '..', '..', 'src', 'lib', 'finds-chrome-driver')
+);
+var ChromeDriverService = webdriver.ChromeDriverService;
 var DesiredCapabilities = webdriver.DesiredCapabilities;
-var ChromeDriver = webdriver.ChromeDriver;
-var ChromeOptions = webdriver.ChromeOptions;
-var PhantomJSDriver = webdriver.PhantomJSDriver;
+var File = webdriver.File;
 var RemoteWebDriver = webdriver.RemoteWebDriver;
-var chromeOptions = new ChromeOptions();
-chromeOptions.addArguments("--no-sandbox");
-//var service = webdriver.ChromeDriverService.createDefaultService();
-//service.start();
+var serviceBuilder;
+var service;
+
+if(process.env.TRAVIS){
+  service = new ChromeDriverService.Builder()
+    .usingDriverExecutable(new File(findsChromeDriver.find()))
+    .withEnvironment({"DISPLAY":":99.0"})
+    .build();
+} else {
+  service = ChromeDriverService.createDefaultService();
+}
+
+service.start();
 
 module.exports = {
   get driver() {
-    return new ChromeDriver();
-    //temporary because travis build is failing due to environment issue
-    //return new RemoteWebDriver(service.getUrl(), 
-    //DesiredCapabilities.chrome());
+    return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
   }
 };

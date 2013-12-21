@@ -1,10 +1,11 @@
-var Class = require('../imports').ChromeDriverService;
+var imports = require('../imports');
+var Class = imports.ChromeDriverService;
 var DriverService = require('./DriverService');
 var File = require('./File');
 var Instance = require('./Instance');
 var addFinalProp = require('../utils').addFinalProp;
 var extendAll = require('../utils').extendAll;
-var objectToMap = require('../utils').objectToMap;
+var objectToMap = require('../utils').objectToMapStringString;
 var assert = require('../assert');
 
 module.exports = ChromeDriverService;
@@ -39,11 +40,13 @@ ChromeDriverService.Builder
   = Builder;
 
 function Builder() {
-  addFinalProp(this, "_instance", new Class.Builder());
+  addFinalProp(this, "_instance", new imports.ChromeDriverServiceBuilder());
 }
 
 Builder.prototype.build = function() {
-  addFinalProp(this, "_instance", new Class.Builder());
+  return new ChromeDriverService(
+    new Instance(this._instance.buildSync())
+  );
 };
 
 Builder.prototype.usingAnyFreePort = function() {
