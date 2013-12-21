@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jshint --config .jshintrc src/**/*.js && jshint --config .test-jshintrc test/**/*.js && node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
+    "test": "node_modules/.bin/jshint --config .jshintrc src/**/*.js && node_modules/.bin/jshint --config .test-jshintrc test/**/*.js && node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
     "preinstall": "node bin/install.js",
     "install": "node bin/postInstall.js"
   },
