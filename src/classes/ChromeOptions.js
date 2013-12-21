@@ -1,3 +1,4 @@
+var java = require('java');
 var Class = require('../imports').ChromeOptions;
 var File = require('./File');
 var toArray = require('../utils').toArray;
@@ -21,7 +22,7 @@ ChromeOptions.prototype.addArguments = function(strings) {
   strings.forEach(function(v) {
     assert(v).isString().throws("Strings must be strings.");
   });
-  this._instance.addArgumentsSync.apply(this._instance, strings);
+  this._instance.addArgumentsSync(java.newArray('java.lang.String', strings));
 };
 
 ChromeOptions.prototype.addEncodedExtensions = function(strings) {
