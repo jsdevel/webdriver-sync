@@ -12,8 +12,10 @@
     "install": "node bin/postInstall.js"
   },
   "dependencies": {
+    "async": "~0.2.9",
     "download": "~0.1.7",
     "java": "~0.2.9",
+    "unzip": "~0.1.9",
     "which": "~1.0.5"
   },
   "devDependencies": [
