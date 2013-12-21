@@ -10,9 +10,10 @@
     "test": "jshint --config .jshintrc src/**/*.js && jshint --config .test-jshintrc test/**/*.js && node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
     "preinstall": "node bin/install.js pre"
   },
-  "dependencies": [
-    "java"
-  ],
+  "dependencies": {
+    "which": "~1.0.5",
+    "java": "~0.2.9"
+  },
   "devDependencies": [
     "mocha",
     "proxyquire",

@@ -70,8 +70,13 @@ Installing the `java` module can be a bit tricky, so here are a few items to tak
 
 I recommend installing the `java` module somewhere on your system before installing
 `webdriver-sync` to isolate any potential issues.  You'll then need
-to place the `selenium-standalone-server.jar` (renamed without the version), and
-the `chromedriver` binary within the following directory `~/.webdriver-sync`.
+to place the standalone Selenium server jar in a location identified by the
+environment variable `SELENIUM_SERVER_STANDALONE_JAR` or at the specific
+location `~/.webdriver-sync/selenium-standalone-server.jar` (renamed to remove
+the version identifier).
+
+If you want to drive tests with Chrome, make sure to have the chromedriver executable, either on your PATH or at `~/.webdriver-sync/chromedriver`
+([download here](http://chromedriver.storage.googleapis.com/index.html)).
 
 If you're still running into issues installing the module, the problem is likely with the `java`
 module.  In addition to filing a bug here, please see https://github.com/nearinfinity/node-java
@@ -80,7 +85,7 @@ for additional help.
 ## Challenges
 Selenium is in constant flux.  Browser updates may force unexpected updates
 to `selenium-standalone-server.jar` and affected driver binaries I.E. `chromedriver`.  Any bridge, be it ruby
-or python, will be affected by these updates as well as `webdriver-sync`.  It therefore falls on you, the 
+or python, will be affected by these updates as well as `webdriver-sync`.  It therefore falls on you, the
 user of this module, to file bugs as accurately and as promptly as you can.
 
 ## Testing the Install

@@ -15,41 +15,19 @@
  */
 !function() {//prevent IDE's from adding these vars globally
   var javaHome = process.env['JAVA_HOME'];
-  var os = require('os');
   var path = require('path');
   var fs = require('fs');
-  var isWin = /^win/i.test(os.platform());
-  var binaryDir = path.resolve(
-    process.env[isWin ? 'USERPROFILE' : 'HOME'],
-    '.webdriver-sync'
-  );
-  var pathToChromeDriver = path.resolve(binaryDir, 'chromedriver' + (isWin ? ".exe" : ""));
-  var pathToSeleniumServerStandalone = path.resolve(binaryDir, 'selenium-server-standalone.jar');
-  var hasMissingBinary = false;
+  var staticDependencyPaths = require('./../src/static-dependency-paths');
+  var findsSeleniumJar = require('./../src/lib/finds-selenium-jar');
 
-  if (!fs.existsSync(pathToChromeDriver)) {
-    hasMissingBinary = true;
-    showObtainBinaryMsg(
-      pathToChromeDriver,
-      "https://code.google.com/p/chromedriver/downloads/list"
-    );
+  var seleniumJar = findsSeleniumJar.find()
+  if(seleniumJar) {
+    console.log("Found standalone Selenium server jar: " + seleniumJar + "\n")
   } else {
-    log("Found: " + pathToChromeDriver);
-    log("");
+    console.warn(findsSeleniumJar.errorMessage)
   }
 
-  if (!fs.existsSync(pathToSeleniumServerStandalone)) {
-    hasMissingBinary = true;
-    showObtainBinaryMsg(
-      pathToSeleniumServerStandalone,
-      "https://code.google.com/p/selenium/downloads/list"
-    );
-  } else {
-    log("Found: " + pathToSeleniumServerStandalone);
-    log("");
-  }
-
-  if (hasMissingBinary || !isJavaValid()) {
+  if (!isJavaValid()) {
     exit();
   }
 
@@ -67,7 +45,7 @@
       "",
       "Preparing to validate your environment.",
       "JAVA_HOME is: " + javaHome,
-      "binaryDir is: " + binaryDir,
+      "binaryDir is: " + staticDependencyPaths.binaryDir,
       ""
     ].join('\n'));
 
@@ -101,11 +79,5 @@
   }
   function exit(code) {
     process.exit(code || 1);
-  }
-  function showObtainBinaryMsg(binary, suggested) {
-    err("The following binary wasn't found: " + binary);
-    log("");
-    err("A suggested download URL is: " + suggested);
-    log("");
   }
 }();
