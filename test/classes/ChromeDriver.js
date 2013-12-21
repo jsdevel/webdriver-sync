@@ -11,10 +11,6 @@ describe("ChromeDriver", function() {
     driver.get('http://google.com');
   });
 
-  after(function() {
-    driver.quit();
-  });
-
   it("can execute javascript synchronously", function() {
     driver.executeScript('alert(5);');
     driver.switchTo().alert().accept();

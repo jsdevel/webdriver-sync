@@ -14,7 +14,7 @@ var RemoteWebDriver = webdriver.RemoteWebDriver;
 var serviceBuilder;
 var service;
 
-if(process.env.TRAVIS){
+if(!process.env.TRAVIS){
   console.log("Hello Travis!");
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
