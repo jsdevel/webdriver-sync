@@ -41,7 +41,7 @@
     "javascript"
   ],
   "author": "Joseph Spencer",
-  "license": "Apache2.0",
+  "license": "MIT license (MIT)",
   "bugs": {
     "url": "https://github.com/jsdevel/webdriver-sync/issues"
   }
