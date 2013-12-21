@@ -29,8 +29,9 @@ service.start();
 
 module.exports = {
   get driver() {
-    var chromeOptions = new ChromeOptions();
-    chromeOptions.addArguments('--no-sandbox');
-    return new ChromeDriver(service, chromeOptions);
+    //var chromeOptions = new ChromeOptions();
+    //chromeOptions.addArguments('--no-sandbox');
+    //return new ChromeDriver(service, chromeOptions);
+    return new ChromeDriver(service);
   }
 };
