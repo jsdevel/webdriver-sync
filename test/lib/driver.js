@@ -15,6 +15,7 @@ var service;
 if(process.env.TRAVIS){
   console.log("Hello Travis!");
   service = new ChromeDriverService.Builder()
+    .usingAnyFreePort()
     .usingDriverExecutable(new File(findsChromeDriver.find()))
     .withEnvironment({"DISPLAY":":99.0"})
     .build();
