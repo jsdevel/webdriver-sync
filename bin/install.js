@@ -3,14 +3,10 @@
   var path = require('path');
   var fs = require('fs');
   var staticDependencyPaths = require('./../src/static-dependency-paths');
-  var findsSeleniumJar = require('./../src/lib/finds-selenium-jar');
-
-  var seleniumJar = findsSeleniumJar.find()
-  if(seleniumJar) {
-    console.log("Found standalone Selenium server jar: " + seleniumJar + "\n")
-  } else {
-    console.warn(findsSeleniumJar.errorMessage)
-  }
+  var cli = require('../src/lib/cli');
+  var log = cli.log;
+  var err = cli.err;
+  var exit = cli.exit;
 
   if (!isJavaValid()) {
     exit();
@@ -26,13 +22,9 @@
     var proposedPathToLibJvm;
     var pathToLibJvm;
 
-    log([
-      "",
-      "Preparing to validate your environment.",
-      "JAVA_HOME is: " + javaHome,
-      "binaryDir is: " + staticDependencyPaths.binaryDir,
-      ""
-    ].join('\n'));
+    log("Preparing to validate your environment.");
+    log("JAVA_HOME is: " + javaHome);
+    log("binaryDir is: " + staticDependencyPaths.binaryDir);
 
     if (!javaHome) {
       err("JAVA_HOME isn't set!  The java module can't build without it.");
@@ -55,14 +47,5 @@
       return false;
     }
     return true;
-  }
-  function log(msg) {
-    console.log(msg);
-  }
-  function err(msg) {
-    console.error(msg);
-  }
-  function exit(code) {
-    process.exit(code || 1);
   }
 }();

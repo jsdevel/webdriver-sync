@@ -1,0 +1,6 @@
+{
+  "selenium": {
+    "jar":"selenium-server-standalone-2.39.0.jar",
+    "url":"https://selenium.googlecode.com/files/"
+  }
+}
