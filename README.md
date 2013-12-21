@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jsdevel/webdriver-sync.png)](https://travis-ci.org/jsdevel/webdriver-sync)
+
 # webdriver-sync
 
 `webdriver-sync` aims to be a complete wrapper around all the classes found in the java API.
@@ -12,6 +14,7 @@ View the source code to see the classes that have been ported over.  It's organi
 * You can use `mocha` for writing test suites!
 * You can reduce code by embracing a synchronous API
 * You can reduce verbosity found in statically typed langs like java and c#
+* You can forget about dependency management for 3rd party binaries
 * Your QA team can embrace javascript :)
 
 ## Example
@@ -23,7 +26,6 @@ Following are the drivers that will become available in future releases:
 AndroidDriver
 IpadDriver
 IphoneDriver
-PhantomJSDriver
 */
 var webdriverSync = require('webdriver-sync');
 var By            = webdriverSync.By;
@@ -69,11 +71,7 @@ Installing the `java` module can be a bit tricky, so here are a few items to tak
 * `make` must be installed.
 
 I recommend installing the `java` module somewhere on your system before installing
-`webdriver-sync` to isolate any potential issues.  You'll then need
-to place the standalone Selenium server jar in a location identified by the
-environment variable `SELENIUM_SERVER_STANDALONE_JAR` or at the specific
-location `~/.webdriver-sync/selenium-standalone-server.jar` (renamed to remove
-the version identifier).
+`webdriver-sync` to isolate any potential issues.
 
 If you want to drive tests with Chrome, make sure to have the chromedriver executable, either on your PATH or at `~/.webdriver-sync/chromedriver`
 ([download here](http://chromedriver.storage.googleapis.com/index.html)).
