@@ -131,6 +131,6 @@ describe("webdriver-sync", function(){
     var secondsToWait=2 * 1000;
     webdriverModule.sleep(secondsToWait);
     end=Date.now();
-    assert(end-start > secondsToWait, "sleep didn't work.");
+    assert(end-start >= secondsToWait, "sleep didn't work.");
   });
 });
