@@ -4,7 +4,7 @@ node_js:
 env:
   - HEADLESS=true SELENIUM_VERSION=2.39.0
 before_install:
-  - "Xvfb :99"
+  - "Xvfb :99 &"
 install: "npm install"
 cache:
   directories:
