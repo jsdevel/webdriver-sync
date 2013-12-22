@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  - "sudo apt-get install libxss1"
-  - "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-  - "sudo dpkg -i google-chrome*.deb"
+  - "find / -maxdepth 5"
   # - "Xvfb :99 > /dev/null &"
 install: "npm install"
 cache:
