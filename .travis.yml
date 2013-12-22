@@ -3,7 +3,7 @@ node_js:
   - "0.10"
 before_install:
   #- "find / -maxdepth 5"
-  - "sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome"
+  - "sudo dpkg --get-selections | grep 'chromium'"
   # - "Xvfb :99 > /dev/null &"
 install: "npm install"
 cache:
