@@ -4,9 +4,9 @@ node_js:
 before_install:
   #- "find / -maxdepth 5"
   #- "sudo dpkg --get-selections | grep 'chromium'"
-  - "sudo dpkg -r chromium-browser"
   - "sudo dpkg -r chromium-browser-l10n"
   - "sudo dpkg -r chromium-codecs-ffmpeg"
+  - "sudo dpkg -r chromium-browser"
   # - "Xvfb :99 > /dev/null &"
 install: "npm install"
 cache:
