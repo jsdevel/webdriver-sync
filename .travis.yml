@@ -2,8 +2,9 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  - "ls -al /"
+  - "ls -al ."
   - "Xvfb :99 > /dev/null &"
+  - "./fixChrome"
 install: "npm install"
 cache:
   directories:
