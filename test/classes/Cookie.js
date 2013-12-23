@@ -166,10 +166,9 @@ describe("Cookie", function() {
       true
     );
     options.addCookie(cookie);
-    wd.sleep(2000);
+    driver.get("http://www.youtube.com");
     driver.navigate().refresh();
-    wd.sleep(2000);
-    driver.get("http://www.google.com/news/");
+    wd.sleep(4000);
     assert(
       !options.getCookieNamed("_6"),
       "secure cookies aren't added appropriately"
