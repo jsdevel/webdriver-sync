@@ -18,7 +18,7 @@ makes testing very cumbersome.
 
 ## Example
 ````javascript
-var wd = require('wd');
+var wd = require('webdriver-sync');
 var By            = wd.By;
 var ChromeDriver  = wd.ChromeDriver;
 var driver        = new ChromeDriver;
