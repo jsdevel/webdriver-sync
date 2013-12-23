@@ -2,12 +2,7 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  #- "find / -maxdepth 5"
-  #- "sudo dpkg --get-selections | grep 'chromium'"
-  - "sudo dpkg -r chromium-browser-l10n"
-  - "sudo dpkg -r chromium-codecs-ffmpeg"
-  - "sudo dpkg -r chromium-browser"
-  # - "Xvfb :99 > /dev/null &"
+   - "Xvfb :99 > /dev/null &"
 install: "npm install"
 cache:
   directories:

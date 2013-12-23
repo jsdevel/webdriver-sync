@@ -1,7 +1,7 @@
 {
   "name": "webdriver-sync",
   "version": "0.8.1",
-  "description": "Porting the Java WebDriver to node for a completely synchronous selenium experience in node.js!",
+  "description": "Synchronous testing with Selenium and node.js!",
   "main": "src/webdriver-sync.js",
   "directories": {
     "test": "test"
@@ -11,22 +11,21 @@
     "lint-test":"node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
     "mocha":"node_modules/.bin/mocha -t 8000 test/*.js test/classes/*.js",
     "test": "npm run-script lint-src && npm run-script lint-test && npm run-script mocha",
-    "preinstall": "node bin/install.js",
     "install": "node bin/postInstall.js"
   },
   "dependencies": {
     "async": "~0.2.9",
     "download": "~0.1.7",
-    "java": "~0.2.9",
+    "java": "~0.3.0",
     "unzip": "~0.1.9",
     "which": "~1.0.5"
   },
-  "devDependencies": [
-    "jshint",
-    "mocha",
-    "proxyquire",
-    "sinon"
-  ],
+  "devDependencies": {
+    "jshint":"",
+    "mocha":"",
+    "proxyquire":"",
+    "sinon":""
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jsdevel/webdriver-sync.git"

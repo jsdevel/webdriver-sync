@@ -2,34 +2,25 @@
 
 # webdriver-sync
 
-`webdriver-sync` aims to be a complete wrapper around all the classes found in the java API.
-This allows you to write your selenium tests in the same synchronous fasion that
-you normally would without the ceremony involved in asynchronous testing.
+`webdriver-sync` allows you to write purely synchronous integration tests using
+the Selenium API.  The module aims to be a complete wrapper around all the
+classes found in the java implementation.  All other API's use asynchronous methods which
+makes testing very cumbersome.
 
-View the source code to see the classes that have been ported over.  It's organized and is optimized for performance.
+## Highlights
 
-## Why should I use this?
-
-* You can write selenium in javascript!
-* You can use `mocha` for writing test suites!
-* You can reduce code by embracing a synchronous API
-* You can reduce verbosity found in statically typed langs like java and c#
-* You can forget about dependency management for 3rd party binaries
-* Your QA team can embrace javascript :)
+* Write 100% selenium in javascript!
+* Run Chrome, Firefox, Safari, PhantomJS, Internet Explorer, and RemoteWebDriver (Android to come)!
+* Reduce code by embracing a synchronous API!
+* Reduce verbosity found in statically typed langs like java and c#
+* Forget about dependency management for 3rd party binaries I.E. chromedriver and selenium-server-standalone-x.x.x.jar.  Say hello to an install process that handles all that for you.
+* Connect to Sauce using the RemoteWebDriver or other drivers that extend RemoteWebDriver.
 
 ## Example
-
 ````javascript
-/*
-Following are the drivers that will become available in future releases:
-
-AndroidDriver
-IpadDriver
-IphoneDriver
-*/
-var webdriverSync = require('webdriver-sync');
-var By            = webdriverSync.By;
-var ChromeDriver  = webdriverSync.ChromeDriver;
+var wd = require('wd');
+var By            = wd.By;
+var ChromeDriver  = wd.ChromeDriver;
 var driver        = new ChromeDriver;
 var title;
 var link;
@@ -45,52 +36,51 @@ driver.quit();
 ````
 
 ## Installation
-### Brief:
-
 `npm install webdriver-sync`
 
-### Details:
+`webdriver-sync` will download needed binaries for you which makes your life
+easier.  `webdriver-sync` will download these binaries to `$HOME/.webdriver-sync`.
+The following list has ways of overriding this process:
 
-Ulike other implementations, `webdriver-sync` directly calls the java API
-provided by the Selenium organization.  `webdriver-sync` relies on the `java` module
-to accomplish this.
+* Chromdriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
+path.
+* Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` to point to the location 
+where you have it on disk.  You should never do this, as the API is only tested
+against specific versions selenium, but it is available.
 
-Installing the `java` module can be a bit tricky, so here are a few items to take into consideration:
+##Documentation
+As `webdriver-sync` is a wrapper around the java API, you can browse any of the
+javadocs online.  You can quite literally use this module the same way you
+would in java without the static typing.
 
-#### All OS's i.e. *nix and windows:
-* Install JDK on your system and set `JAVA_HOME` in your environment to point to the JDK location
+Working with Maps and Lists is extremely delightful in javascript:
+````javascript
+  driver.executeScript("return document.querySelectorAll('div');").forEach(function(el){
+    console.log(el.getText());
+  });
+````
 
-#### Windows:
-* Find where the `jvm.dll` binary is and place it's directory in your `PATH`.
-* Pass appropriate flags to `node-gyp` if it can't find compiler tools.
+##Running Headless
+You can run Chrome, Firefox, Safari, and PhantomJS headless with `webdriver-sync`!
+You must have `Xvfb` installed, or an equivalent.
 
-#### Mac
-* Install xcode and the command line tools.  `make` must be available from the command line.
+Here's how Chromdriver can be run headless:
+````shell
+#Run this on a tty
+Xvfb :99 > /dev/null &
+````
 
-#### Linux
-* `make` must be installed.
+````javascript
+//Use this in your tests
+var service = new ChromeDriverService.Builder()
+    .usingAnyFreePort()
+    .usingDriverExecutable(new File(findsChromeDriver.find()))
+    .withEnvironment({"DISPLAY":":99.0"})
+    .build();
 
-I recommend installing the `java` module somewhere on your system before installing
-`webdriver-sync` to isolate any potential issues.
-
-If you want to drive tests with Chrome, make sure to have the chromedriver executable, either on your PATH or at `~/.webdriver-sync/chromedriver`
-([download here](http://chromedriver.storage.googleapis.com/index.html)).
-
-If you're still running into issues installing the module, the problem is likely with the `java`
-module.  In addition to filing a bug here, please see https://github.com/nearinfinity/node-java
-for additional help.
-
-## Challenges
-Selenium is in constant flux.  Browser updates may force unexpected updates
-to `selenium-standalone-server.jar` and affected driver binaries I.E. `chromedriver`.  Any bridge, be it ruby
-or python, will be affected by these updates as well as `webdriver-sync`.  It therefore falls on you, the
-user of this module, to file bugs as accurately and as promptly as you can.
-
-## Testing the Install
-
-Once you've installed the module, you can easily test it by navigating to the
-module root and running `npm test`.
-
+var driver = new ChromeDriver(service);
+//Running Headless!
+````
 ## Why Sync?
 
 Prior to node, most of my testing was done in Java and JUnit.  I found the sync
@@ -130,7 +120,6 @@ like the java API provided by the Selenium organization, but without the static 
 
 
 ## LICENSE
-
 ``````
 The MIT License (MIT)
 
@@ -156,9 +145,10 @@ THE SOFTWARE.
 ``````
 
 ## CREDIT when it is due!
+Special thanks to the developers of <a href="https://github.com/joeferner/node-java">node-java</a>!!!
 
-Special thanks to the developers of `node-java`!!!
+###Contributors (listed chronilogically)
+* Justin Searls @searls
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
