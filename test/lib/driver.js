@@ -14,7 +14,7 @@ var RemoteWebDriver = webdriver.RemoteWebDriver;
 var serviceBuilder;
 var service;
 
-if(!process.env.TRAVIS){
+if(process.env.TRAVIS){
   console.log("Hello Travis!");
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
@@ -29,9 +29,6 @@ service.start();
 
 module.exports = {
   get driver() {
-    //var chromeOptions = new ChromeOptions();
-    //chromeOptions.addArguments('--no-sandbox');
-    //return new ChromeDriver(service, chromeOptions);
-    return new ChromeDriver(service);
+    return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
   }
 };
