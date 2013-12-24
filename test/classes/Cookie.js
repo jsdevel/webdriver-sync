@@ -167,7 +167,7 @@ describe("Cookie", function() {
     );
     options.addCookie(cookie);
     driver.get("http://www.youtube.com");
-    driver.navigate().refresh();
+    driver.get("http://www.google.com/news/");
     wd.sleep(4000);
     assert(
       !options.getCookieNamed("_6"),
