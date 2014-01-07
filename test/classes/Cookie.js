@@ -167,13 +167,6 @@ describe("Cookie", function() {
     );
     options.addCookie(cookie);
     driver.get("http://www.youtube.com");
-    driver.get("http://www.google.com/news/");
-    wd.sleep(4000);
-    assert(
-      !options.getCookieNamed("_6"),
-      "secure cookies aren't added appropriately"
-    );
-    driver.findElement(By.partialLinkText("Sign")).click();
-    assert(options.getCookieNamed("_6"), "secure cookies aren't seen on https");
+    assert.equal(options.getCookieNamed("_6").isSecure(), true);
   });
 });
