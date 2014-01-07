@@ -99,6 +99,9 @@ module.exports = {
   },
 
   //INTERFACES
+  get OutputType() {
+    return require('./interfaces/OutputType');
+  },
   get WebElement() {
     return require('./interfaces/WebElement');
   },

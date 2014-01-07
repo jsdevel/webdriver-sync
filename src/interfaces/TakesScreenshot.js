@@ -15,7 +15,7 @@ TakesScreenshot.prototype.getScreenshotAs = function(target) {
     "Target must be an instance of OutputType"
   );
   if (target === OutputType.BASE64 || target === OutputType.BYTES) {
-    return this._instance.getScreenshotAs(target._instance);
+    return this._instance.getScreenshotAsSync(target._instance);
   } else if (target === OutputType.FILE) {
     return new File(
       new Instance(this._instance.getScreenshotAsSync(target._instance))
