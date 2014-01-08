@@ -3,6 +3,7 @@ var Map = require('./imports').helpers.Map;
 var addFinalProp = function(obj, prop, val) {
   obj[prop] = val;
 };
+
 var collectionToArray = function(collection, mapper) {
   var array = [];
   var _mapper = typeof mapper === 'function'
@@ -37,6 +38,7 @@ function extend(Child, Parent) {
   }
   Child.__extends[Parent.name] = true;
 }
+
 function extendAll() {
   var args = toArray(arguments);
   var Child = args.splice(0, 1)[0];
@@ -50,9 +52,10 @@ function extendAll() {
     extend(Child, args[i]);
   }
 }
+
 function mapToObject(map, mapper) {
-  var keys = map.keySetSync();
-  var len = keys.size();
+  var keys = map.keySetSync().toArraySync();
+  var len = keys.length;
   var i;
   var key;
   var obj = {};
@@ -62,11 +65,12 @@ function mapToObject(map, mapper) {
       return item;
     };
   for (i = 0; i < len; i++) {
-    key = keys.getSync(i);
+    key = keys[i];
     obj[key] = _mapper(map.getSync(key));
   }
   return obj;
 }
+
 function objectToMap(obj) {
   var key;
   var map = Map.createWithStringKeysSync();
@@ -92,11 +96,13 @@ function objectToMapStringString(obj) {
 function toArray(arr) {
   return Array.prototype.slice.call(arr);
 }
+
 function toStringArray(arr) {
   return toArray(arr).map(function(v) {
     return (new String(v)).toString();
   });
 }
+
 module.exports.addFinalProp = addFinalProp;
 module.exports.collectionToArray = collectionToArray;
 module.exports.extend = extend;

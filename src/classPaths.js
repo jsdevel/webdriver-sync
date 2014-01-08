@@ -21,6 +21,7 @@ module.exports = {
   List: 'java.util.List',
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',
   Long: 'java.lang.Long',
+  Map: 'java.util.Map',
   OutputType: 'org.openqa.selenium.OutputType',
   Platform: 'org.openqa.selenium.Platform',
   Point: 'org.openqa.selenium.Point',
