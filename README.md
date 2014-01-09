@@ -147,8 +147,12 @@ THE SOFTWARE.
 ## CREDIT when it is due!
 Special thanks to the developers of <a href="https://github.com/joeferner/node-java">node-java</a>!!!
 
-###Contributors (listed chronilogically)
+###Contributors (listed chronilogically).  
+
+Anyone who contributes to webdriver-sync, either through code changes or testing 
+will be listed here when their efforts are significant:
 * Justin Searls @searls
+* @alphamerchant
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
