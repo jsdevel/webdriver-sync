@@ -111,11 +111,25 @@ module.exports = {
   //===END WRAPPERS==//
 
   //UTILITY METHODS
-  importTo: function(target) {
+  importTo:function(target){
+    console.warn("#importTo is deprecated!  Use #exportTo instead.");
+    return this.exportTo(target);
+  },
+
+  /**
+   * Use this method to expose all Selenium Classes to the given target.
+   * Useful if you wish to avoid wd.blablabla.
+   * 
+   * @param {Object} target
+   */
+  exportTo: function(target) {
+    var prop;
     for (prop in this) {
-      if (prop === 'importTo')
-        continue;
-      target[prop] = this[prop];
+      if(this.hasOwnProperty(prop)){
+        if (prop[0].toLowerCase() !== prop[0]){//upercase so export
+          target[prop] = this[prop];
+        }
+      }
     }
   },
   /**

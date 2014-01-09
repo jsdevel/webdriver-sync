@@ -35,6 +35,9 @@ assert(title.indexOf('foo title') > -1);
 driver.quit();
 ````
 
+You can avoid `var By = wd.By;` by using `wd.exportTo(global);` to further
+reduce verbosity.
+
 ## Installation
 `npm install webdriver-sync`
 

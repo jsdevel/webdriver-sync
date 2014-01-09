@@ -1,7 +1,7 @@
 describe("webdriver-sync", function(){
   var assert;
   var path;
-  var webdriverModule;
+  var wd;
   var driver;
   var element;
   var By;
@@ -14,15 +14,15 @@ describe("webdriver-sync", function(){
   before(function(){
     assert=require('assert');
     path = require('path');
-    webdriverModule=require(
+    wd=require(
       path.resolve(__dirname, '..', 'src', 'webdriver-sync')
     );
-    //webdriverModule.importTo(this);
-    By = webdriverModule.By;
-    ChromeDriver = webdriverModule.ChromeDriver;
-    Cookie = webdriverModule.Cookie;
-    ExpectedConditions = webdriverModule.ExpectedConditions;
-    TimeUnit = webdriverModule.TimeUnit;
+    //wd.importTo(this);
+    By = wd.By;
+    ChromeDriver = wd.ChromeDriver;
+    Cookie = wd.Cookie;
+    ExpectedConditions = wd.ExpectedConditions;
+    TimeUnit = wd.TimeUnit;
     driver = require(path.resolve(__dirname, 'lib', 'driver.js')).driver;
     options = driver.manage();
     driver.get("http://www.google.com");
@@ -62,12 +62,12 @@ describe("webdriver-sync", function(){
   });
 
   it("sould be able to start HtmlUnit", function(){
-    var htmlDriver = new webdriverModule.HtmlUnitDriver();
+    var htmlDriver = new wd.HtmlUnitDriver();
     htmlDriver.quit();
   });
 
   it("should be able to start Firefox", function(){
-    var firefoxDriver = new webdriverModule.FirefoxDriver();
+    var firefoxDriver = new wd.FirefoxDriver();
     firefoxDriver.quit();
   });
 
@@ -110,11 +110,24 @@ describe("webdriver-sync", function(){
     assert(TimeUnit.SECONDS, "seconds");
   });
 
+  describe('#exportTo', function() {
+    it('should export all Constructors to target', function() {
+      var target = {};
+      wd.exportTo(target);
+      assert('ChromeDriver' in target, 'ChromeDriver');
+      assert('Keys' in target, 'Keys');
+      assert('PhantomJSDriver' in target, 'PhantomJSDriver');
+      assert('SafariDriver' in target, 'SafariDriver');
+      assert(!('exportTo' in target), 'exportTo');
+      assert(!('sleep' in target), 'sleep');
+    });    
+  });
+
   it("should be albe to sleep", function(){
     var start=Date.now();
     var end;
     var secondsToWait=2 * 1000;
-    webdriverModule.sleep(secondsToWait);
+    wd.sleep(secondsToWait);
     end=Date.now();
     assert(end-start >= secondsToWait, "sleep didn't work.");
   });
