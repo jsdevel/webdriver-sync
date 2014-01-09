@@ -5,14 +5,14 @@ var findsChromeDriver = require('./lib/finds-chrome-driver');
 var findsSeleniumJar = require('./lib/finds-selenium-jar');
 var staticDependencyPaths = require('./static-dependency-paths');
 
-var seleniumJar = findsSeleniumJar.find()
+var seleniumJar = findsSeleniumJar.find();
 if(!seleniumJar) {
   throw new Error(findsSeleniumJar.errorMessage)
 }
 java.classpath.push(seleniumJar);
 java.classpath.push(staticDependencyPaths.helperJar);
 
-chromeDriverPath = findsChromeDriver.find()
+chromeDriverPath = findsChromeDriver.find();
 if(chromeDriverPath) {
   java.callStaticMethodSync(
     "java.lang.System",
@@ -116,6 +116,9 @@ module.exports = {
   },
   get InternetExplorerDriver() {
     return java.import(classPaths.InternetExplorerDriver);
+  },
+  get Keys() {
+    return java.import(classPaths.Keys);
   },
   get Level() {
     return java.import(classPaths.Level);

@@ -17,6 +17,7 @@ module.exports = {
   PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',
   InternetExplorerDriver: 'org.openqa.selenium.ie.InternetExplorerDriver',
+  Keys: 'org.openqa.selenium.Keys',
   Level: 'java.util.logging.Level',
   List: 'java.util.List',
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',

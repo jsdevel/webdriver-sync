@@ -91,6 +91,9 @@ module.exports = {
   },
 
   //ENUMS
+  get Keys() {
+    return require('./enums/Keys');
+  },
   get Platform() {
     return require('./enums/Platform');
   },
