@@ -150,7 +150,7 @@ THE SOFTWARE.
 ## CREDIT when it is due!
 Special thanks to the developers of <a href="https://github.com/joeferner/node-java">node-java</a>!!!
 
-###Contributors (listed chronilogically).  
+###Contributors (listed chronologically).  
 
 Anyone who contributes to webdriver-sync, either through code changes or testing 
 will be listed here when their efforts are significant:
