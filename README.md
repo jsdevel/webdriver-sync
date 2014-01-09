@@ -151,8 +151,8 @@ Special thanks to the developers of <a href="https://github.com/joeferner/node-j
 
 Anyone who contributes to webdriver-sync, either through code changes or testing 
 will be listed here when their efforts are significant:
-* Justin Searls @searls
-* @alphamerchant
+* Justin Searls @<a href='https://github.com/searls'>searls</a>
+* @<a href='https://github.com/alphamerchant'>alphamerchant</a>
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
