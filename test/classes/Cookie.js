@@ -166,7 +166,7 @@ describe("Cookie", function() {
       true
     );
     options.addCookie(cookie);
-    driver.get("http://www.youtube.com");
+    driver.findElement(By.partialLinkText("Sign")).click();
     assert.equal(options.getCookieNamed("_6").isSecure(), true);
   });
 });
