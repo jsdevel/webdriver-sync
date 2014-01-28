@@ -3,9 +3,7 @@
 # webdriver-sync
 
 `webdriver-sync` allows you to write purely synchronous integration tests using
-the Selenium API.  The module aims to be a complete wrapper around all the
-classes found in the java implementation.  All other API's use asynchronous methods which
-makes testing very cumbersome.
+the Selenium API.
 
 ## Highlights
 
@@ -15,6 +13,43 @@ makes testing very cumbersome.
 * Reduce verbosity found in statically typed langs like java and c#
 * Forget about dependency management for 3rd party binaries I.E. chromedriver and selenium-server-standalone-x.x.x.jar.  Say hello to an install process that handles all that for you.
 * Connect to Sauce using the RemoteWebDriver or other drivers that extend RemoteWebDriver.
+
+## Why Sync?
+
+Prior to node, most of my testing was done in Java and JUnit.  I found the sync
+API to be much easier to follow and maintain, and I wasn't happy with all the
+async ceremony out there with the node APIs (similar to the following):
+
+``````javascript
+browser.get("http://foo.html", function() {
+   browser.title(function(err, title) {
+     assert.ok(~title.indexOf('foo title'), 'Wrong title!');
+     browser.elementById('i am a link', function(err, el) {
+        browser.clickElement(el, function() {
+           browser.eval("window.location.href", function(err, href) {
+           assert.ok(~href.indexOf('foo title 2'));
+           browser.quit();
+           });
+        });
+     });
+   });
+});
+``````
+
+I much prefer this:
+
+``````javascript
+driver.get("http://foo.html");
+title = driver.getTitle();
+link  = driver.findElement(By.id('i am a link'));
+link.click();
+assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
+assert(title.indexOf('foo title') > -1);
+driver.quit();
+``````
+
+And that's exactly what `webdriver-sync` aims to achieve.  It should look just
+like the java API provided by the Selenium organization, but without the static typing.
 
 ## Example
 ````javascript
@@ -84,43 +119,6 @@ var service = new ChromeDriverService.Builder()
 var driver = new ChromeDriver(service);
 //Running Headless!
 ````
-## Why Sync?
-
-Prior to node, most of my testing was done in Java and JUnit.  I found the sync
-API to be much easier to follow and maintain, and I wasn't happy with all the
-async ceremony out there with the node API[s] (similar to the following):
-
-``````javascript
-browser.get("http://foo.html", function() {
-   browser.title(function(err, title) {
-   assert.ok(~title.indexOf('foo title'), 'Wrong title!');
-   browser.elementById('i am a link', function(err, el) {
-      browser.clickElement(el, function() {
-         browser.eval("window.location.href", function(err, href) {
-         assert.ok(~href.indexOf('foo title 2'));
-         browser.quit();
-         });
-      });
-   });
-   });
-});
-``````
-
-I much prefer this:
-
-``````javascript
-driver.get("http://foo.html");
-title = driver.getTitle();
-link  = driver.findElement(By.id('i am a link'));
-link.click();
-assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
-assert(title.indexOf('foo title') > -1);
-driver.quit();
-``````
-
-And that's exactly what `webdriver-sync` aims to achieve.  It should look just
-like the java API provided by the Selenium organization, but without the static typing.
-
 
 ## LICENSE
 ``````
