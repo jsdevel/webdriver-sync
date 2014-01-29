@@ -2,8 +2,7 @@
 
 # webdriver-sync
 
-`webdriver-sync` allows you to write purely synchronous integration tests using
-the Selenium API.
+Synchronous testing with Selenium and node.js!
 
 ## Highlights
 
