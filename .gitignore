@@ -6,3 +6,4 @@
 /src/java/webdriversynchelpers/build/
 
 .DS_Store
+*.swp
