@@ -1,6 +1,6 @@
 {
   "name": "webdriver-sync",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Synchronous testing with Selenium and node.js!",
   "main": "src/webdriver-sync.js",
   "directories": {
