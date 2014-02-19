@@ -108,6 +108,9 @@ module.exports = {
   get FirefoxDriver() {
     return java.import(classPaths.FirefoxDriver);
   },
+  get FirefoxProfile() {
+    return java.import(classPaths.FirefoxProfile);
+  },
   get PhantomJSDriver() {
     return java.import(classPaths.PhantomJSDriver);
   },
