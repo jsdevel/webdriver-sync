@@ -153,6 +153,7 @@ Anyone who contributes to webdriver-sync, either through code changes or testing
 will be listed here when their efforts are significant:
 * Justin Searls @<a href='https://github.com/searls'>searls</a>
 * @<a href='https://github.com/alphamerchant'>alphamerchant</a>
+* Campbell Morgan @<a href='https://github.com/campbellwmorgan'>campbellwmorgan</a>
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
