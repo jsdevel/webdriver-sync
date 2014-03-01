@@ -1,6 +1,6 @@
 var Class = require('../imports').FirefoxDriver;
 var Capabilities = require('../interfaces/Capabilities');
-var FirefoxProfile = require('../interfaces/FirefoxProfile');
+var FirefoxProfile = require('./FirefoxProfile');
 var Killable = require('../interfaces/Killable');
 var TakesScreenshot = require('../interfaces/TakesScreenshot');
 var RemoteWebDriver = require('./RemoteWebDriver');
