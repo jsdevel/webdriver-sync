@@ -29,8 +29,7 @@ function FirefoxDriver(
   if (!len) {
     instance = new Class();
   } else if (len === 1 || len === 2) {
-    assert(first)
-      .(isInstanceof(Capabilities) || isInstanceof(FirefoxProfile))
+    assert(first.isInstanceof(Capabilities) || first.isInstanceof(FirefoxProfile))
       .throws(
         "The first argument wasn't an instanceof either Capabilities or FirefoxProfile."
         );
