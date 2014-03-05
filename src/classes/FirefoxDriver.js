@@ -1,5 +1,6 @@
 var Class = require('../imports').FirefoxDriver;
 var Capabilities = require('../interfaces/Capabilities');
+var FirefoxProfile = require('./FirefoxProfile');
 var Killable = require('../interfaces/Killable');
 var TakesScreenshot = require('../interfaces/TakesScreenshot');
 var RemoteWebDriver = require('./RemoteWebDriver');
@@ -28,10 +29,9 @@ function FirefoxDriver(
   if (!len) {
     instance = new Class();
   } else if (len === 1 || len === 2) {
-    assert(first)
-      .isInstanceof(Capabilities)
+    assert(first.isInstanceof(Capabilities) || first.isInstanceof(FirefoxProfile))
       .throws(
-        "The first argument wasn't an instanceof Capabilities."
+        "The first argument wasn't an instanceof either Capabilities or FirefoxProfile."
         );
     if (len === 1) {
       instance = new Class(first._instance);
