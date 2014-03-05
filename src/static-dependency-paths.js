@@ -3,8 +3,16 @@ var path = require('path'),
     os = require('os'),
     isWin = /^win/i.test(os.platform()),
     home = process.env[isWin ? 'USERPROFILE' : 'HOME'],
-    binaryDir = path.resolve(home, '.webdriver-sync'),
-    chromeDriverFileName = 'chromedriver' + (isWin ? '.exe' : '');
+    binaryDir,
+    chromeDriverFileName = 'chromedriver' + (isWin ? '.exe' : ''),
+    cli = require('./lib/cli');
+
+if(!home){
+  cli.err('Neither of HOME or USERPROFILE were set in the env!');
+  cli.exit(1);
+}
+
+binaryDir = path.resolve(home, '.webdriver-sync'),
 
 module.exports = {
   binaryDir: binaryDir,
