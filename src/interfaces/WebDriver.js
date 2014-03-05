@@ -9,6 +9,8 @@ var Point = require('../classes/Point');
 var extend = require('../utils').extend;
 var addFinalProp = require('../utils').addFinalProp;
 var collectionToArray = require('../utils').collectionToArray;
+var assert = require('../assert');
+var TimeUnit = require('../enums/TimeUnit');
 
 module.exports = WebDriver;
 
@@ -169,18 +171,21 @@ function Timeouts(instance) {
   addFinalProp(this, "_instance", instance);
 }
 Timeouts.prototype.implicitlyWait = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.implicitlyWaitSync(new Long(time), unit)
+    this._instance.implicitlyWaitSync(new Long(time), unit._instance)
     );
 };
 Timeouts.prototype.pageLoadTimeout = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.pageLoadTimeoutSync(new Long(time), unit)
+    this._instance.pageLoadTimeoutSync(new Long(time), unit._instance)
     );
 };
 Timeouts.prototype.setScriptTimeout = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.setScriptTimeoutSync(new Long(time), unit)
+    this._instance.setScriptTimeoutSync(new Long(time), unit._instance)
     );
 };
 
@@ -215,4 +220,10 @@ function assertIsCookie(cookie) {
   if (!(cookie instanceof Cookie)) {
     throw new Error("argument wasn't an instance of Cookie.");
   }
+}
+
+function assertIsTimeUnit(unit){
+  assert(unit)
+    .isInstanceof(TimeUnit)
+    .throws('unit must be an instance of TimeUnit');
 }
