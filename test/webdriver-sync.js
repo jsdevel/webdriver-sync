@@ -66,11 +66,6 @@ describe("webdriver-sync", function(){
     htmlDriver.quit();
   });
 
-  it("should be able to start Firefox", function(){
-    var firefoxDriver = new wd.FirefoxDriver();
-    firefoxDriver.quit();
-  });
-
   it("should be able to work with driver options", function(){
     assert(driver.manage());
   });

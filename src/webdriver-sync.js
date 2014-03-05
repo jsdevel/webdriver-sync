@@ -50,6 +50,9 @@ module.exports = {
   get FirefoxDriver() {
     return require('./classes/FirefoxDriver');
   },
+  get FirefoxProfile() {
+    return require('./classes/FirefoxProfile');
+  },
   get PhantomJSDriver() {
     return require('./classes/PhantomJSDriver');
   },
