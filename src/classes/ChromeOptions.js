@@ -1,3 +1,5 @@
+'use strict';
+
 var java = require('java');
 var Class = require('../imports').ChromeOptions;
 var File = require('./File');

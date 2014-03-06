@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').LocalFileDetector;
 var FileDetector = require('../interfaces/FileDetector');
 var Instance = require('./Instance');

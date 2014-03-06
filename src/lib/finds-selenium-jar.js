@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs'),
     staticDependencyPaths = require('./../static-dependency-paths'),
     envPath = process.env.SELENIUM_SERVER_STANDALONE_JAR;

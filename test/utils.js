@@ -1,3 +1,5 @@
+'use strict';
+
 describe("utils", function() {
   var mod;
   var sinon;

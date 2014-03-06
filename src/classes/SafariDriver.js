@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').SafariDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var TakesScreenshot = require('../interfaces/TakesScreenshot');

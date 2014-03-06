@@ -1,3 +1,5 @@
+'use strict';
+
 var java = require("java");
 var path = require("path");
 var classPaths = require('./classPaths');
@@ -12,7 +14,7 @@ if(!seleniumJar) {
 java.classpath.push(seleniumJar);
 java.classpath.push(staticDependencyPaths.helperJar);
 
-chromeDriverPath = findsChromeDriver.find();
+var chromeDriverPath = findsChromeDriver.find();
 if(chromeDriverPath) {
   java.callStaticMethodSync(
     "java.lang.System",

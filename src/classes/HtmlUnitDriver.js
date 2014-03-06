@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').HtmlUnitDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var TakesScreenshot = require('../interfaces/TakesScreenshot');

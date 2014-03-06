@@ -1,3 +1,5 @@
+'use strict';
+
 var which = require('which'),
     staticDependencyPaths = require('./../static-dependency-paths'),
     fs = require('fs');

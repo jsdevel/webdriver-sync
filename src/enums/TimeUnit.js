@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').TimeUnit;
 var Long = require('../imports').Long;
 var addFinalProp = require('../utils').addFinalProp;

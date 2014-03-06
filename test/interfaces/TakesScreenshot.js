@@ -1,3 +1,5 @@
+'use strict';
+
 describe('TakesScreenshot', function() {
   var assert = require('assert');
   var path = require('path');

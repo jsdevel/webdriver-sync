@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').Level;
 var addFinalProp = require('../utils').addFinalProp;
 

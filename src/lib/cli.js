@@ -1,3 +1,5 @@
+'use strict';
+
 var s = {
   reset: ['\x1b[0m', '\x1b[0m'],
   bold: ['\x1b[1m', '\x1b[22m'],

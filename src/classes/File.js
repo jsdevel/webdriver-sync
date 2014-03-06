@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').File;
 var Long = require('../imports').Long;
 var Instance = require('../classes/Instance');

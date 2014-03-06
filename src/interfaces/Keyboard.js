@@ -1,3 +1,5 @@
+'use strict';
+
 var toStringArray = require('../utils').toStringArray;
 var addFinalProp = require('../utils').addFinalProp;
 

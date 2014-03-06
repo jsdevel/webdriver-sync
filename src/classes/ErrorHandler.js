@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').ErrorHandler;
 var Long = require('../imports').Long;
 var Response = require('./Response');

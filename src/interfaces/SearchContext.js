@@ -1,3 +1,5 @@
+'use strict';
+
 var By = require('../classes/By');
 var WebElement;
 var assert = require('../assert');

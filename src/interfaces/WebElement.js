@@ -1,3 +1,5 @@
+'use strict';
+
 var SearchContext = require('./SearchContext');
 var Dimension = require('../classes/Dimension');
 var Keys = require('../enums/Keys');

@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').Command;
 var SessionId = require('./SessionId');
 var objectToMap = require('../utils').objectToMap;

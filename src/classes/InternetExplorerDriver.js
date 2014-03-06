@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').InternetExplorerDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var TakesScreenshot = require('../interfaces/TakesScreenshot');

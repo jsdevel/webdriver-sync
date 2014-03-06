@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Coordinates = require('./Coordinates');
 var Long = require('../imports').Long;

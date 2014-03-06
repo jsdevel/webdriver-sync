@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').PhantomJSDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var RemoteWebDriver = require('./RemoteWebDriver');

@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').RemoteStatus;
 var Instance = require('./Instance');
 var addFinalProp = require('../utils').addFinalProp;

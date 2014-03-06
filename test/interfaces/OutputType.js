@@ -1,3 +1,5 @@
+'use strict';
+
 describe('OutputType', function() {
   var assert = require('assert');
   var path = require('path');

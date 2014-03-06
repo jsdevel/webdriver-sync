@@ -1,3 +1,5 @@
+'use strict';
+
 var Instance = require('./Instance');
 var Class = require('../imports').Cookie;
 var DateClass = require('../imports').Date;
@@ -147,7 +149,7 @@ Builder.prototype.build = function() {
   var builtCookie;
   var _instance;
   function BuiltCookie() {}
-  
+
   BuiltCookie.prototype = Cookie.prototype;
   builtCookie = new BuiltCookie();
   builtCookie.constructor = Cookie;

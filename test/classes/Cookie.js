@@ -1,3 +1,5 @@
+'use strict';
+
 describe("Cookie", function() {
   var assert;
   var path;

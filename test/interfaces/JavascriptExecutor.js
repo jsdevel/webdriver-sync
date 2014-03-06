@@ -1,3 +1,5 @@
+'use strict';
+
 describe("JavascriptExecutor", function() {
   var assert = require('assert');
   var path = require('path');
@@ -56,7 +58,7 @@ describe("JavascriptExecutor", function() {
       assert.equal(result.arr[0]+result.obj.asdf, 'boo5');
     });
   });
-  
+
   describe('#executeAsyncScript', function() {
     before(function(){
       driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);

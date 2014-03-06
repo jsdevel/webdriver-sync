@@ -1,3 +1,5 @@
+'use strict';
+
 var WebElement = require('./WebElement');
 var addFinalProp = require('../utils').addFinalProp;
 var collectionsToArrayList = require('../utils').collectionsToArrayList;

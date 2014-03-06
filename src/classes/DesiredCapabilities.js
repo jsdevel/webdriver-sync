@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').DesiredCapabilities;
 var Capabilities = require('../interfaces/Capabilities');
 var Instance = require('../classes/Instance');

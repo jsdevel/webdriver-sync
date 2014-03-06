@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var mapToObject = require('../utils').mapToObject;
 var Platform = require('../enums/Platform');

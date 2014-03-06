@@ -40,7 +40,7 @@
   var log = cli.log;
   var err = cli.err;
   var exit = cli.exit;
-  
+
 
   async.series([
     function ensureSelenium(cb){
@@ -78,11 +78,11 @@
             }
           })
           .on("error", function(error){
-            cb(error); 
+            cb(error);
           })
           .on("close", function(){
             cb();
-          }); 
+          });
       }
     }
   ], function(error, results){
@@ -107,7 +107,7 @@
     request.on("response", function(res){
       contentLength = parseInt(res.headers['content-length']);
     });
-    
+
     request.on("error", function(error){
       cb(new Error(error))
     });

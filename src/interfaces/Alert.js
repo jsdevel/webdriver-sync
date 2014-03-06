@@ -1,3 +1,5 @@
+'use strict';
+
 var Credentials = require('./Credentials');
 var addFinalProp = require('../utils').addFinalProp;
 

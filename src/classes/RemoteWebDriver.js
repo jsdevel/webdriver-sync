@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').RemoteWebDriver;
 var URL = require('../imports').URL;
 var addFinalProp = require('../utils').addFinalProp;

@@ -1,3 +1,5 @@
+'use strict';
+
 describe("ChromeDriver", function() {
   var assert = require('assert');
   var path = require('path');

@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').ExpectedConditions;
 var By = require('./By');
 var ExpectedCondition = require('../interfaces/ExpectedCondition');

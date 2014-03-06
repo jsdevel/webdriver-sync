@@ -1,3 +1,5 @@
+'use strict';
+
 var File = require('../classes/File');
 var Instance = require('../classes/Instance');
 var addFinalProp = require('../utils').addFinalProp;

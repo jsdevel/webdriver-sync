@@ -1,3 +1,5 @@
+'use strict';
+
 var Alert = require('./Alert');
 var Instance = require('../classes/Instance');
 var SearchContext = require('./SearchContext');

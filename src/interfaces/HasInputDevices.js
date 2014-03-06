@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Keyboard = require('./Keyboard');
 var Mouse = require('./Mouse');

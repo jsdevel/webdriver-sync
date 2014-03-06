@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var assert = require('../assert');
 var Class = require('../imports').Response;

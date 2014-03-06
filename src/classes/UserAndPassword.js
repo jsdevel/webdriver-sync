@@ -1,3 +1,5 @@
+'use strict';
+
 var Credentials = require('../interfaces/Credentials');
 var addFinalProp = require('../utils').addFinalProp;
 var extend = require('../utils').extend;

@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path'),
     config = require('../config'),
     os = require('os'),

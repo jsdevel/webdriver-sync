@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').ChromeDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var ChromeDriverService = require('./ChromeDriverService');

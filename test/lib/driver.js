@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var webdriver = require(
   path.resolve(__dirname, '..', '..', 'src', 'webdriver-sync')

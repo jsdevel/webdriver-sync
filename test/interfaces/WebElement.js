@@ -1,3 +1,5 @@
+'use strict';
+
 describe("WebElement", function() {
   var assert = require('assert');
   var driver = require('../lib/driver').driver;

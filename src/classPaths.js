@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   By: 'org.openqa.selenium.By',
   ChromeDriver: 'org.openqa.selenium.chrome.ChromeDriver',

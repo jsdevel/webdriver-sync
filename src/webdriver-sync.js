@@ -1,3 +1,5 @@
+'use strict';
+
 var java = require('java');
 var imports = require('./imports');
 var Long = imports.Long;
@@ -122,7 +124,7 @@ module.exports = {
   /**
    * Use this method to expose all Selenium Classes to the given target.
    * Useful if you wish to avoid wd.blablabla.
-   * 
+   *
    * @param {Object} target
    */
   exportTo: function(target) {

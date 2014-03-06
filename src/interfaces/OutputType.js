@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').OutputType;
 var File = require('../classes/File');
 var Instance = require('../classes/Instance');

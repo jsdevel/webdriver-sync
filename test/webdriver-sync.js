@@ -1,3 +1,5 @@
+'use strict';
+
 describe("webdriver-sync", function(){
   var assert;
   var path;
@@ -49,7 +51,7 @@ describe("webdriver-sync", function(){
   });
 
   it("should be able to get a list of divs", function(){
-    elements = driver.findElements(By.tagName('html'));
+    var elements = driver.findElements(By.tagName('html'));
     assert(elements.length > 0, "There were no divs on the page.");
   });
 
@@ -115,7 +117,7 @@ describe("webdriver-sync", function(){
       assert('SafariDriver' in target, 'SafariDriver');
       assert(!('exportTo' in target), 'exportTo');
       assert(!('sleep' in target), 'sleep');
-    });    
+    });
   });
 
   it("should be albe to sleep", function(){
