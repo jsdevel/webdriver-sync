@@ -75,6 +75,12 @@ reduce verbosity.
 ## Installation
 `npm install webdriver-sync`
 
+This package requires java and the java opensdk.
+* Linux: 
+   * RHEL # `yum install -y java-devel`
+   * Debian/Ubuntu # `apt-get install java-sdk`
+
+
 `webdriver-sync` will download needed binaries for you which makes your life
 easier.  `webdriver-sync` will download these binaries to `$HOME/.webdriver-sync`.
 The following list has ways of overriding this process:
