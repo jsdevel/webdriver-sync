@@ -7,6 +7,7 @@ var assert = require('../assert');
 var ErrorHandler = require('./ErrorHandler');
 var Instance = require('./Instance');
 var RemoteStatus = require('./RemoteStatus');
+var Level = require('./Level');
 var SessionId = require('./SessionId');
 
 var Capabilities = require('../interfaces/Capabilities');
@@ -163,7 +164,10 @@ RemoteWebDriver.prototype.setFileDetector = function(detector) {
 };
 
 RemoteWebDriver.prototype.setLogLevel = function(level) {
-  this._instance.setLogLevelSync(level);
+  assert(level)
+    .isInstanceof(Level)
+    .throws('level must be an instance of Level');
+  this._instance.setLogLevelSync(level._instance);
 };
 RemoteWebDriver.prototype.toString = function() {
   return this._instance.toStringSync();
