@@ -7,7 +7,7 @@ var collectionsToArrayList = require('../utils').collectionsToArrayList;
 module.exports = FindsByXPath;
 
 function FindsByXPath(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 FindsByXPath.prototype.findElementByXPath = function(using) {

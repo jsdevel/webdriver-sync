@@ -13,14 +13,14 @@ module.exports = {
     }
   },
   errorMessage: [
-    "webdriver-sync requires the Selenium standalone server jar.",
-    "  We looked, but couldn't find it at:",
-    "    - $SELENIUM_SERVER_STANDALONE_JAR (" + envPath + ")",
-    "    - `" + staticDependencyPaths.seleniumJar + "`",
-    "",
-    "A suggested download URL is:"
-    + "http://selenium-release.storage.googleapis.com/index.html",
-    ""
-  ].join("\n"),
+    'webdriver-sync requires the Selenium standalone server jar.',
+    '  We looked, but couldn\'t find it at:',
+    '    - $SELENIUM_SERVER_STANDALONE_JAR (' + envPath + ')',
+    '    - `' + staticDependencyPaths.seleniumJar + '`',
+    '',
+    'A suggested download URL is:'
+    + 'http://selenium-release.storage.googleapis.com/index.html',
+    ''
+  ].join('\n'),
 
 };

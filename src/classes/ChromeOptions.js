@@ -11,7 +11,7 @@ var assert = require('../assert');
 module.exports = ChromeOptions;
 
 function ChromeOptions() {
-  addFinalProp(this, "_instance", new Class());
+  addFinalProp(this, '_instance', new Class());
 }
 ChromeOptions.CAPABILITY =
   ChromeOptions.prototype.CAPABILITY =
@@ -22,7 +22,7 @@ ChromeOptions.prototype.addArguments = function(strings) {
     strings = toArray(arguments);
   }
   strings.forEach(function(v) {
-    assert(v).isString().throws("Strings must be strings.");
+    assert(v).isString().throws('Strings must be strings.');
   });
   this._instance.addArgumentsSync(java.newArray('java.lang.String', strings));
 };
@@ -32,7 +32,7 @@ ChromeOptions.prototype.addEncodedExtensions = function(strings) {
     strings = toArray(arguments);
   }
   strings.forEach(function(v) {
-    assert(v).isString().throws("Strings must be strings.");
+    assert(v).isString().throws('Strings must be strings.');
   });
   this._instance.addEncodedExtensionsSync.apply(this._instance, strings);
 };
@@ -43,7 +43,7 @@ ChromeOptions.prototype.addExtensions = function(paths) {
   }
   paths.forEach(function(v) {
     assert(v).isInstanceof(File).throws(
-      "Paths must be instances of File."
+      'Paths must be instances of File.'
       );
   });
   this._instance.addExtensionsSync.apply(this._instance, paths);
@@ -60,7 +60,7 @@ ChromeOptions.prototype.setBinary = function(path) {
     !assert(path).isInstanceof(File).isValid
     || !assert.isString(path)
     ) {
-    throw new Error("Path must be an instance of File or a string.");
+    throw new Error('Path must be an instance of File or a string.');
   }
   this._instance.setBinarySync(path);
 };

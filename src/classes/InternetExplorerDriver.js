@@ -15,7 +15,7 @@ extendAll(
   InternetExplorerDriver,
   TakesScreenshot,
   RemoteWebDriver
-  );
+);
 
 //TODO finish constructor arguments
 function InternetExplorerDriver(capabilities) {
@@ -35,5 +35,5 @@ function InternetExplorerDriver(capabilities) {
     throw new Error(messages.UN_FINISHED_CONSTRUCTOR);
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }

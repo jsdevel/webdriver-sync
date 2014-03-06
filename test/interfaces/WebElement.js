@@ -1,6 +1,6 @@
 'use strict';
 
-describe("WebElement", function() {
+describe('WebElement', function() {
   var assert = require('assert');
   var driver = require('../lib/driver').driver;
   var wd = require('../../src/webdriver-sync');
@@ -18,8 +18,8 @@ describe("WebElement", function() {
   describe('#sendKeys', function() {
     it('can use Keys', function() {
       var el = driver.findElement(By.name('q'));
-      el.sendKeys("who", Keys.SPACE, "knew?");
-      assert.equal(el.getAttribute('value'), "who knew?");
+      el.sendKeys('who', Keys.SPACE, 'knew?');
+      assert.equal(el.getAttribute('value'), 'who knew?');
     });
   });
 });

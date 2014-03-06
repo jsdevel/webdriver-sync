@@ -15,7 +15,7 @@ function ErrorHandler(includeServerErrors) {
   } else {
     instance = new Class();
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 ErrorHandler.prototype.isIncludeServerErrors = function() {
@@ -26,10 +26,10 @@ ErrorHandler.prototype.setIncludeServerErrors = function(include) {
 };
 ErrorHandler.prototype.throwIfResponseFailed = function(response, duration) {
   assert(response).isInstanceof(Response).throws(
-    "The first argument must be an instance of Response."
+    'The first argument must be an instance of Response.'
     );
   assert(duration).isNumber().throws(
-    "The second argument must be a number."
+    'The second argument must be a number.'
     );
   return new Response(
     this._instance.throwIfResponseFailedSync(

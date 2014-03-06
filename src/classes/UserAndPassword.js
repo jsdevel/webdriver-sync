@@ -9,7 +9,7 @@ module.exports = UserAndPassword;
 
 extend(UserAndPassword, Credentials);
 function UserAndPassword(username, password) {
-  addFinalProp(this, "_username", username);
-  addFinalProp(this, "_password", password);
-  addFinalProp(this, "_instance", new Class(username, password));
+  addFinalProp(this, '_username', username);
+  addFinalProp(this, '_password', password);
+  addFinalProp(this, '_instance', new Class(username, password));
 }

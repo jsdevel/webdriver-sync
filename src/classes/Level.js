@@ -6,7 +6,7 @@ var addFinalProp = require('../utils').addFinalProp;
 module.exports = Level;
 
 function Level(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 Level.ALL = Level.prototype.ALL = new Level(Class.ALL);

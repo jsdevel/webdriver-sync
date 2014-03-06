@@ -32,13 +32,13 @@ function HtmlUnitDriver(
       instance = new Class(first);
     } else {
       throw new Error(
-        "The first argument must be an instance of Capabilities or a boolean."
+        'The first argument must be an instance of Capabilities or a boolean.'
        );
     }
   } else {
-    throw new Error("The wrong number of arguments was given.");
+    throw new Error('The wrong number of arguments was given.');
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 //TODO: finish static fields

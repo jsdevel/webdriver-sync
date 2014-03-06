@@ -117,7 +117,7 @@ module.exports = {
 
   //UTILITY METHODS
   importTo:function(target){
-    console.warn("#importTo is deprecated!  Use #exportTo instead.");
+    console.warn('#importTo is deprecated!  Use #exportTo instead.');
     return this.exportTo(target);
   },
 

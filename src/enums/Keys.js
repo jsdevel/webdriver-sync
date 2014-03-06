@@ -7,7 +7,7 @@ var java = require('java');
 module.exports = new Keys();
 
 function Keys(instance){
-  if(instance)addFinalProp(this, "_instance", instance);
+  if(instance)addFinalProp(this, '_instance', instance);
 }
 
 //METHODS
@@ -16,7 +16,7 @@ Keys.prototype.chord=function(){
   return Class.chordSync(
     java.newArray(
       'java.lang.String'
-      , [].slice.call(arguments).map(function(v){return ""+v;})
+      , [].slice.call(arguments).map(function(v){return ''+v;})
     )
   );
 };

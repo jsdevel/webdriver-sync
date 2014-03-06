@@ -17,11 +17,11 @@ var serviceBuilder;
 var service;
 
 if(process.env.TRAVIS){
-  console.log("Hello Travis!");
+  console.log('Hello Travis!');
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
     .usingDriverExecutable(new File(findsChromeDriver.find()))
-    .withEnvironment({"DISPLAY":":99.0"})
+    .withEnvironment({'DISPLAY':':99.0'})
     .withSilent(true)
     .withVerbose(true)
     .build();

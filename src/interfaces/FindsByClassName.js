@@ -7,7 +7,7 @@ var collectionsToArrayList = require('../utils').collectionsToArrayList;
 module.exports = FindsByClassName;
 
 function FindsByClassName(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 FindsByClassName.prototype.findElementByClassName = function(using) {

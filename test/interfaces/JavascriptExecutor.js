@@ -1,6 +1,6 @@
 'use strict';
 
-describe("JavascriptExecutor", function() {
+describe('JavascriptExecutor', function() {
   var assert = require('assert');
   var path = require('path');
   var driver = require(path.resolve(__dirname, '..', 'lib', 'driver')).driver;
@@ -19,14 +19,14 @@ describe("JavascriptExecutor", function() {
   });
 
   describe('#executeScript', function() {
-    it("can return a WebElement", function() {
+    it('can return a WebElement', function() {
       var el = driver.executeScript(
         'return document.querySelector("[name=q]");'
       );
       assert(el instanceof WebElement);
     });
 
-    it("can return an array of WebElements", function() {
+    it('can return an array of WebElements', function() {
       var divs = driver.executeScript(
         'return document.querySelectorAll("div");'
       );
@@ -35,26 +35,26 @@ describe("JavascriptExecutor", function() {
       });
     });
 
-    it("can return numbers", function() {
-      assert.equal(driver.executeScript("return 5;"), 5);
+    it('can return numbers', function() {
+      assert.equal(driver.executeScript('return 5;'), 5);
     });
 
-    it("can return strings", function() {
-      assert.equal(driver.executeScript("return 'boo';"), 'boo');
+    it('can return strings', function() {
+      assert.equal(driver.executeScript('return "boo";'), 'boo');
     });
 
-    it("can return objects", function() {
-      var result = driver.executeScript("return {asdf:5};");
+    it('can return objects', function() {
+      var result = driver.executeScript('return {asdf:5};');
       assert.equal(result.asdf, 5);
     });
 
-    it("can return arrays", function() {
-      var result = driver.executeScript("return ['boo'];");
+    it('can return arrays', function() {
+      var result = driver.executeScript('return ["boo"];');
       assert.equal(result[0], 'boo');
     });
 
-    it("handles nested arrays and objects", function(){
-      var result = driver.executeScript("return {arr:['boo'],obj:{asdf:5}};");
+    it('handles nested arrays and objects', function(){
+      var result = driver.executeScript('return {arr:["boo"],obj:{asdf:5}};');
       assert.equal(result.arr[0]+result.obj.asdf, 'boo5');
     });
   });
@@ -64,14 +64,14 @@ describe("JavascriptExecutor", function() {
       driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
     });
 
-    it("can return a WebElement", function() {
+    it('can return a WebElement', function() {
       var el = driver.executeAsyncScript(
         wrapInAsync('document.querySelector("[name=q]")')
       );
       assert(el instanceof WebElement);
     });
 
-    it("can return an array of WebElements", function() {
+    it('can return an array of WebElements', function() {
       var divs = driver.executeAsyncScript(
         wrapInAsync('document.querySelectorAll("div")')
       );
@@ -80,27 +80,27 @@ describe("JavascriptExecutor", function() {
       });
     });
 
-    it("can return numbers", function() {
-      assert.equal(driver.executeAsyncScript(wrapInAsync("5")), 5);
+    it('can return numbers', function() {
+      assert.equal(driver.executeAsyncScript(wrapInAsync('5')), 5);
     });
 
-    it("can return strings", function() {
-      assert.equal(driver.executeAsyncScript(wrapInAsync("'boo'")), 'boo');
+    it('can return strings', function() {
+      assert.equal(driver.executeAsyncScript(wrapInAsync('"boo"')), 'boo');
     });
 
-    it("can return objects", function() {
-      var result = driver.executeAsyncScript(wrapInAsync("{asdf:5}"));
+    it('can return objects', function() {
+      var result = driver.executeAsyncScript(wrapInAsync('{asdf:5}'));
       assert.equal(result.asdf, 5);
     });
 
-    it("can return arrays", function() {
-      var result = driver.executeAsyncScript(wrapInAsync("['boo']"));
+    it('can return arrays', function() {
+      var result = driver.executeAsyncScript(wrapInAsync('["boo"]'));
       assert.equal(result[0], 'boo');
     });
 
-    it("handles nested arrays and objects", function(){
+    it('handles nested arrays and objects', function(){
       var result = driver.executeAsyncScript(
-        wrapInAsync("{arr:['boo'],obj:{asdf:5}}")
+        wrapInAsync('{arr:["boo"],obj:{asdf:5}}')
       );
       assert.equal(result.arr[0]+result.obj.asdf, 'boo5');
     });

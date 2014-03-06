@@ -9,12 +9,12 @@ var assert = require('../assert');
 module.exports = TakesScreenshot;
 
 function TakesScreenshot(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 TakesScreenshot.prototype.getScreenshotAs = function(target) {
   assert(target).isInstanceof(OutputType).throws(
-    "Target must be an instance of OutputType"
+    'Target must be an instance of OutputType'
   );
   if (target === OutputType.BASE64 || target === OutputType.BYTES) {
     return this._instance.getScreenshotAsSync(target._instance);
@@ -24,11 +24,11 @@ TakesScreenshot.prototype.getScreenshotAs = function(target) {
     );
   }
   throw new Error(
-    "This type isn't supported.  Expected one of: "
+    'This type isn\'t supported.  Expected one of: '
     + [
-      "OutputType.FILE,",
-      "OutputType.BASE64,",
-      "or OutputType.BYTES."
+      'OutputType.FILE,',
+      'OutputType.BASE64,',
+      'or OutputType.BYTES.'
     ].join(' ')
   );
 };

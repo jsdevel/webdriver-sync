@@ -1,6 +1,6 @@
 'use strict';
 
-describe("Keys", function() {
+describe('Keys', function() {
   var assert = require('assert');
   var Keys = require('../../src/enums/Keys');
 

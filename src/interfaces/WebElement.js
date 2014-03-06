@@ -13,7 +13,7 @@ module.exports = WebElement;
 extend(WebElement, SearchContext);
 
 function WebElement(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 WebElement.prototype.clear = function() {
   this._instance.clearSync();
@@ -51,11 +51,11 @@ WebElement.prototype.isSelected = function() {
 WebElement.prototype.sendKeys = function() {
   this._instance.sendKeysSync(
     java.newArray(
-      "java.lang.CharSequence"
+      'java.lang.CharSequence'
       , Array.prototype.slice.call(arguments)
         .map(function(v){
           if(v instanceof Keys.constructor)return v._instance;
-          return ""+v;
+          return ''+v;
         })
       )
     );

@@ -35,7 +35,7 @@ function FirefoxDriver(
       .isInstanceof(Capabilities)
       .or(FirefoxProfile)
       .throws(
-        "The first argument wasn't an instanceof Capabilities."
+        'The first argument wasn\'t an instanceof Capabilities.'
         );
     if (len === 1) {
       instance = new Class(first._instance);
@@ -43,14 +43,14 @@ function FirefoxDriver(
       assert(requiredCapabilities)
         .isInstanceof(Capabilities)
         .throws(
-          "The second argument must be an instance of Capabilities."
+          'The second argument must be an instance of Capabilities.'
           );
       instance = new Class(first._instance, requiredCapabilities._instance);
     }
   } else {
-    throw new Error("The wrong number of arguments was given.");
+    throw new Error('The wrong number of arguments was given.');
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 //TODO: finish static fields

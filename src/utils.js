@@ -89,7 +89,7 @@ function objectToMapStringString(obj) {
   var map = Map.createWithStringKeysStringValuesSync();
   for (key in obj) {
     if (obj.hasOwnProperty(key)) {
-      map.putSync(""+key, ""+obj[key]);
+      map.putSync(''+key, ''+obj[key]);
     }
   }
   return map;

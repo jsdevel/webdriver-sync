@@ -7,7 +7,7 @@ var Mouse = require('./Mouse');
 module.exports = HasInputDevices;
 
 function HasInputDevices(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 HasInputDevices.prototype.getKeyboard = function() {
   return new Keyboard(this._instance.getKeyboardSync());

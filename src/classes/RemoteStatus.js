@@ -10,13 +10,13 @@ module.exports = RemoteStatus;
 
 function RemoteStatus(statusMap) {
   if (assert(statusMap).isInstanceof(Instance).isValid) {
-    addFinalProp(this, "_instance", statusMap._instance);
+    addFinalProp(this, '_instance', statusMap._instance);
     return this;
   }
   if (!(statusMap instanceof Object)) {
-    throw new Error("The first argument must be a map.");
+    throw new Error('The first argument must be a map.');
   }
-  addFinalProp(this, "_instance", new Class(objectToMap(statusMap)));
+  addFinalProp(this, '_instance', new Class(objectToMap(statusMap)));
 }
 
 RemoteStatus.prototype.getBuildRevision = function() {

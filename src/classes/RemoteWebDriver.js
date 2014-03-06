@@ -63,8 +63,8 @@ function RemoteWebDriver(
       !assert(first).isInstanceof(Capabilities).isValid
       ) {
       throw new Error(
-        "The first argument must be a string, CommandExecutor, " +
-        "or Capabilities."
+        'The first argument must be a string, CommandExecutor, ' +
+        'or Capabilities.'
         );
     }
     if (
@@ -73,7 +73,7 @@ function RemoteWebDriver(
       !assert(desiredCapabilities).isInstanceof(Capabilities)
       ) {
       throw new Error(
-        "The second argument must be an isntance of Capabilities."
+        'The second argument must be an isntance of Capabilities.'
         );
     }
     if (
@@ -82,16 +82,16 @@ function RemoteWebDriver(
       !assert(requiredCapabilities).isInstanceof(Capabilities)
       ) {
       throw new Error(
-        "The third argument must be an isntance of Capabilities."
+        'The third argument must be an isntance of Capabilities.'
         );
     }
   } else {
-    throw new Error("Expected to see 1 to 3 arguments.");
+    throw new Error('Expected to see 1 to 3 arguments.');
   }
   switch (len) {
     case 1:
       assert(first).isInstanceof(Instance).throws(
-        "a single agument must be an instance of Instance"
+        'a single agument must be an instance of Instance'
         );
       instance = new Class(first._instance);
       break;
@@ -123,13 +123,13 @@ function RemoteWebDriver(
           );
       } else {
         throw new Error(
-          "The first argment wasn't a string or an instance of CommandExecutor."
-          );
+          'first argment wasn\'t a string or an instance of CommandExecutor.'
+        );
       }
       break;
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 RemoteWebDriver.prototype.getCommandExecutor = function() {
@@ -160,7 +160,7 @@ RemoteWebDriver.prototype.getSessionId = function() {
 
 RemoteWebDriver.prototype.setFileDetector = function(detector) {
   assert(detector).isInstanceof(FileDetector).throws(
-    "detector wasn't an instance of FileDetector"
+    'detector wasn\'t an instance of FileDetector'
     );
   this._instance.setFileDetectorSync(detector._instance);
 };

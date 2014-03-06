@@ -21,5 +21,5 @@ module.exports = {
   chromeDriverFileName: chromeDriverFileName,
   chromeDriver: path.resolve(binaryDir, chromeDriverFileName),
   seleniumJar: path.resolve(binaryDir, config.selenium.jar),
-  helperJar: path.resolve(__dirname, "java", "webdriversynchelpers", "dist", "webdriversynchelpers.jar")
+  helperJar: path.resolve(__dirname, 'java', 'webdriversynchelpers', 'dist', 'webdriversynchelpers.jar')
 };

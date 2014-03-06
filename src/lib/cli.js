@@ -21,11 +21,11 @@ module.exports = {
 };
 
 function clearLog(msg) {
-  process.stdout.write("\u001b[0G"+title('green')+msg);
+  process.stdout.write('\u001b[0G'+title('green')+msg);
 }
 
 function err(msg) {
-  process.stderr.write("\n"+title("red")+msg);
+  process.stderr.write('\n'+title('red')+msg);
 }
 
 function exit(code) {
@@ -33,24 +33,24 @@ function exit(code) {
 }
 
 function log(msg) {
-  process.stdout.write("\n"+title("green")+msg);
+  process.stdout.write('\n'+title('green')+msg);
 }
 
 function title(color){
   return [
       s.bold[0],
-      "[",
+      '[',
       s.bold[1],
       s[color][0],
-      "webdriver-sync",
+      'webdriver-sync',
       s[color][1],
       s.bold[0],
-      "]",
+      ']',
       s.bold[1]
     ].join('')
-    + " ";
+    + ' ';
 }
 
 function warn(msg) {
-  process.stdout.write("\n"+title("yellow")+msg);
+  process.stdout.write('\n'+title('yellow')+msg);
 }

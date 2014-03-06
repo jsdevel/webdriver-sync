@@ -8,10 +8,10 @@ var Instance = require('./Instance');
 module.exports = SessionId;
 function SessionId(opaqueKey) {
   if (assert(opaqueKey).isInstanceof(Instance).isValid) {
-    addFinalProp(this, "_instance", opaqueKey._instance);
+    addFinalProp(this, '_instance', opaqueKey._instance);
     return this;
   }
-  addFinalProp(this, "_instance", new Class(opaqueKey));
+  addFinalProp(this, '_instance', new Class(opaqueKey));
 }
 SessionId.prototype.equals = function(obj) {
   if (obj instanceof SessionId) {

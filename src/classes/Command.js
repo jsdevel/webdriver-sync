@@ -10,7 +10,7 @@ module.exports = Command;
 function Command(sessionId, name, params) {
   var command;
   if (!(sessionId instanceof SessionId)) {
-    throw new Error("first argument must be a SessionId");
+    throw new Error('first argument must be a SessionId');
   }
 
   if (params && typeof params === 'object') {
@@ -19,10 +19,10 @@ function Command(sessionId, name, params) {
     command = new Class(sessionId, name);
   }
 
-  addFinalProp(this, "_instance", command);
-  addFinalProp(this, "_sessionId", sessionId);
-  addFinalProp(this, "_name", name);
-  addFinalProp(this, "_params", params || null);
+  addFinalProp(this, '_instance', command);
+  addFinalProp(this, '_sessionId', sessionId);
+  addFinalProp(this, '_name', name);
+  addFinalProp(this, '_params', params || null);
 }
 Command.prototype.getName = function() {
   return this._name;

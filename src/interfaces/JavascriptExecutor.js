@@ -13,7 +13,7 @@ var java = require('java');
 module.exports = JavascriptExecutor;
 
 function JavascriptExecutor(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 JavascriptExecutor.prototype.executeAsyncScript = function() {

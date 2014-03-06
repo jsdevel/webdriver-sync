@@ -7,7 +7,7 @@ var collectionsToArrayList = require('../utils').collectionsToArrayList;
 module.exports = FindsByCssSelector;
 
 function FindsByCssSelector(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 FindsByCssSelector.prototype.findElementByCssSelector = function(using) {

@@ -16,9 +16,9 @@ extendAll(ChromeDriverService, DriverService);
 
 function ChromeDriverService(instance) {
   assert(instance).isInstanceof(Instance).throws(
-    "ChromeDriverService has no public constructor."
+    'ChromeDriverService has no public constructor.'
     );
-  addFinalProp(this, "_instance", instance._instance);
+  addFinalProp(this, '_instance', instance._instance);
 }
 
 ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY
@@ -42,7 +42,7 @@ ChromeDriverService.Builder
   = Builder;
 
 function Builder() {
-  addFinalProp(this, "_instance", new imports.ChromeDriverServiceBuilder());
+  addFinalProp(this, '_instance', new imports.ChromeDriverServiceBuilder());
 }
 
 Builder.prototype.build = function() {
@@ -58,21 +58,21 @@ Builder.prototype.usingAnyFreePort = function() {
 
 Builder.prototype.usingDriverExecutable = function(file) {
   assert(file).isInstanceof(File).throws(
-    "file must be an instance of File."
+    'file must be an instance of File.'
     );
   this._instance.usingDriverExecutableSync(file._instance);
   return this;
 };
 
 Builder.prototype.usingPort = function(port) {
-  assert(port).isNumber().throws("port must be a number.");
+  assert(port).isNumber().throws('port must be a number.');
   this._instance.usingPortSync(port);
   return this;
 };
 
 Builder.prototype.withEnvironment = function(environment) {
   assert(environment).isInstanceof(Object).throws(
-    "environment must be an object."
+    'environment must be an object.'
     );
   this._instance.withEnvironmentSync(objectToMap(environment));
   return this;
@@ -80,7 +80,7 @@ Builder.prototype.withEnvironment = function(environment) {
 
 Builder.prototype.withLogFile = function(logFile) {
   assert(logFile).isInstanceof(File).throws(
-    "logFile must be an instance of File"
+    'logFile must be an instance of File'
     );
   this._instance.withLogFileSync(logFile._instance);
   return this;

@@ -21,7 +21,7 @@ function DesiredCapabilities(
   if (assert(capabilities).isInstanceof(Instance).isValid) {
     instance = capabilities._instance;
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 DesiredCapabilities.android =
   DesiredCapabilities.prototype.android = function() {

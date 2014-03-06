@@ -15,5 +15,5 @@ function UselessFileDetector(instance) {
   } else {
     instance = new Class();
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
