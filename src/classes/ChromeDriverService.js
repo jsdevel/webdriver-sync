@@ -83,3 +83,13 @@ Builder.prototype.withLogFile = function(logFile) {
   this._instance.withLogFileSync(logFile._instance);
   return this;
 };
+
+Builder.prototype.withSilent = function(bool) {
+  this._instance.withSilentSync(!!bool);
+  return this;
+};
+
+Builder.prototype.withVerbose = function(bool) {
+  this._instance.withVerboseSync(!!bool);
+  return this;
+};

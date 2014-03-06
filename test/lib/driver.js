@@ -20,6 +20,8 @@ if(process.env.TRAVIS){
     .usingAnyFreePort()
     .usingDriverExecutable(new File(findsChromeDriver.find()))
     .withEnvironment({"DISPLAY":":99.0"})
+    .withSilent(true)
+    .withVerbose(true)
     .build();
 } else {
   service = ChromeDriverService.createDefaultService();
