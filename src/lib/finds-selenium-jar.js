@@ -17,7 +17,7 @@ module.exports = {
     "    - `" + staticDependencyPaths.seleniumJar + "`",
     "",
     "A suggested download URL is:"
-    + "https://code.google.com/p/selenium/downloads/list",
+    + "http://selenium-release.storage.googleapis.com/index.html",
     ""
   ].join("\n"),
 
