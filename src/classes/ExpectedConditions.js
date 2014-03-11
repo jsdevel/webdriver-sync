@@ -24,9 +24,9 @@ ExpectedConditions.elementSelectionStateToBe = function(arg, isSelected) {
     );
 };
 
-ExpectedConditions.elementToBeClickable = function(by) {
-  assertBy(by, 'first');
-  return new ExpectedCondition(Class.elementToBeClickableSync(by._instance));
+ExpectedConditions.elementToBeClickable = function(arg) {
+  assertByOrWebElement(arg, 'first');
+  return new ExpectedCondition(Class.elementToBeClickableSync(arg._instance));
 };
 
 ExpectedConditions.elementToBeSelected = function(arg) {
@@ -83,17 +83,17 @@ ExpectedConditions.stalenessOf = function(webElement) {
   return new ExpectedCondition(Class.stalenessOfSync(webElement._instance));
 };
 
-ExpectedConditions.textToBePresentInElement = function(by, text) {
-  assertBy(by, 'first');
+ExpectedConditions.textToBePresentInElement = function(arg, text) {
+  assertByOrWebElement(arg, 'first');
   return new ExpectedCondition(
-    Class.textToBePresentInElementSync(by._instance, text)
+    Class.textToBePresentInElementSync(arg._instance, text)
     );
 };
 
-ExpectedConditions.textToBePresentInElementValue = function(by, text) {
-  assertBy(by, 'first');
+ExpectedConditions.textToBePresentInElementValue = function(arg, text) {
+  assertByOrWebElement(arg, 'first');
   return new ExpectedCondition(Class.textToBePresentInElementValueSync(
-    by._instance,
+    arg._instance,
     text
     ));
 };
