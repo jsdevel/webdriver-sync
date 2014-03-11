@@ -94,6 +94,9 @@ module.exports = {
   get UserAndPassword() {
     return require('./classes/UserAndPassword');
   },
+  get WebDriverWait() {
+    return require('./classes/WebDriverWait');
+  },
 
   //ENUMS
   get Keys() {

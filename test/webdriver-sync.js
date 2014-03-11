@@ -72,31 +72,6 @@ describe('webdriver-sync', function(){
     assert(driver.manage());
   });
 
-  it('should be able to work with expected conditions', function(){
-    var by=By.cssSelector('body');
-    var element = driver.findElement(by);
-    ExpectedConditions.alertIsPresent();
-    ExpectedConditions.elementSelectionStateToBe(by, false);
-    ExpectedConditions.elementSelectionStateToBe(element, false);
-    ExpectedConditions.elementToBeClickable(by);
-    ExpectedConditions.elementToBeSelected(by);
-    ExpectedConditions.elementToBeSelected(element);
-    ExpectedConditions.frameToBeAvailableAndSwitchToIt('asdf');
-    ExpectedConditions.invisibilityOfElementLocated(by);
-    ExpectedConditions.invisibilityOfElementWithText(by, 'adsf');
-    ExpectedConditions.not(ExpectedConditions.alertIsPresent());
-    ExpectedConditions.presenceOfAllElementsLocatedBy(by);
-    ExpectedConditions.presenceOfElementLocated(by);
-    ExpectedConditions.refreshed(ExpectedConditions.alertIsPresent());
-    ExpectedConditions.stalenessOf(element);
-    ExpectedConditions.textToBePresentInElement(by, 'ads');
-    ExpectedConditions.textToBePresentInElementValue(by, 'adsf');
-    ExpectedConditions.titleContains('asdf');
-    ExpectedConditions.titleIs('sdf');
-    ExpectedConditions.visibilityOf(element);
-    ExpectedConditions.visibilityOfElementLocated(by);
-  });
-
   it('should be able to work with TimeUnit', function(){
     assert(TimeUnit.DAYS, 'days');
     assert(TimeUnit.HOURS, 'hours');
