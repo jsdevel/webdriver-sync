@@ -22,4 +22,15 @@ describe('WebElement', function() {
       assert.equal(el.getAttribute('value'), 'who knew?');
     });
   });
+
+  describe('#getText', function() {
+    it('is consistent', function() {
+      var expected = 'About';
+      var el = driver.findElement(By.linkText('About'));
+      var timesToTest = 100;
+      while(timesToTest--){
+        el.getText().should.equal(expected);
+      }
+    });
+  });
 });
