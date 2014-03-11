@@ -7,6 +7,7 @@ var extendAll = utils.extendAll;
 var Long = require('../imports').Long;
 var Class = require('../imports').WebDriverWait;
 var WebDriver = require('../interfaces/WebDriver');
+var RemoteWebDriver = require('../classes/RemoteWebDriver');
 var Wait = require('../interfaces/Wait');
 
 module.exports = WebDriverWait;
@@ -18,7 +19,7 @@ function WebDriverWait(driver, timeout, sleep) {
   var argLength = arguments.length;
 
   if(argLength >= 2){
-    assert(driver).extends(WebDriver).throws(
+    assert(driver).extends(WebDriver).or(RemoteWebDriver).throws(
       'driver was not an instance of WebDriver'
     );
   }
