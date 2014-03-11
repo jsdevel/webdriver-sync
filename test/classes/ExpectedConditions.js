@@ -23,6 +23,7 @@ describe('ExpectedConditions', function() {
     validate(ExpectedConditions.elementSelectionStateToBe(by, false));
     validate(ExpectedConditions.elementSelectionStateToBe(element, false));
     validate(ExpectedConditions.elementToBeClickable(by));
+    validate(ExpectedConditions.elementToBeClickable(element));
     validate(ExpectedConditions.elementToBeSelected(by));
     validate(ExpectedConditions.elementToBeSelected(element));
     validate(ExpectedConditions.frameToBeAvailableAndSwitchToIt('asdf'));
@@ -34,7 +35,9 @@ describe('ExpectedConditions', function() {
     validate(ExpectedConditions.refreshed(ExpectedConditions.alertIsPresent()));
     validate(ExpectedConditions.stalenessOf(element));
     validate(ExpectedConditions.textToBePresentInElement(by, 'ads'));
+    validate(ExpectedConditions.textToBePresentInElement(element, 'ads'));
     validate(ExpectedConditions.textToBePresentInElementValue(by, 'adsf'));
+    validate(ExpectedConditions.textToBePresentInElementValue(element, 'adsf'));
     validate(ExpectedConditions.titleContains('asdf'));
     validate(ExpectedConditions.titleIs('sdf'));
     validate(ExpectedConditions.visibilityOf(element));
