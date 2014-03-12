@@ -67,6 +67,9 @@ module.exports = {
   get Level() {
     return require('./classes/Level');
   },
+  get LogEntry() {
+    return require('./classes/LogEntry');
+  },
   get LocalFileDetector() {
     return require('./classes/LocalFileDetector');
   },

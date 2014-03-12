@@ -24,6 +24,7 @@ module.exports = {
   Level: 'java.util.logging.Level',
   List: 'java.util.List',
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',
+  LogEntry: 'org.openqa.selenium.logging.LogEntry',
   Long: 'java.lang.Long',
   Map: 'java.util.Map',
   OutputType: 'org.openqa.selenium.OutputType',

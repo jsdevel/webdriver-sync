@@ -128,6 +128,9 @@ module.exports = {
   get Level() {
     return java.import(classPaths.Level);
   },
+  get LogEntry() {
+    return java.import(classPaths.LogEntry);
+  },
   get LocalFileDetector() {
     return java.import(classPaths.LocalFileDetector);
   },
