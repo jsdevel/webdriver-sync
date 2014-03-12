@@ -10,7 +10,7 @@
     "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
     "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
     "mocha": "node_modules/.bin/mocha -r should -t 8000 test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
-    "test": "npm run-script lint-src && npm run-script lint-test && npm run-script mocha",
+    "test": "npm run lint-src && npm run lint-test && npm run mocha",
     "install": "node bin/postInstall.js",
     "prepublish": "bin/prepublish.bash"
   },
