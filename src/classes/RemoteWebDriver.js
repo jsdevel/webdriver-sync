@@ -44,7 +44,7 @@ extendAll(
   JavascriptExecutor,
   SearchContext,
   WebDriver
-  );
+);
 
 function RemoteWebDriver(
   capabilitiesOrExecutorOrRemoteAddress,

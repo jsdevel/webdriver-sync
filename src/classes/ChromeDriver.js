@@ -17,7 +17,7 @@ extendAll(
   ChromeDriver,
   TakesScreenshot,
   RemoteWebDriver
-  );
+);
 
 function ChromeDriver(
   capabilitiesOrOptionsOrChromeDriverService,
