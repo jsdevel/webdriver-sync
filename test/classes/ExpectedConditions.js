@@ -44,6 +44,12 @@ describe('ExpectedConditions', function() {
     validate(ExpectedConditions.visibilityOfElementLocated(by));
   });
 
+  it('should accept an element from driver#findElements', function() {
+    var by = By.cssSelector('div');
+    var element = driver.findElements(by)[0];
+    ExpectedConditions.visibilityOf(element);
+  });
+
   function validate(val){
     val.should.be.an.instanceOf(ExpectedCondition);
   }
