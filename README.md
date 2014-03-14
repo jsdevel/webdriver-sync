@@ -2,11 +2,11 @@
 
 # webdriver-sync
 
-Synchronous testing with Selenium and node.js!
+Synchronous testing with Selenium and node.js!  No promises, no async, just sync.
 
 ## Highlights
 
-* Write 100% selenium in javascript!
+* 100% synchronous selenium in javascript without promises or async ceremony!
 * Run Chrome, Firefox, Safari, PhantomJS, Internet Explorer, and RemoteWebDriver (Android to come)!
 * Reduce code by embracing a synchronous API!
 * Reduce verbosity found in statically typed langs like java and c#
@@ -16,8 +16,8 @@ Synchronous testing with Selenium and node.js!
 ## Why Sync?
 
 Prior to node, most of my testing was done in Java and JUnit.  I found the sync
-API to be much easier to follow and maintain, and I wasn't happy with all the
-async ceremony out there with the node APIs (similar to the following):
+API easier to follow and maintain.  I also wasn't happy with all the
+async ceremony found in all other node APIs (similar to the following):
 
 ``````javascript
 browser.get("http://foo.html", function() {
@@ -43,16 +43,49 @@ title = driver.getTitle();
 link  = driver.findElement(By.id('i am a link'));
 link.click();
 assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
-assert(title.indexOf('foo title') > -1);
+title.should.equal('foo title');
+console.log(title);
 driver.quit();
 ``````
 
-And that's exactly what `webdriver-sync` aims to achieve.  It should look just
-like the java API provided by the Selenium organization, but without the static typing.
+And that's exactly what `webdriver-sync` aims to achieve.  It should look and act just
+like the java API provided by the Selenium organization without the static typing.
+
+
+###Dealing with arrays
+`webdriver-sync` allows you to treat data as you normally would.  For Arrays, you've got all the methods
+you would expect:
+* filter
+* forEach
+* map
+
+Here we execute an async script, return a collection of divs, and console.log the inner text of each div.  Notice that our control flow with other assertions are not affected in any way:
+````javascript
+  it('can do really cool stuff!', function(){//no done callback needed!
+    var numOfEls = 0;
+    driver
+      .executeAsyncScript("var cb = arguments[arguments.length-1]; cb(document.querySelectorAll('div'));")
+      .forEach(function(el){
+        numOfEls++;
+        console.log(el.getText());
+      });
+    assert(numOfEls, 'We got here!');
+  });
+````
+
+See more tests for `JavascriptExecutor` here: https://github.com/jsdevel/webdriver-sync/blob/master/test/interfaces/JavascriptExecutor.js
+
 
 ## Example
+Notice in this example that we are *not* using promises.  This means we can embrace modules that don't
+understand promises, much like `assert` or `should`.
+
+<b>Note:</b> You can avoid `var By = wd.By;` by using `wd.exportTo(global);` to further
+reduce verbosity.
+
 ````javascript
-var wd = require('webdriver-sync');
+var assert        = require('assert');
+var wd            = require('webdriver-sync');
 var By            = wd.By;
 var ChromeDriver  = wd.ChromeDriver;
 var driver        = new ChromeDriver;
@@ -60,30 +93,32 @@ var title;
 var link;
 
 driver.get("http://foo.html");
-title= driver.getTitle();
-link = driver.findElement(By.id('i am a link'));
+
+title = driver.getTitle();
+link  = driver.findElement(By.id('i am a link'));
 link.click();
 
 assert(driver.getCurrentUrl().indexOf('foo title 2') > -1);
-assert(title.indexOf('foo title') > -1);
+title.should.equal('foo title');
+console.log(link.getText());
 driver.quit();
 ````
 
-<b>Note:</b> You can avoid `var By = wd.By;` by using `wd.exportTo(global);` to further
-reduce verbosity.
-
 ## Installation
-`npm install webdriver-sync`
+`webdriver-sync` depends on the Java JDK being loaded.  Ideally Oracle's release of the JDK.
 
-`webdriver-sync` will download needed binaries for you which makes your life
-easier.  `webdriver-sync` will download these binaries to `$HOME/.webdriver-sync`.
-The following list has ways of overriding this process:
+`npm install webdriver-sync`  If you run into issues when `node-java` is installing, try setting JAVA_HOME in your env.
+
+`webdriver-sync` will download `selenium-server-standalone-x.x.x.jar` and `chromedriver` for you which makes your life
+easier.  These binaries will be downloaded to `$HOME/.webdriver-sync` on your system.
+
+You can override parts of this process as follows:
 
 * Chromdriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
 path.
-* Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` to point to the location 
+* Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` in your env and have it point to the location 
 where you have it on disk.  You should never do this, as the API is only tested
-against specific versions selenium, but it is available.
+against specific versions of selenium, but it is available.
 
 ##Documentation
 As `webdriver-sync` is a wrapper around the java API, you can browse any of the
