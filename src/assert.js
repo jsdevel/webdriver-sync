@@ -24,26 +24,6 @@ function assert(proposal) {
         }
       };
     },
-    isInstanceof: function(clazz) {
-      this.isValid = assert.isInstanceof(proposal, clazz);
-
-      return {
-        isValid: this.isValid,
-        throws: throws,
-        or: function(clazz) {
-          if (this.isValid)
-            return this;
-          this.isValid = assert.isInstanceof(proposal, clazz);
-          return this;
-        },
-        and: function(clazz) {
-          if (!this.isValid)
-            return this;
-          this.isValid = assert.isInstanceof(proposal, clazz);
-          return this;
-        }
-      };
-    },
     isNumber: function() {
       this.isValid = assert.isNumber(proposal);
 
@@ -88,9 +68,10 @@ function assert(proposal) {
 }
 ;
 
-assert.extends = function(Child, Parent) {
+assert.extends = function(instance, Constructor) {
   try {
-    return !!Child.__extends[Parent.name];
+    return instance instanceof Constructor
+      || !!instance.__extends[Constructor.name];
   } catch (e) {
     return false;
   }
@@ -106,13 +87,6 @@ assert.isNumber = function(number) {
 
 assert.isString = function(str) {
   return typeof str === 'string';
-};
-
-assert.isInstanceof = function(proposal, clazz) {
-  if (proposal instanceof clazz) {
-    return true;
-  }
-  return false;
 };
 
 function throws(err) {

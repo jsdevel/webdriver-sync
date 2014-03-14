@@ -7,7 +7,7 @@ var Instance = require('./Instance');
 
 module.exports = SessionId;
 function SessionId(opaqueKey) {
-  if (assert(opaqueKey).isInstanceof(Instance).isValid) {
+  if (assert(opaqueKey).extends(Instance).isValid) {
     addFinalProp(this, '_instance', opaqueKey._instance);
     return this;
   }

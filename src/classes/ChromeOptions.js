@@ -42,7 +42,7 @@ ChromeOptions.prototype.addExtensions = function(paths) {
     paths = toArray(arguments);
   }
   paths.forEach(function(v) {
-    assert(v).isInstanceof(File).throws(
+    assert(v).extends(File).throws(
       'Paths must be instances of File.'
       );
   });
@@ -50,14 +50,14 @@ ChromeOptions.prototype.addExtensions = function(paths) {
 };
 
 ChromeOptions.prototype.equals = function(other) {
-  if (!assert(other).isInstanceof(ChromeOptions).isValid) {
+  if (!assert(other).extends(ChromeOptions).isValid) {
     return false;
   }
   return this._instance.equalsSync(other._instance);
 };
 ChromeOptions.prototype.setBinary = function(path) {
   if (
-    !assert(path).isInstanceof(File).isValid
+    !assert(path).extends(File).isValid
     || !assert.isString(path)
     ) {
     throw new Error('Path must be an instance of File or a string.');

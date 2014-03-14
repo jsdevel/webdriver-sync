@@ -26,7 +26,7 @@ function InternetExplorerDriver(capabilities) {
     instance = new Class();
   } else if (len === 1) {
     assert(capabilities)
-      .isInstanceof(Capabilities)
+      .extends(Capabilities)
       .throws(
         messages.UN_FINISHED_CONSTRUCTOR
         );

@@ -39,7 +39,7 @@ function ChromeDriver(
     instance = new Class();
   } else if (len === 1 || len === 2) {
     assert(first)
-      .isInstanceof(Capabilities)
+      .extends(Capabilities)
       .or(ChromeOptions)
       .or(ChromeDriverService)
       .throws(
@@ -50,12 +50,12 @@ function ChromeDriver(
       instance = new Class(first._instance);
     } else if (len === 2) {
       assert(first)
-        .isInstanceof(ChromeDriverService)
+        .extends(ChromeDriverService)
         .throws(
           'The first argument must be an instance of ChromeDriverService.'
           );
       assert(capabilitiesOrOptions)
-        .isInstanceof(Capabilities)
+        .extends(Capabilities)
         .or(ChromeOptions)
         .throws(
           'The second argument must be an instance of '+

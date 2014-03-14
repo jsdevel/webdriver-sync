@@ -12,7 +12,7 @@ function File(first, child) {
   var file;
   var len = arguments.length;
 
-  if (assert(first).isInstanceof(Instance).isValid) {
+  if (assert(first).extends(Instance).isValid) {
     file = first._instance;
   } else if (len === 1) {
     assert(first).isString().throws(
@@ -26,7 +26,7 @@ function File(first, child) {
     if (assert.isString(first)) {
       file = new Class(first, child);
     } else {
-      assert(first).isInstanceof(File).throws(
+      assert(first).extends(File).throws(
         'The first argument must be a File.'
         );
       file = new Class(first._instance, child);
@@ -65,7 +65,7 @@ File.prototype.canWrite = function() {
 };
 
 File.prototype.compareTo = function(pathname) {
-  assert(pathname).isInstanceof(File).throws(
+  assert(pathname).extends(File).throws(
     'Pathname must be an instance of File.'
     );
   return this._instance.compareToSync(pathname);
@@ -87,7 +87,7 @@ File.createTempFile = File.prototype.createTempFile = function(
     .isString()
     .throws('Suffix must be a string.  Found: ' + suffix);
   if (arguments.length === 3) {
-    assert(directory).isInstanceof(File).throws(
+    assert(directory).extends(File).throws(
       'The directory must be an instance of File'
       );
     return new File(new Instance(this._instance.createTempFileSync(
@@ -215,7 +215,7 @@ File.prototype.mkdirs = function() {
 };
 
 File.prototype.renameTo = function(dest) {
-  assert(dest).isInstanceof(File).throws(
+  assert(dest).extends(File).throws(
     'Destination must be an instance of File.'
     );
   return this._instance.renameToSync(dest._instance);

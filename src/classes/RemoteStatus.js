@@ -9,7 +9,7 @@ var assert = require('../assert');
 module.exports = RemoteStatus;
 
 function RemoteStatus(statusMap) {
-  if (assert(statusMap).isInstanceof(Instance).isValid) {
+  if (assert(statusMap).extends(Instance).isValid) {
     addFinalProp(this, '_instance', statusMap._instance);
     return this;
   }

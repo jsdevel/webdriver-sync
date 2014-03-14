@@ -10,7 +10,7 @@ var addFinalProp = require('../utils').addFinalProp;
 extendAll(UselessFileDetector, FileDetector);
 
 function UselessFileDetector(instance) {
-  if (assert(instance).isInstanceof(Instance).isValid) {
+  if (assert(instance).extends(Instance).isValid) {
     instance = instance._instance;
   } else {
     instance = new Class();

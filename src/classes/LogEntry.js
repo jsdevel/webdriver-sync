@@ -14,11 +14,11 @@ module.exports = LogEntry;
 function LogEntry(level, timestamp, message) {
   var instance;
   if(arguments.length === 1){
-    assert(level).isInstanceof(Instance).throws(
+    assert(level).extends(Instance).throws(
       'expected an Instance'
     );
   } else {
-    assert(level).isInstanceof(Level).throws(
+    assert(level).extends(Level).throws(
       'expected level to be an instance of Level'
     );
     instance = new Class(level._instance, new Long(timestamp), message);

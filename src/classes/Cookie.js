@@ -31,7 +31,7 @@ function Cookie(
   var cookie;
   var numOfArgs = arguments.length > 6 ? 6 : arguments.length;
 
-  if (assert(name).isInstanceof(Instance).isValid) {
+  if (assert(name).extends(Instance).isValid) {
     cookie = name._instance;
     _name = cookie.getNameSync();
     _value = cookie.getValueSync();

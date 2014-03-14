@@ -120,17 +120,17 @@ ExpectedConditions.visibilityOfElementLocated = function(by) {
 
 function assertBy(by, position) {
   assert(by)
-    .isInstanceof(By)
+    .extends(By)
     .throws('The ' + position + ' argument wasn\'t an instanceof By.');
 }
 function assertWebElement(webElement, position) {
   assert(webElement)
-    .isInstanceof(WebElement)
+    .extends(WebElement)
     .throws('The ' + position + ' argument wasn\'t an instanceof WebElement.');
 }
 function assertByOrWebElement(arg, position) {
   assert(arg)
-    .isInstanceof(By)
+    .extends(By)
     .or(WebElement)
     .throws(
       'The ' +
@@ -140,7 +140,7 @@ function assertByOrWebElement(arg, position) {
 }
 function assertExpectedCondition(condition, position) {
   assert(condition)
-    .isInstanceof(ExpectedCondition)
+    .extends(ExpectedCondition)
     .throws(
       'The ' +
       position +

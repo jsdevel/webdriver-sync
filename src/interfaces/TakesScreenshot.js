@@ -13,7 +13,7 @@ function TakesScreenshot(instance) {
 }
 
 TakesScreenshot.prototype.getScreenshotAs = function(target) {
-  assert(target).isInstanceof(OutputType).throws(
+  assert(target).extends(OutputType).throws(
     'Target must be an instance of OutputType'
   );
   if (target === OutputType.BASE64 || target === OutputType.BYTES) {

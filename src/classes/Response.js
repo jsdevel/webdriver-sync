@@ -10,9 +10,9 @@ module.exports = Response;
 
 function Response(sessionId) {
   var instance;
-  if (assert(sessionId).isInstanceof(SessionId).isValid) {
+  if (assert(sessionId).extends(SessionId).isValid) {
     instance = new Class(sessionId._instance);
-  } else if (assert(sessionId).isInstanceof(Instance).isValid) {
+  } else if (assert(sessionId).extends(Instance).isValid) {
     instance = sessionId._instance;
   } else {
     instance = new Class();

@@ -58,9 +58,9 @@ function RemoteWebDriver(
     if (
       !assert.isString(first)
       &&
-      !assert(first).isInstanceof(CommandExecutor).isValid
+      !assert(first).extends(CommandExecutor).isValid
       &&
-      !assert(first).isInstanceof(Capabilities).isValid
+      !assert(first).extends(Capabilities).isValid
       ) {
       throw new Error(
         'The first argument must be a string, CommandExecutor, ' +
@@ -70,7 +70,7 @@ function RemoteWebDriver(
     if (
       len > 1
       &&
-      !assert(desiredCapabilities).isInstanceof(Capabilities)
+      !assert(desiredCapabilities).extends(Capabilities)
       ) {
       throw new Error(
         'The second argument must be an isntance of Capabilities.'
@@ -79,7 +79,7 @@ function RemoteWebDriver(
     if (
       len === 3
       &&
-      !assert(requiredCapabilities).isInstanceof(Capabilities)
+      !assert(requiredCapabilities).extends(Capabilities)
       ) {
       throw new Error(
         'The third argument must be an isntance of Capabilities.'
@@ -90,7 +90,7 @@ function RemoteWebDriver(
   }
   switch (len) {
     case 1:
-      assert(first).isInstanceof(Instance).throws(
+      assert(first).extends(Instance).throws(
         'a single agument must be an instance of Instance'
         );
       instance = new Class(first._instance);
@@ -115,7 +115,7 @@ function RemoteWebDriver(
           desiredCapabilities._instance,
           requiredCapabilities._instance
           );
-      } else if (assert(first).isInstanceof(CommandExecutor).isValid) {
+      } else if (assert(first).extends(CommandExecutor).isValid) {
         instance = new Class(
           first._instance,
           desiredCapabilities._instance,
@@ -159,7 +159,7 @@ RemoteWebDriver.prototype.getSessionId = function() {
 };
 
 RemoteWebDriver.prototype.setFileDetector = function(detector) {
-  assert(detector).isInstanceof(FileDetector).throws(
+  assert(detector).extends(FileDetector).throws(
     'detector wasn\'t an instance of FileDetector'
     );
   this._instance.setFileDetectorSync(detector._instance);
@@ -167,7 +167,7 @@ RemoteWebDriver.prototype.setFileDetector = function(detector) {
 
 RemoteWebDriver.prototype.setLogLevel = function(level) {
   assert(level)
-    .isInstanceof(Level)
+    .extends(Level)
     .throws('level must be an instance of Level');
   this._instance.setLogLevelSync(level._instance);
 };

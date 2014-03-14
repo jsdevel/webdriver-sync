@@ -18,7 +18,7 @@ function DesiredCapabilities(
   capabilities
   ) {
   var instance;
-  if (assert(capabilities).isInstanceof(Instance).isValid) {
+  if (assert(capabilities).extends(Instance).isValid) {
     instance = capabilities._instance;
   }
   addFinalProp(this, '_instance', instance);

@@ -26,7 +26,7 @@ function HtmlUnitDriver(
   if (!len) {
     instance = new Class();
   } else if (len === 1) {
-    if (assert(first).isInstanceof(Capabilities).isValid) {
+    if (assert(first).extends(Capabilities).isValid) {
       instance = new Class(first._instance);
     } else if (assert.isBool(first)) {
       instance = new Class(first);

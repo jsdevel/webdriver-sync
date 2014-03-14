@@ -32,7 +32,7 @@ function FirefoxDriver(
     instance = new Class();
   } else if (len === 1 || len === 2) {
     assert(first)
-      .isInstanceof(Capabilities)
+      .extends(Capabilities)
       .or(FirefoxProfile)
       .throws(
         'The first argument wasn\'t an instanceof Capabilities.'
@@ -41,7 +41,7 @@ function FirefoxDriver(
       instance = new Class(first._instance);
     } else if (len === 2) {
       assert(requiredCapabilities)
-        .isInstanceof(Capabilities)
+        .extends(Capabilities)
         .throws(
           'The second argument must be an instance of Capabilities.'
           );

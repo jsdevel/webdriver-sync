@@ -226,6 +226,6 @@ function assertIsCookie(cookie) {
 
 function assertIsTimeUnit(unit){
   assert(unit)
-    .isInstanceof(TimeUnit)
+    .extends(TimeUnit)
     .throws('unit must be an instance of TimeUnit');
 }

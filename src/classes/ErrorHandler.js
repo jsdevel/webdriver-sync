@@ -25,7 +25,7 @@ ErrorHandler.prototype.setIncludeServerErrors = function(include) {
   this._instance.setIncludeServerErrorsSync(include);
 };
 ErrorHandler.prototype.throwIfResponseFailed = function(response, duration) {
-  assert(response).isInstanceof(Response).throws(
+  assert(response).extends(Response).throws(
     'The first argument must be an instance of Response.'
     );
   assert(duration).isNumber().throws(

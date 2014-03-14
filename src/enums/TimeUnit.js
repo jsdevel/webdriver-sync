@@ -36,7 +36,7 @@ TimeUnit.SECONDS =
 TimeUnit.prototype.convert = function(duration, unit) {
   assert(duration).isNumber().throws('The first argument must be a number.');
   assert(unit)
-    .isInstanceof(TimeUnit)
+    .extends(TimeUnit)
     .throws('The second argument must be a TimeUnit.');
   return this._instance.convertSync(new Long(duration), unit._instance);
 };

@@ -11,7 +11,7 @@ function Wait(instance){
 }
 
 Wait.prototype.until = function(func){
-  assert(func).isInstanceof(ExpectedCondition).throws(
+  assert(func).extends(ExpectedCondition).throws(
     'func not an instance of ExpectedCondition'
   );
   this._instance.untilSync(func._instance);
