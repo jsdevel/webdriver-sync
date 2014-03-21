@@ -1,6 +1,7 @@
 'use strict';
 
 describe('WebDriverWait', function() {
+  var assert = require('assert');
   var path = require('path');
   var driver = require(path.resolve(__dirname, '..', 'lib', 'driver')).driver;
   var wd = require('../../src/webdriver-sync');
@@ -38,6 +39,16 @@ describe('WebDriverWait', function() {
       (new WebDriverWait(driver, 100, 10)).until(
         ExpectedConditions.elementToBeClickable(By.linkText('Sign in'))
       );
+    });
+
+    it('will throw an error if the wait expires', function() {
+      var start = Date.now();
+      assert.throws(function(){
+        (new WebDriverWait(driver, 10, 10)).until(
+          ExpectedConditions.elementToBeClickable(By.linkText('SIGN IN'))
+        );
+      });
+      ((Date.now() - start)/1000).should.be.above(9);
     });
   });
 });
