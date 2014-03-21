@@ -50,7 +50,9 @@ describe('By', function() {
 
   describe('#partialLinkText', function() {
     it('can be used', function() {
-      driver.findElements(By.partialLinkText('Download')).length.should.equal(1);
+      driver.findElements(
+        By.partialLinkText('Download')
+      ).length.should.equal(1);
     });
   });
 
