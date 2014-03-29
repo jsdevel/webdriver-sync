@@ -2,7 +2,7 @@
 
 # webdriver-sync
 
-Synchronous testing with Selenium and node.js!  No promises, no async, just sync.
+Synchronous Selenium testing in node!
 
 ## Highlights
 
@@ -116,7 +116,7 @@ You can override parts of this process as follows:
 
 * Chromdriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
 path.
-* Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` in your env and have it point to the location 
+* Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` in your env and have it point to the location
 where you have it on disk.  You should never do this, as the API is only tested
 against specific versions of selenium, but it is available.
 
@@ -131,6 +131,14 @@ Working with Maps and Lists is extremely delightful in javascript:
     console.log(el.getText());
   });
 ````
+
+##LOGGING
+By default, `webdriver-sync` disables any output from the selenium java bindings.  To
+change this behavior, you can set either of the following env vars to any non-empty
+value:
+
+* WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT
+* WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR
 
 ##Running Headless
 You can run Chrome, Firefox, Safari, and PhantomJS headless with `webdriver-sync`!
@@ -182,9 +190,9 @@ THE SOFTWARE.
 ## CREDIT when it is due!
 Special thanks to the developers of <a href="https://github.com/joeferner/node-java">node-java</a>!!!
 
-###Contributors (listed chronologically).  
+###Contributors (listed chronologically).
 
-Anyone who contributes to webdriver-sync, either through code changes or testing 
+Anyone who contributes to webdriver-sync, either through code changes or testing
 will be listed here when their efforts are significant:
 * Justin Searls @<a href='https://github.com/searls'>searls</a>
 * @<a href='https://github.com/alphamerchant'>alphamerchant</a>

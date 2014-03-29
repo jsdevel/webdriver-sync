@@ -21,6 +21,8 @@ before_install:
   - "export DISPLAY=:99.0"
   - "Xvfb :99.0 -extension RANDR > /dev/null &"
   - "sudo chmod 1777 /dev/shm"
+  - "WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT=true"
+  - "WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR=true"
 install: "npm install"
 cache:
   directories:

@@ -4,6 +4,14 @@ var java = require('java');
 var imports = require('./imports');
 var Long = imports.Long;
 
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT){
+  imports.helpers.ConsoleControl.stopOutSync();
+}
+
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR){
+  imports.helpers.ConsoleControl.stopErrSync();
+}
+
 module.exports = {
 
   //BUILT IN
@@ -14,7 +22,7 @@ module.exports = {
   //===BEGIN WRAPPERS==//
   //CLASSES
   get By() {
-    return new (require('./classes/By'));
+    return new (require('./classes/By'))();
   },
   get ChromeDriver() {
     return require('./classes/ChromeDriver');
