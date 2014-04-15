@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/jsdevel/webdriver-sync.png)](https://travis-ci.org/jsdevel/webdriver-sync)
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 # webdriver-sync
-
-Synchronous Selenium testing in node!
+> Synchronous Selenium testing in node!
 
 ## Highlights
 
@@ -202,3 +201,10 @@ will be listed here when their efforts are significant:
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+[downloads-image]: http://img.shields.io/npm/dm/webdriver-sync.svg
+[npm-url]: https://npmjs.org/package/webdriver-sync
+[npm-image]: http://img.shields.io/npm/v/webdriver-sync.svg
+
+[travis-url]: https://travis-ci.org/jsdevel/webdriver-sync
+[travis-image]: http://img.shields.io/travis/jsdevel/webdriver-sync.svg
