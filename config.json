@@ -5,6 +5,6 @@
   },
   "chromedriver": {
     "zip":"chromedriver_${arch}.zip",
-    "url":"http://chromedriver.storage.googleapis.com/2.8/"
+    "url":"http://chromedriver.storage.googleapis.com/2.10/"
   }
 }
