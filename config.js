@@ -1,5 +1,8 @@
 'use strict';
 
+var async = require('async');
+var exec = require('child_process').exec;
+var packageJson = require('./package');
 var path = require('path');
 var os = require('os');
 var mkdirp = require('mkdirp');
@@ -12,10 +15,12 @@ var isMac = /^dar/i.test(platform);
 var home = process.env.HOME || process.env.USERPROFILE;
 var webDriverSyncBinaryPath = process.env.WEBDRIVER_SYNC_BINARY_PATH
   || path.resolve(home, '.webdriver-sync');
+var NO_HOME_VAR_FOUND_IN_ENV=1;
+var UNABLE_TO_ENABLE_PROTECTED_MODE_FOR_IE=2;
 
 if(!home){
   cli.err('Neither of HOME or USERPROFILE were set in the env!');
-  cli.exit(1);
+  cli.exit(NO_HOME_VAR_FOUND_IN_ENV);
 }
 
 module.exports = {
@@ -80,3 +85,36 @@ Object.keys(module.exports.binaries)
     var path = module.exports.binaries[resource].binary.path;
     mkdirp.sync(path);
   });
+
+if(isWin){
+  async.parallel([
+    prepareEnableProtectedModeFor(0),
+    prepareEnableProtectedModeFor(1),
+    prepareEnableProtectedModeFor(2),
+    prepareEnableProtectedModeFor(3),
+    prepareEnableProtectedModeFor(4)
+  ], function(err){
+    if(err){
+      cli.err('Unable to enable protected mode for internet explorer!');
+      cli.err('Please report this at ' + packageJson.bugs.url);
+      cli.err(err.message);
+      cli.err(err.stack);
+      cli.exit(UNABLE_TO_ENABLE_PROTECTED_MODE_FOR_IE);
+    }
+  });
+}
+
+function prepareEnableProtectedModeFor(zone){
+  return function enableProtectedModeForZone(cb){
+    exec(
+      'reg '
+      + 'add '
+      + '"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\' + zone + '" '
+      + '/t REG_DWORD '
+      + '/v 2500 '
+      + '/d 0 '
+      + '/f'
+      , cb
+    );
+  };
+}
