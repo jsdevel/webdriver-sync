@@ -3,9 +3,6 @@
   "version": "0.9.3",
   "description": "Synchronous testing with Selenium and node.js!",
   "main": "src/webdriver-sync.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
     "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
@@ -19,7 +16,9 @@
     "download": "~0.1.7",
     "java": "0.3.3",
     "unzip": "~0.1.9",
-    "which": "~1.0.5"
+    "which": "~1.0.5",
+    "mkdirp": "~0.5.0",
+    "mocha": "~1.20.0"
   },
   "devDependencies": {
     "jshint": "",

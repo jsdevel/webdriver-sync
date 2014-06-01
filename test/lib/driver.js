@@ -4,9 +4,7 @@ var path = require('path');
 var webdriver = require(
   path.resolve(__dirname, '..', '..', 'src', 'webdriver-sync')
 );
-var findsChromeDriver = require(
-  path.resolve(__dirname, '..', '..', 'src', 'lib', 'finds-chrome-driver')
-);
+var findsChromeDriver = require('../../src/helpers/finds-chrome-driver');
 var ChromeDriver = webdriver.ChromeDriver;
 var ChromeDriverService = webdriver.ChromeDriverService;
 var ChromeOptions = webdriver.ChromeOptions;
@@ -21,7 +19,7 @@ if(process.env.TRAVIS){
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
     .usingDriverExecutable(new File(findsChromeDriver.find()))
-    .withEnvironment({'DISPLAY':':99.0'})
+    //.withEnvironment({'DISPLAY':':99.0'})
     //.withSilent(true)
     //.withVerbose(true)
     .build();

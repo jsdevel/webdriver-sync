@@ -3,25 +3,36 @@
 var java = require('java');
 var path = require('path');
 var classPaths = require('./classPaths');
-var findsChromeDriver = require('./lib/finds-chrome-driver');
-var findsSeleniumJar = require('./lib/finds-selenium-jar');
-var staticDependencyPaths = require('./static-dependency-paths');
+var findsChromeDriver = require('./helpers/finds-chrome-driver');
+var findsIEDriver = require('./helpers/finds-ie-driver');
+var findsSeleniumJar = require('./helpers/finds-selenium-jar');
+var config = require('../config');
 var seleniumJar = findsSeleniumJar.find();
+var chromeDriverPath = findsChromeDriver.find();
+var ieDriverPath = findsIEDriver.find();
 
 if(!seleniumJar) {
   throw new Error(findsSeleniumJar.errorMessage);
 }
 
 java.classpath.push(seleniumJar);
-java.classpath.push(staticDependencyPaths.helperJar);
+java.classpath.push(config.helperJar);
 
-var chromeDriverPath = findsChromeDriver.find();
 if(chromeDriverPath) {
   java.callStaticMethodSync(
     'java.lang.System',
     'setProperty',
     'webdriver.chrome.driver',
     chromeDriverPath
+  );
+}
+
+if(ieDriverPath) {
+  java.callStaticMethodSync(
+    'java.lang.System',
+    'setProperty',
+    'webdriver.ie.driver',
+    ieDriverPath
   );
 }
 

@@ -5,7 +5,7 @@ describe('ChromeDriverService.Builder', function() {
   var ChromeDriverService = require('../../src/classes/ChromeDriverService');
   var Builder = ChromeDriverService.Builder;
   var File = require('../../src/classes/File');
-  var findsChromeDriver = require('../../src/lib/finds-chrome-driver');
+  var findsChromeDriver = require('../../src/helpers/finds-chrome-driver');
 
   describe('interface', function() {
     var builder = new Builder();

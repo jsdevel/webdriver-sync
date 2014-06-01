@@ -9,7 +9,7 @@ var RemoteWebDriver = require('./RemoteWebDriver');
 var extendAll = require('../utils').extendAll;
 var addFinalProp = require('../utils').addFinalProp;
 var assert = require('../assert');
-var findsChromeDriver = require('./../lib/finds-chrome-driver');
+var findsChromeDriver = require('../helpers/finds-chrome-driver');
 
 module.exports = ChromeDriver;
 
