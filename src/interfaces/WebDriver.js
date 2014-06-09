@@ -2,6 +2,7 @@
 
 var Alert = require('./Alert');
 var Instance = require('../classes/Instance');
+var Logs = require('./Logs');
 var SearchContext = require('./SearchContext');
 var WebElement = require('./WebElement');
 var Cookie = require('../classes/Cookie');
@@ -132,6 +133,13 @@ Options.prototype.getCookies = function() {
 };
 Options.prototype.ime = function() {
   return new ImeHandler(this._instance.imeSync());
+};
+Options.prototype.logs = function() {
+  return new Logs(
+    new Instance(
+      this._instance.logsSync()
+    )
+  );
 };
 Options.prototype.timeouts = function() {
   return new Timeouts(this._instance.timeoutsSync());

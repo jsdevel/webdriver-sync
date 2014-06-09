@@ -17,6 +17,7 @@ function LogEntry(level, timestamp, message) {
     assert(level).extends(Instance).throws(
       'expected an Instance'
     );
+    instance = level._instance;
   } else {
     assert(level).extends(Level).throws(
       'expected level to be an instance of Level'

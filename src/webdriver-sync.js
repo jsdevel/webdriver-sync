@@ -78,6 +78,9 @@ module.exports = {
   get LogEntry() {
     return require('./classes/LogEntry');
   },
+  get LogEntries() {
+    return require('./classes/LogEntries');
+  },
   get LocalFileDetector() {
     return require('./classes/LocalFileDetector');
   },
@@ -121,6 +124,9 @@ module.exports = {
   },
 
   //INTERFACES
+  get Logs() {
+    return require('./interfaces/Logs');
+  },
   get OutputType() {
     return require('./interfaces/OutputType');
   },
