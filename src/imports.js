@@ -152,6 +152,9 @@ module.exports = {
   get Long() {
     return java.import(classPaths.Long);
   },
+  get LoggingPreferences() {
+    return java.import(classPaths.LoggingPreferences);
+  },
   get OutputType() {
     return java.import(classPaths.OutputType);
   },

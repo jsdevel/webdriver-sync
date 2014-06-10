@@ -26,6 +26,7 @@ module.exports = {
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',
   LogEntry: 'org.openqa.selenium.logging.LogEntry',
   Long: 'java.lang.Long',
+  LoggingPreferences: 'org.openqa.selenium.logging.LoggingPreferences',
   Map: 'java.util.Map',
   OutputType: 'org.openqa.selenium.OutputType',
   Platform: 'org.openqa.selenium.Platform',

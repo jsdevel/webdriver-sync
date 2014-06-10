@@ -84,6 +84,9 @@ module.exports = {
   get LocalFileDetector() {
     return require('./classes/LocalFileDetector');
   },
+  get LoggingPreferences() {
+    return require('./classes/LoggingPreferences');
+  },
   get Point() {
     return require('./classes/Point');
   },

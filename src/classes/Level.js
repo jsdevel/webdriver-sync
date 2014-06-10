@@ -9,6 +9,10 @@ function Level(instance) {
   addFinalProp(this, '_instance', instance);
 }
 
+Level.prototype.toString = function(){
+  return this._instance.toStringSync();
+};
+
 Level.ALL = Level.prototype.ALL = new Level(Class.ALL);
 Level.CONFIG = Level.prototype.CONFIG = new Level(Class.CONFIG);
 Level.FINE = Level.prototype.FINE = new Level(Class.FINE);
