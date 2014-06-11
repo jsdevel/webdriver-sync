@@ -32,11 +32,13 @@ describe('Logs', function(){
           .manage()
           .logs()
           .get('browser')
-          .getAll()[0]
-          .message
+          .getAll()
+          .filter(function(entry){
+            return ~entry.message.indexOf('hello there');
+          })
+          .length
           .should
-          .containEql('hello there');
-
+          .equal(1);
       });
     });
   });
