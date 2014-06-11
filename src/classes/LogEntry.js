@@ -26,16 +26,20 @@ function LogEntry(level, timestamp, message) {
   }
 
   addFinalProp(this, '_instance', instance);
+
+  this.level = this._instance.getLevelSync().toStringSync();
+  this.message = this._instance.getMessageSync();
+  this.timestamp = this._instance.getTimestampSync();
 }
 
 LogEntry.prototype.getLevel=function(){
-  return Level[this._instance.getLevelSync().toStringSync()];
+  return Level[this.level];
 };
 LogEntry.prototype.getMessage=function(){
-  return this._instance.getMessageSync();
+  return this.message;
 };
 LogEntry.prototype.getTimestamp=function(){
-  return this._instance.getTimestampSync();
+  return this.timestamp;
 };
 LogEntry.prototype.toMap=function(){
   return utils.mapToObject(this._instance.toMapSync());

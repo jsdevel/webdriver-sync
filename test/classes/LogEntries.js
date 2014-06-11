@@ -2,14 +2,21 @@
 
 describe('Logs', function(){
   var assert = require('assert');
-  var driver;
   var wd = require('../../');
   var ChromeDriver = wd.ChromeDriver;
+  var DesiredCapabilities = wd.DesiredCapabilities;
   var Level = wd.Level;
-  var logs;
+  var LoggingPreferences = wd.LoggingPreferences;
+  var prefs;
+  var caps;
+  var driver;
   
   beforeEach(function(){
-    driver = new ChromeDriver();
+    caps = DesiredCapabilities.chrome();
+    prefs = new LoggingPreferences();
+    prefs.enable('browser', Level.ALL);
+    caps.setCapability('loggingPrefs', prefs);
+    driver = new ChromeDriver(caps);
     driver.get('http://google.com');
   });
 
@@ -20,9 +27,16 @@ describe('Logs', function(){
   describe('.getAll()', function(){
     describe('with browser', function(){
       it('should return all console logs', function(){
-        driver.executeScript('console.log(5);');
-        //console.log(logs.get('browser').getAll()[0].getMessage());
-        console.log(driver.manage().logs().get('browser').getAll());
+        driver.executeScript('console.log("hello there");');
+        driver
+          .manage()
+          .logs()
+          .get('browser')
+          .getAll()[0]
+          .message
+          .should
+          .containEql('hello there');
+
       });
     });
   });

@@ -7,7 +7,7 @@ var addFinalProp = utils.addFinalProp;
 var collectionToArray = utils.collectionToArray;
 var assert = require('../assert');
 var Level = require('./Level');
-var LogEntry = require('./Level');
+var LogEntry = require('./LogEntry');
 var Instance = require('./Instance');
 
 function LogEntries(instance){

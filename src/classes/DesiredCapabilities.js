@@ -66,3 +66,13 @@ DesiredCapabilities.safari =
   DesiredCapabilities.prototype.safari = function() {
     return new DesiredCapabilities(new Instance(Class.safariSync()));
   };
+
+
+DesiredCapabilities.prototype.setCapability = function(name, value){
+  if(
+    value
+    && value instanceof Object
+    && '_instance' in value
+  )value = value._instance;
+  this._instance.setCapabilitySync(name, value);
+};
