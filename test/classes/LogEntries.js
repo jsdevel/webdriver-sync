@@ -17,7 +17,7 @@ describe('Logs', function(){
     prefs.enable('browser', Level.ALL);
     caps.setCapability('loggingPrefs', prefs);
     driver = new ChromeDriver(caps);
-    driver.get('http://google.com');
+    driver.get('https://google.com');
   });
 
   afterEach(function(){
