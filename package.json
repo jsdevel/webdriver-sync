@@ -17,8 +17,7 @@
     "java": "0.3.3",
     "unzip": "~0.1.9",
     "which": "~1.0.5",
-    "mkdirp": "~0.5.0",
-    "mocha": "~1.20.0"
+    "mkdirp": "~0.5.0"
   },
   "devDependencies": {
     "jshint": "",
