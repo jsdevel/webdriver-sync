@@ -9,14 +9,9 @@ var addFinalProp = require('../utils').addFinalProp;
 
 module.exports = DesiredCapabilities;
 
-extendAll(
-  DesiredCapabilities,
-  Capabilities
-  );
+extendAll(DesiredCapabilities, Capabilities);
 
-function DesiredCapabilities(
-  capabilities
-  ) {
+function DesiredCapabilities(capabilities) {
   var instance;
   if (assert(capabilities).extends(Instance).isValid) {
     instance = capabilities._instance;
