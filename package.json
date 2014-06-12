@@ -20,11 +20,9 @@
     "mkdirp": "~0.5.0"
   },
   "devDependencies": {
-    "jshint": "",
+    "jshint": "2.3.0",
     "mocha": "",
-    "proxyquire": "",
-    "sinon": "",
-    "should": "~3.1.2"
+    "should": "*"
   },
   "repository": {
     "type": "git",

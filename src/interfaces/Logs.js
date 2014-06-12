@@ -23,5 +23,5 @@ Logs.prototype.get = function(level){
 };
 
 Logs.prototype.getAvailableLogTypes = function(level){
-  return collectionToArray(this._instance.getAvailableLogTypesSync()); 
+  return collectionToArray(this._instance.getAvailableLogTypesSync());
 };

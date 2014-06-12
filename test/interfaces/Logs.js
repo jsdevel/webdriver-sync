@@ -8,7 +8,7 @@ describe('Logs', function(){
   var Logs = wd.Logs;
   var LogEntries = wd.LogEntries;
   var logs;
-  
+
   beforeEach(function(){
     driver = driverHelper.driver;
     driver.get('http://google.com');
@@ -21,7 +21,7 @@ describe('Logs', function(){
 
   it('should expect an Instance', function(){
     assert.throws(function(){
-      new Logs(5); 
+      new Logs(5);
     });
   });
 

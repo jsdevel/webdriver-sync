@@ -4,9 +4,9 @@ describe('LoggingPreferences', function(){
   var wd = require('../../');
   var LoggingPreferences = wd.LoggingPreferences;
   var Level = wd.Level;
-  
+
   it('should be instantiable', function(){
-    new LoggingPreferences(); 
+    new LoggingPreferences();
   });
 
   describe('.addPreferences()', function(){
