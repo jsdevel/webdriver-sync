@@ -22,7 +22,8 @@
   "devDependencies": {
     "jshint": "2.3.0",
     "mocha": "",
-    "should": "*"
+    "should": "*",
+    "sinon": "^1.10.2"
   },
   "repository": {
     "type": "git",
