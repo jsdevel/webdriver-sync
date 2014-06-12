@@ -23,7 +23,8 @@
     "jshint": "2.3.0",
     "mocha": "",
     "should": "*",
-    "sinon": "^1.10.2"
+    "sinon": "^1.10.2",
+    "proxyquire": "^1.0.1"
   },
   "repository": {
     "type": "git",
