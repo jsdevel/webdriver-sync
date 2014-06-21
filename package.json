@@ -1,7 +1,7 @@
 {
   "name": "webdriver-sync",
   "version": "0.11.1",
-  "description": "Synchronous testing with Selenium and node.js!",
+  "description": "Selenium testing without nested callbacks or promises!",
   "main": "src/webdriver-sync.js",
   "scripts": {
     "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
