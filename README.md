@@ -1,12 +1,31 @@
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 # webdriver-sync
-> A completely synchronous Selenium WebDriver wrapper for node.js!
+> Selenium testing without nested callbacks or promises!
 
-`webdriver-sync` wraps the `WebDriver` API in a synchronous way making your tests very concise.  
-You can avoid the intricacies of `promises` and `async ceremony` by using it.
+`webdriver-sync` wraps the Java `WebDriver` API in a synchronous way allowing your
+tests to be very concise.  You can avoid the intricacies of `promises` and
+`async ceremony` by using it.
 
-Here is an example of what it looks like.  As you can see we're able to use any assertion library of choice:
+## Async style
+
+```javascript
+browser.get("http://foo.html", function() {
+   browser.title(function(err, title) {
+     assert.ok(~title.indexOf('foo title'), 'Wrong title!');
+     browser.elementById('i am a link', function(err, el) {
+        browser.clickElement(el, function() {
+           browser.eval("window.location.href", function(err, href) {
+           assert.ok(~href.indexOf('foo title 2'));
+           browser.quit();
+           });
+        });
+     });
+   });
+});
+```
+
+## webdriver-sync style
 
 ````javascript
 driver.get("http://foo.html");
@@ -18,6 +37,7 @@ title.should.equal('foo title');
 console.log(title);
 driver.quit();
 ````
+
 ## Highlights
 
 * 100% synchronous selenium in javascript without promises or async ceremony!
@@ -53,7 +73,7 @@ var driver = new FirefoxDriver();
 driver.get('http://google.com');
 ```
 ###ChromeDriver
-There are 2 ways to run Chrome.  
+There are 2 ways to run Chrome.
 
 The straightforward way is slower as it has to start chromedriver each time it's instantiated:
 ```javascript
