@@ -7,7 +7,7 @@
 tests to be very concise.  You can avoid the intricacies of `promises` and
 `async ceremony` by using it.
 
-## Async style
+## webdriver-sync avoids this
 
 ```javascript
 browser.get("http://foo.html", function() {
@@ -25,7 +25,9 @@ browser.get("http://foo.html", function() {
 });
 ```
 
-## webdriver-sync style
+## in favor of this...
+
+Completely synchronous API!  No promises or callbacks needed.
 
 ````javascript
 driver.get("http://foo.html");
