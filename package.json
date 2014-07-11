@@ -1,6 +1,6 @@
 {
   "name": "webdriver-sync",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "description": "Selenium testing without nested callbacks or promises!",
   "main": "src/webdriver-sync.js",
   "scripts": {
