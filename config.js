@@ -25,12 +25,12 @@ module.exports = {
   binaries: {
     selenium: {
       download: {
-        name: 'selenium-server-standalone-2.41.0.jar',
-        url: 'http://selenium-release.storage.googleapis.com/2.41/'
+        name: 'selenium-server-standalone-2.42.0.jar',
+        url: 'http://selenium-release.storage.googleapis.com/2.42/'
       },
       binary: {
-        name: 'selenium-server-standalone-2.41.0.jar',
-        path: path.resolve(webDriverSyncBinaryPath, 'selenium-2.41.0')
+        name: 'selenium-server-standalone-2.42.0.jar',
+        path: path.resolve(webDriverSyncBinaryPath, 'selenium-2.42.0')
       }
     },
     chromedriver: {
