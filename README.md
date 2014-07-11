@@ -143,9 +143,14 @@ You can view `webdriver-sync`'s API [here](https://github.com/jsdevel/webdriver-
 2. You'll need a minimum JDK version of `1.7` installed on your system.
 3. `npm install webdriver-sync`  If you run into issues feel free to [reach out](https://github.com/jsdevel/webdriver-sync/issues?state=open)!
 4. `webdriver-sync` will download `selenium-server-standalone-x.x.x.jar` and `chromedriver` for you which makes your life
-easier.  These binaries will be downloaded to `$HOME/.webdriver-sync` on your system.
+easier.
 
-You can override the download location for binaries as follows:
+Binaries will be downloaded to one of the following locations (listed in order of precedence):
+1. A directory defined by env var `WEBDRIVER_SYNC_BINARY_PATH`
+2. `/lib/webdriver-sync` if running as `root` on *nix systems
+3. `$HOME/.webdriver-sync`
+
+You can further override the download location for binaries as follows:
 
 * Chromdriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
 path.

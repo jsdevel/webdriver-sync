@@ -1,7 +1,35 @@
+var fs = require('fs');
+var isDir = require('is-dir');
+var path = require('path');
+var cli = require('../src/cli');
+var NO_HOME_VAR_FOUND_IN_ENV=1;
+var INVALID_ENV_PATH_LOCATION=2;
+var home = process.env.HOME || process.env.USERPROFILE;
+var binaryPath;
+
+if(process.env.WEBDRIVER_SYNC_BINARY_PATH){
+  if(!isDir.sync(process.env.WEBDRIVER_SYNC_BINARY_PATH)){
+    cli.error('WEBDRIVER_SYNC_BINARY_PATH was set to a path that does not exist!');
+    cli.exit(INVALID_ENV_PATH_LOCATION);
+  }
+  binaryPath = '"' + process.env.WEBDRIVER_SYNC_BINARY_PATH + '"';
+} else if('root' === process.env.USER){
+  binaryPath = '"/lib/webdriver-sync"';
+} else {
+  if(!home){
+    cli.err('Neither of HOME or USERPROFILE were set in the env!');
+    cli.exit(NO_HOME_VAR_FOUND_IN_ENV);
+  }
+  binaryPath = '"' + path.resolve(home, '.webdriver-sync') + '"';
+}
+
+fs.writeFileSync(
+  path.resolve(__dirname, '..', 'binaryPath.json'),
+  binaryPath
+);
+
 var async = require('async');
 var download = require('download');
-var fs = require('fs');
-var path = require('path');
 var unzip = require('unzip');
 var config = require('../config');
 

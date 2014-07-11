@@ -12,16 +12,8 @@ var platform = os.platform();
 var is64 = /x64/i.test(arch);
 var isWin = /^win/i.test(platform);
 var isMac = /^dar/i.test(platform);
-var home = process.env.HOME || process.env.USERPROFILE;
-var webDriverSyncBinaryPath = process.env.WEBDRIVER_SYNC_BINARY_PATH
-  || path.resolve(home, '.webdriver-sync');
-var NO_HOME_VAR_FOUND_IN_ENV=1;
+var webDriverSyncBinaryPath = require('./binaryPath.json');
 var UNABLE_TO_ENABLE_PROTECTED_MODE_FOR_IE=2;
-
-if(!home){
-  cli.err('Neither of HOME or USERPROFILE were set in the env!');
-  cli.exit(NO_HOME_VAR_FOUND_IN_ENV);
-}
 
 module.exports = {
   webDriverSyncBinaryPath: webDriverSyncBinaryPath,
