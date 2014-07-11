@@ -26,3 +26,6 @@ install: "npm install"
 cache:
   directories:
     - node_modules
+notifications:
+  email:
+    on_success: "never"
