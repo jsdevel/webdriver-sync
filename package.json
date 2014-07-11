@@ -14,7 +14,7 @@
   "dependencies": {
     "async": "~0.2.9",
     "download": "~0.1.7",
-    "java": "0.3.4",
+    "java": "git+https://github.com/joeferner/node-java.git#40234be5d1be5f4e9c7364236c17b94c126e0d8f",
     "unzip": "~0.1.9",
     "which": "~1.0.5",
     "mkdirp": "~0.5.0"
