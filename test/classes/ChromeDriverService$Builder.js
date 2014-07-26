@@ -5,14 +5,14 @@ describe('ChromeDriverService.Builder', function() {
   var ChromeDriverService = require('../../src/classes/ChromeDriverService');
   var Builder = ChromeDriverService.Builder;
   var File = require('../../src/classes/File');
-  var findsChromeDriver = require('../../src/helpers/finds-chrome-driver');
+  var seleniumBinaries = require('selenium-binaries');
 
   describe('interface', function() {
     var builder = new Builder();
     describe('#usingDriverExecutable and #build', function() {
       it('returns an instance of ChromeDriverService', function() {
         builder
-          .usingDriverExecutable(new File(findsChromeDriver.find()))
+          .usingDriverExecutable(new File(seleniumBinaries.chromedriver))
           .build().should.be.an.instanceOf(ChromeDriverService);
       });
     });

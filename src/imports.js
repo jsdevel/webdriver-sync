@@ -2,21 +2,17 @@
 
 var java = require('java');
 var path = require('path');
+var resolve = path.resolve;
 var classPaths = require('./classPaths');
-var findsChromeDriver = require('./helpers/finds-chrome-driver');
-var findsIEDriver = require('./helpers/finds-ie-driver');
-var findsSeleniumJar = require('./helpers/finds-selenium-jar');
-var config = require('../config');
-var seleniumJar = findsSeleniumJar.find();
-var chromeDriverPath = findsChromeDriver.find();
-var ieDriverPath = findsIEDriver.find();
-
-if(!seleniumJar) {
-  throw new Error(findsSeleniumJar.errorMessage);
-}
+var seleniumBinaries = require('selenium-binaries');
+var seleniumJar = seleniumBinaries.seleniumJar;
+var chromeDriverPath = seleniumBinaries.chromedriver;
+var ieDriverPath = seleniumBinaries.iedriver;
 
 java.classpath.push(seleniumJar);
-java.classpath.push(config.helperJar);
+java.classpath.push(
+  resolve(__dirname, './java/webdriversynchelpers/dist/webdriversynchelpers.jar')
+);
 
 if(chromeDriverPath) {
   java.callStaticMethodSync(

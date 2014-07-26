@@ -7,17 +7,12 @@
     "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
     "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
     "mocha": "node_modules/.bin/mocha -r should -t 8000 test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
-    "test": "npm run lint-src && npm run lint-test && npm run mocha",
-    "install": "node bin/postInstall.js"
+    "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
   "dependencies": {
     "async": "~0.2.9",
-    "download": "~0.1.7",
     "java": "0.3.5",
-    "unzip": "~0.1.9",
-    "which": "~1.0.5",
-    "mkdirp": "~0.5.0",
-    "is-dir": "~1.0.0"
+    "selenium-binaries": "^0.1.0"
   },
   "devDependencies": {
     "jshint": "2.3.0",

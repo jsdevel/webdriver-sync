@@ -4,7 +4,7 @@ var path = require('path');
 var webdriver = require(
   path.resolve(__dirname, '..', '..', 'src', 'webdriver-sync')
 );
-var findsChromeDriver = require('../../src/helpers/finds-chrome-driver');
+var seleniumBinaries = require('selenium-binaries');
 var ChromeDriver = webdriver.ChromeDriver;
 var ChromeDriverService = webdriver.ChromeDriverService;
 var ChromeOptions = webdriver.ChromeOptions;
@@ -18,7 +18,7 @@ if(process.env.TRAVIS){
   console.log('Hello Travis!');
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
-    .usingDriverExecutable(new File(findsChromeDriver.find()))
+    .usingDriverExecutable(new File(seleniumBinaries.chromedriver))
     //.withEnvironment({'DISPLAY':':99.0'})
     //.withSilent(true)
     //.withVerbose(true)
