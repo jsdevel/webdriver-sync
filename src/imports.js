@@ -5,7 +5,7 @@ var path = require('path');
 var resolve = path.resolve;
 var classPaths = require('./classPaths');
 var seleniumBinaries = require('selenium-binaries');
-var seleniumJar = seleniumBinaries.seleniumJar;
+var seleniumJar = seleniumBinaries.seleniumserver;
 var chromeDriverPath = seleniumBinaries.chromedriver;
 var ieDriverPath = seleniumBinaries.iedriver;
 
