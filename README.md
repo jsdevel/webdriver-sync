@@ -130,6 +130,7 @@ See more tests for `JavascriptExecutor` here: https://github.com/jsdevel/webdriv
 Here is a list of 3rd party modules and why you'd want to use them:
 
 * [selenium-global](https://github.com/jsdevel/node-selenium-global#example).  This module enables you to add `webdriver-sync` wrappings globally before running your tests.  If you prefer to avoid `var wd = require('webdriver-sync');` in each of your tests then you can use this.
+* [selenium-binaries](https://www.npmjs.org/package/selenium-binaries).  This module handles selenium binary management.
 
 ## Design
 `webdriver-sync` leverages [node-java](https://github.com/joeferner/node-java) to wrap the java API provided by the Selenium project which is by far the best supported of them all.  Wrappings are located under `src/`.  In most cases, methods proxy through to their java equivalent.
