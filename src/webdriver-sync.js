@@ -4,6 +4,9 @@ var java = require('java');
 var imports = require('./imports');
 var Long = imports.Long;
 
+var WAIT_DEFAULT_TIMEOUT = 1000;
+var WAIT_DEFAULT_PERIOD = 100;
+
 if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT){
   imports.helpers.ConsoleControl.stopOutSync();
 }
@@ -169,5 +172,42 @@ module.exports = {
       'sleep',
       new Long(amount)
       );
+  },
+  /**
+   * Utility method for blocking execution until some condition has been
+   * satisfied.
+   *
+   * @param {function} conditionFn Function that determines whether the `wait`
+   *                               has completed
+   * @param {object} [options]
+   * @param {number} [options.timeout] Time in milliseconds to wait before
+   *                                   considering the operation failed and
+   *                                   throwing an error
+   * @param {number} [options.period] Time in milliseconds to wait between
+   *                                  invocations of the `conditionFn`
+   */
+  wait: function(conditionFn, options) {
+    var waitStart = Date.now();
+
+    if (!options) {
+      options = {};
+    }
+    if (!('timeout' in options)) {
+      options.timeout = WAIT_DEFAULT_TIMEOUT;
+    }
+
+    if (!('period' in options)) {
+      options.period = WAIT_DEFAULT_PERIOD;
+    }
+
+    while (Date.now() - waitStart < options.timeout) {
+      if (conditionFn()) {
+        return;
+      }
+
+      module.exports.sleep(options.period);
+    }
+
+    throw new Error('`wd.wait` operation timed out');
   }
 };
