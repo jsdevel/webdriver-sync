@@ -124,6 +124,19 @@ Here we execute an async script, return a collection of divs, and console.log th
 
 See more tests for `JavascriptExecutor` here: https://github.com/jsdevel/webdriver-sync/blob/master/test/interfaces/JavascriptExecutor.js
 
+## Explicitly Waiting with a Function
+
+The `wait` utility method pauses execution until some arbitrary condition is met. Provide a function and `webdriver-sync` will invoke the function repeatedly until it returns a truthy value. You may optionally specify millisecond values for a `timeout` (how long to wait before considering the operation failed and throwing an error) and a `period` (how long to wait between invocations of the provided function).
+
+For example:
+
+```javascript
+driver.findElement(webdriver.By.cssSelector('button')).click();
+driver.wait(function() {
+  return driver.findElements(webdriver.By.cssSelector('.thumbnail').length > 0;
+}, { timeout: 1000, period: 100 });
+```
+
 ## Related Projects
 `webdriver-sync`'s goal is to wrap the Java API and make selenium binary management simpler overall.  Any other functionality or feature should be addressed in 3rd party modules.
 
