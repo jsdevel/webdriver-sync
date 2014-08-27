@@ -104,4 +104,50 @@ describe('webdriver-sync', function(){
       assert(end-start >= secondsToWait, 'sleep didn\'t work.');
     });
   });
+
+  describe('wait', function() {
+    var start;
+
+    beforeEach(function() {
+      start = Date.now();
+    });
+
+    it('should halt execution until the condition is satisfied', function() {
+      var count = 0;
+      wd.wait(function() {
+        return ++count === 2;
+      });
+
+      assert.equal(count, 2);
+    });
+
+    it('should throw an error after the provided timeout', function() {
+      var error;
+
+      try {
+        wd.wait(function() {
+          return false;
+        }, { timeout: 1000 });
+      } catch(err) {
+        error = err;
+      }
+
+      assert.ok(error);
+      assert(Date.now() - start >= 300);
+    });
+
+    it('should honor the specified polling period', function() {
+      var callTimes = [];
+      var perceivedPeriod;
+
+      wd.wait(function() {
+        callTimes.push(Date.now());
+        return callTimes.length === 2;
+      }, { timeout: 1000, period: 120 });
+
+      perceivedPeriod = callTimes[1] - callTimes[0];
+      assert(perceivedPeriod >= 120);
+      assert(perceivedPeriod < 200);
+    });
+  });
 });
