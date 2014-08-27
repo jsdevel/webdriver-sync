@@ -239,7 +239,7 @@ will be listed here when their efforts are significant:
 * Campbell Morgan @<a href='https://github.com/campbellwmorgan'>campbellwmorgan</a>
 * Nick Tulett @<a href='https://github.com/NickTulett'>NickTulett</a>
 * Andrew Nichols @<a href='https://github.com/tandrewnichols'>tandrewnichols</a>
-* jugglinmike @<a href='httpd://github.com/jugglinmike'>jugglinmike</a>
+* jugglinmike @<a href='https://github.com/jugglinmike'>jugglinmike</a>
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jsdevel/webdriver-sync/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
