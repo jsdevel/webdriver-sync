@@ -1,5 +1,6 @@
 'use strict';
 
+var java = require('java');
 var Class = require('../imports').DesiredCapabilities;
 var Capabilities = require('../interfaces/Capabilities');
 var Instance = require('../classes/Instance');
@@ -69,10 +70,11 @@ DesiredCapabilities.safari =
 
 
 DesiredCapabilities.prototype.setCapability = function(name, value){
-  if(
-    value
-    && value instanceof Object
-    && '_instance' in value
-  )value = value._instance;
+  if (value) {
+    if (value instanceof Object && '_instance' in value)
+      value = value._instance;
+    else if (value instanceof Array)
+      value = java.newArray('java.lang.String', value);
+  }
   this._instance.setCapabilitySync(name, value);
 };
