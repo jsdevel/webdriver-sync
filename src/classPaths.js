@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   By: 'org.openqa.selenium.By',
   ChromeDriver: 'org.openqa.selenium.chrome.ChromeDriver',
@@ -22,7 +24,9 @@ module.exports = {
   Level: 'java.util.logging.Level',
   List: 'java.util.List',
   LocalFileDetector: 'org.openqa.selenium.remote.LocalFileDetector',
+  LogEntry: 'org.openqa.selenium.logging.LogEntry',
   Long: 'java.lang.Long',
+  LoggingPreferences: 'org.openqa.selenium.logging.LoggingPreferences',
   Map: 'java.util.Map',
   OutputType: 'org.openqa.selenium.OutputType',
   Platform: 'org.openqa.selenium.Platform',

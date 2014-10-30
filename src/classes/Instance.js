@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 
 module.exports = Instance;
@@ -8,5 +10,5 @@ module.exports = Instance;
  * @param {Object} instance
  */
 function Instance(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }

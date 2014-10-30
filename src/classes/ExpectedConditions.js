@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').ExpectedConditions;
 var By = require('./By');
 var ExpectedCondition = require('../interfaces/ExpectedCondition');
@@ -22,9 +24,9 @@ ExpectedConditions.elementSelectionStateToBe = function(arg, isSelected) {
     );
 };
 
-ExpectedConditions.elementToBeClickable = function(by) {
-  assertBy(by, 'first');
-  return new ExpectedCondition(Class.elementToBeClickableSync(by._instance));
+ExpectedConditions.elementToBeClickable = function(arg) {
+  assertByOrWebElement(arg, 'first');
+  return new ExpectedCondition(Class.elementToBeClickableSync(arg._instance));
 };
 
 ExpectedConditions.elementToBeSelected = function(arg) {
@@ -81,17 +83,17 @@ ExpectedConditions.stalenessOf = function(webElement) {
   return new ExpectedCondition(Class.stalenessOfSync(webElement._instance));
 };
 
-ExpectedConditions.textToBePresentInElement = function(by, text) {
-  assertBy(by, 'first');
+ExpectedConditions.textToBePresentInElement = function(arg, text) {
+  assertByOrWebElement(arg, 'first');
   return new ExpectedCondition(
-    Class.textToBePresentInElementSync(by._instance, text)
+    Class.textToBePresentInElementSync(arg._instance, text)
     );
 };
 
-ExpectedConditions.textToBePresentInElementValue = function(by, text) {
-  assertBy(by, 'first');
+ExpectedConditions.textToBePresentInElementValue = function(arg, text) {
+  assertByOrWebElement(arg, 'first');
   return new ExpectedCondition(Class.textToBePresentInElementValueSync(
-    by._instance,
+    arg._instance,
     text
     ));
 };
@@ -118,30 +120,30 @@ ExpectedConditions.visibilityOfElementLocated = function(by) {
 
 function assertBy(by, position) {
   assert(by)
-    .isInstanceof(By)
-    .throws("The " + position + " argument wasn't an instanceof By.");
+    .extends(By)
+    .throws('The ' + position + ' argument wasn\'t an instanceof By.');
 }
 function assertWebElement(webElement, position) {
   assert(webElement)
-    .isInstanceof(WebElement)
-    .throws("The " + position + " argument wasn't an instanceof WebElement.");
+    .extends(WebElement)
+    .throws('The ' + position + ' argument wasn\'t an instanceof WebElement.');
 }
 function assertByOrWebElement(arg, position) {
   assert(arg)
-    .isInstanceof(By)
+    .extends(By)
     .or(WebElement)
     .throws(
-      "The " +
+      'The ' +
       position +
-      " argument wasn't an instanceof By or WebElement."
+      ' argument wasn\'t an instanceof By or WebElement.'
      );
 }
 function assertExpectedCondition(condition, position) {
   assert(condition)
-    .isInstanceof(ExpectedCondition)
+    .extends(ExpectedCondition)
     .throws(
-      "The " +
+      'The ' +
       position +
-      " argument wasn't an instanceof ExpectedCondition."
+      ' argument wasn\'t an instanceof ExpectedCondition.'
      );
 }

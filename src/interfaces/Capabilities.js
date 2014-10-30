@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var mapToObject = require('../utils').mapToObject;
 var Platform = require('../enums/Platform');
@@ -5,7 +7,7 @@ var Platform = require('../enums/Platform');
 module.exports = Capabilities;
 
 function Capabilities(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Capabilities.prototype.asMap = function() {
   return mapToObject(this._instance.asMapSync());

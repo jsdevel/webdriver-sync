@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var assert = require('../assert');
 var Class = require('../imports').Response;
@@ -8,14 +10,14 @@ module.exports = Response;
 
 function Response(sessionId) {
   var instance;
-  if (assert(sessionId).isInstanceof(SessionId).isValid) {
+  if (assert(sessionId).extends(SessionId).isValid) {
     instance = new Class(sessionId._instance);
-  } else if (assert(sessionId).isInstanceof(Instance).isValid) {
+  } else if (assert(sessionId).extends(Instance).isValid) {
     instance = sessionId._instance;
   } else {
     instance = new Class();
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 Response.prototype.getSessionId = function() {

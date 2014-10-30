@@ -1,6 +1,19 @@
+'use strict';
+
 var java = require('java');
 var imports = require('./imports');
 var Long = imports.Long;
+
+var WAIT_DEFAULT_TIMEOUT = 1000;
+var WAIT_DEFAULT_PERIOD = 100;
+
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT){
+  imports.helpers.ConsoleControl.stopOutSync();
+}
+
+if(!process.env.WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR){
+  imports.helpers.ConsoleControl.stopErrSync();
+}
 
 module.exports = {
 
@@ -12,7 +25,7 @@ module.exports = {
   //===BEGIN WRAPPERS==//
   //CLASSES
   get By() {
-    return new (require('./classes/By'));
+    return new (require('./classes/By'))();
   },
   get ChromeDriver() {
     return require('./classes/ChromeDriver');
@@ -50,6 +63,9 @@ module.exports = {
   get FirefoxDriver() {
     return require('./classes/FirefoxDriver');
   },
+  get FirefoxProfile() {
+    return require('./classes/FirefoxProfile');
+  },
   get PhantomJSDriver() {
     return require('./classes/PhantomJSDriver');
   },
@@ -62,8 +78,17 @@ module.exports = {
   get Level() {
     return require('./classes/Level');
   },
+  get LogEntry() {
+    return require('./classes/LogEntry');
+  },
+  get LogEntries() {
+    return require('./classes/LogEntries');
+  },
   get LocalFileDetector() {
     return require('./classes/LocalFileDetector');
+  },
+  get LoggingPreferences() {
+    return require('./classes/LoggingPreferences');
   },
   get Point() {
     return require('./classes/Point');
@@ -89,6 +114,9 @@ module.exports = {
   get UserAndPassword() {
     return require('./classes/UserAndPassword');
   },
+  get WebDriverWait() {
+    return require('./classes/WebDriverWait');
+  },
 
   //ENUMS
   get Keys() {
@@ -102,6 +130,9 @@ module.exports = {
   },
 
   //INTERFACES
+  get Logs() {
+    return require('./interfaces/Logs');
+  },
   get OutputType() {
     return require('./interfaces/OutputType');
   },
@@ -112,14 +143,14 @@ module.exports = {
 
   //UTILITY METHODS
   importTo:function(target){
-    console.warn("#importTo is deprecated!  Use #exportTo instead.");
+    console.warn('#importTo is deprecated!  Use #exportTo instead.');
     return this.exportTo(target);
   },
 
   /**
    * Use this method to expose all Selenium Classes to the given target.
    * Useful if you wish to avoid wd.blablabla.
-   * 
+   *
    * @param {Object} target
    */
   exportTo: function(target) {
@@ -141,5 +172,42 @@ module.exports = {
       'sleep',
       new Long(amount)
       );
+  },
+  /**
+   * Utility method for blocking execution until some condition has been
+   * satisfied.
+   *
+   * @param {function} conditionFn Function that determines whether the `wait`
+   *                               has completed
+   * @param {object} [options]
+   * @param {number} [options.timeout] Time in milliseconds to wait before
+   *                                   considering the operation failed and
+   *                                   throwing an error
+   * @param {number} [options.period] Time in milliseconds to wait between
+   *                                  invocations of the `conditionFn`
+   */
+  wait: function(conditionFn, options) {
+    var waitStart = Date.now();
+
+    if (!options) {
+      options = {};
+    }
+    if (!('timeout' in options)) {
+      options.timeout = WAIT_DEFAULT_TIMEOUT;
+    }
+
+    if (!('period' in options)) {
+      options.period = WAIT_DEFAULT_PERIOD;
+    }
+
+    while (Date.now() - waitStart < options.timeout) {
+      if (conditionFn()) {
+        return;
+      }
+
+      module.exports.sleep(options.period);
+    }
+
+    throw new Error('`wd.wait` operation timed out');
   }
 };

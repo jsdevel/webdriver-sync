@@ -1,10 +1,12 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Point = require('../classes/Point');
 
 module.exports = Coordinates;
 
 function Coordinates(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Coordinates.prototype.getAuxiliary = function() {
   return this._instance.getAuxillarySync();

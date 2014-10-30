@@ -1,7 +1,9 @@
+'use strict';
+
 module.exports = DriverService;
 
 function DriverService() {
-  throw new Error("DriverService has a protected constructor.");
+  throw new Error('DriverService has a protected constructor.');
 }
 
 DriverService.prototype.getUrl = function() {

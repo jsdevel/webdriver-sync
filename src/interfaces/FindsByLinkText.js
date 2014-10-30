@@ -1,3 +1,5 @@
+'use strict';
+
 var WebElement = require('./WebElement');
 var addFinalProp = require('../utils').addFinalProp;
 var collectionsToArrayList = require('../utils').collectionsToArrayList;
@@ -5,7 +7,7 @@ var collectionsToArrayList = require('../utils').collectionsToArrayList;
 module.exports = FindsByLinkText;
 
 function FindsByLinkText(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 FindsByLinkText.prototype.findElementByLinkText = function(using) {

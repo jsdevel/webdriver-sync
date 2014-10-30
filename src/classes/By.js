@@ -1,10 +1,12 @@
+'use strict';
+
 var Class = require('../imports').By;
 var addFinalProp = require('../utils').addFinalProp;
 
 module.exports = By;
 
 function By(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 By.prototype.className = function(name) {

@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').OutputType;
 var File = require('../classes/File');
 var Instance = require('../classes/Instance');
@@ -6,7 +8,7 @@ var addFinalProp = require('../utils').addFinalProp;
 module.exports = OutputType;
 
 function OutputType(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 OutputType.BASE64 = OutputType.prototype.BASE64 = new OutputType(Class.BASE64);

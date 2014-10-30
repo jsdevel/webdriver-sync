@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Class = require('../imports').Point;
 
@@ -7,7 +9,7 @@ function Point(instance, y) {
   if (typeof y === 'number') {
     instance = new Class(instance, y);
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Point.prototype.getX = function() {
   return this._instance.getXSync();

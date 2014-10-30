@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Class = require('../imports').Dimension;
 
@@ -10,7 +12,7 @@ function Dimension(dimOrWidth, height) {
   ){
     dimOrWidth = new Class(dimOrWidth, height);
   }
-  addFinalProp(this, "_instance", dimOrWidth);
+  addFinalProp(this, '_instance', dimOrWidth);
 }
 Dimension.prototype.getHeight = function() {
   return 0 + this._instance.getHeightSync();

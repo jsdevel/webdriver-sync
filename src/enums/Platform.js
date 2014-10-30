@@ -1,10 +1,12 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Class = require('../imports').Platform;
 
 module.exports = Platform;
 
 function Platform(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 Platform.prototype.getMajorVersion = function() {
@@ -18,7 +20,7 @@ Platform.prototype.getPartOfOsName = function() {
 };
 Platform.prototype.is = function(compareWith) {
   if (!(compareWith instanceof Platform)) {
-    throw new Error("argument must be an instance of Platform");
+    throw new Error('argument must be an instance of Platform');
   }
   return this._instance.isSync(compareWith._instance);
 };

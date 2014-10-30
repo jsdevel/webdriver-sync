@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').PhantomJSDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var RemoteWebDriver = require('./RemoteWebDriver');
@@ -22,7 +24,7 @@ function PhantomJSDriver(capabilities) {
     instance = new Class();
   } else if (len === 1) {
     assert(capabilities)
-      .isInstanceof(Capabilities)
+      .extends(Capabilities)
       .throws(
         messages.UN_FINISHED_CONSTRUCTOR
         );
@@ -31,5 +33,5 @@ function PhantomJSDriver(capabilities) {
     throw new Error(messages.UN_FINISHED_CONSTRUCTOR);
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }

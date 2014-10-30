@@ -13,6 +13,8 @@
   "newcap":true,
   "noarg":true,
   "node":true,
+  "quotmark":"single",
+  "strict": true,
   "trailing":true,
   "undef":true
 }

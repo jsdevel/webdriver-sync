@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Class = require('../imports').Keys;
 var java = require('java');
@@ -5,15 +7,30 @@ var java = require('java');
 module.exports = new Keys();
 
 function Keys(instance){
-  if(instance)addFinalProp(this, "_instance", instance);
+  if(instance)addFinalProp(this, '_instance', instance);
 }
 
 //METHODS
 //static
-Keys.prototype.chord=chord;
+Keys.prototype.chord=function(){
+  return Class.chordSync(
+    java.newArray(
+      'java.lang.String'
+      , [].slice.call(arguments).map(function(v){return ''+v;})
+    )
+  );
+};
+
 //see below Keys.prototype.getKeyFromUnicode=getKeyFromUnicode;
-Keys.prototype.valueOf=valueOf;
-Keys.prototype.values=values;
+Keys.prototype.valueOf=function(name){
+  return new Keys(Class.valueOfSync(name));
+};
+
+Keys.prototype.values=function(){
+  return Class.valuesSync().map(function(key){
+    return new Keys(key);
+  });
+};
 
 //instance
 /*
@@ -22,7 +39,9 @@ Keys.prototype.charAt=charAt;
 Keys.prototype.length=length;
 Keys.prototype.subSequence=subSequence;
 */
-Keys.prototype.toString=toString;
+Keys.prototype.toString=function(){
+  return this._instance.toStringSync();
+};
 
 //Properties
 Keys.prototype.ADD = new Keys(Class.ADD);
@@ -91,14 +110,6 @@ Keys.prototype.UP = new Keys(Class.UP);
 Keys.prototype.ZENKAKU_HANKAKU = new Keys(Class.ZENKAKU_HANKAKU);
 
 //static
-function chord(){
-  return Class.chordSync(
-    java.newArray(
-      'java.lang.String'
-      , [].slice.call(arguments).map(function(v){return ""+v;})
-    )
-  );
-}
 
 /*this appears to be a bug in node-java
 function getKeyFromUnicode(key){
@@ -109,16 +120,6 @@ function getKeyFromUnicode(key){
   return new Keys(proposedKey);
 }
 */
-
-function valueOf(name){
-  return new Keys(Class.valueOfSync(name));
-}
-
-function values(){
-  return Class.valuesSync().map(function(key){
-    return new Keys(key);
-  });
-}
 
 //instance
 /*
@@ -135,6 +136,3 @@ function subSequence(start, end){
 }
 */
 
-function toString(){
-  return this._instance.toStringSync();
-}

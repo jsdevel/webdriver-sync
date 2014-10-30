@@ -1,5 +1,8 @@
+'use strict';
+
 var Alert = require('./Alert');
 var Instance = require('../classes/Instance');
+var Logs = require('./Logs');
 var SearchContext = require('./SearchContext');
 var WebElement = require('./WebElement');
 var Cookie = require('../classes/Cookie');
@@ -9,12 +12,14 @@ var Point = require('../classes/Point');
 var extend = require('../utils').extend;
 var addFinalProp = require('../utils').addFinalProp;
 var collectionToArray = require('../utils').collectionToArray;
+var assert = require('../assert');
+var TimeUnit = require('../enums/TimeUnit');
 
 module.exports = WebDriver;
 
 extend(WebDriver, SearchContext);
 function WebDriver(_instance) {
-  addFinalProp(this, "_instance", _instance);
+  addFinalProp(this, '_instance', _instance);
 }
 WebDriver.prototype.close = function() {
   this._instance.closeSync();
@@ -59,7 +64,7 @@ WebDriver.prototype.Window = Window;
 
 //IME HANDLER
 function ImeHandler(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 ImeHandler.prototype.activateEngine = function(engine) {
   this._instance.activateEngineSync(engine);
@@ -79,7 +84,7 @@ ImeHandler.prototype.isActivated = function() {
 
 //NAVIGATION
 function Navigation(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Navigation.prototype.back = function() {
   this._instance.backSync();
@@ -96,7 +101,7 @@ Navigation.prototype.to = function(url) {
 
 //OPTIONS
 function Options(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Options.prototype.addCookie = function(cookie) {
   assertIsCookie(cookie);
@@ -129,6 +134,13 @@ Options.prototype.getCookies = function() {
 Options.prototype.ime = function() {
   return new ImeHandler(this._instance.imeSync());
 };
+Options.prototype.logs = function() {
+  return new Logs(
+    new Instance(
+      this._instance.logsSync()
+    )
+  );
+};
 Options.prototype.timeouts = function() {
   return new Timeouts(this._instance.timeoutsSync());
 };
@@ -139,7 +151,7 @@ Options.prototype.window = function() {
 
 //TARGET LOCATOR
 function TargetLocator(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 TargetLocator.prototype.activeElement = function() {
   return new WebElement(
@@ -166,26 +178,29 @@ TargetLocator.prototype.window = function(name) {
 };
 
 function Timeouts(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Timeouts.prototype.implicitlyWait = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.implicitlyWaitSync(new Long(time), unit)
+    this._instance.implicitlyWaitSync(new Long(time), unit._instance)
     );
 };
 Timeouts.prototype.pageLoadTimeout = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.pageLoadTimeoutSync(new Long(time), unit)
+    this._instance.pageLoadTimeoutSync(new Long(time), unit._instance)
     );
 };
 Timeouts.prototype.setScriptTimeout = function(time, unit) {
+  assertIsTimeUnit(unit);
   return new this.constructor(
-    this._instance.setScriptTimeoutSync(new Long(time), unit)
+    this._instance.setScriptTimeoutSync(new Long(time), unit._instance)
     );
 };
 
 function Window(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Window.prototype.getPosition = function() {
   return new Point(this._instance.getPositionSync());
@@ -198,13 +213,13 @@ Window.prototype.maximize = function() {
 };
 Window.prototype.setPosition = function(targetPosition) {
   if (!(targetPosition instanceof Point)) {
-    throw new Error("argument must be a Point");
+    throw new Error('argument must be a Point');
   }
   this._instance.setPositionSync(targetPosition._instance);
 };
 Window.prototype.setSize = function(targetSize) {
   if (!(targetSize instanceof Dimension)) {
-    throw new Error("argument must be a Dimension");
+    throw new Error('argument must be a Dimension');
   }
   this._instance.setSizeSync(targetSize._instance);
 };
@@ -213,6 +228,12 @@ Window.prototype.setSize = function(targetSize) {
 //utils
 function assertIsCookie(cookie) {
   if (!(cookie instanceof Cookie)) {
-    throw new Error("argument wasn't an instance of Cookie.");
+    throw new Error('argument wasn\'t an instance of Cookie.');
   }
+}
+
+function assertIsTimeUnit(unit){
+  assert(unit)
+    .extends(TimeUnit)
+    .throws('unit must be an instance of TimeUnit');
 }

@@ -1,3 +1,5 @@
+'use strict';
+
 var Map = require('./imports').helpers.Map;
 
 var addFinalProp = function(obj, prop, val) {
@@ -21,18 +23,30 @@ var collectionToArray = function(collection, mapper) {
 
 function extend(Child, Parent) {
   var prop;
+  var temp;
 
   if (!Child.__extends) {
     Child.__extends = Child.prototype.__extends = {};
   }
 
+  if(Parent.__extends){
+    temp = {};
+    for(prop in Parent.__extends){
+      temp[prop] = Parent.__extends[prop];
+    }
+    for(prop in Child.__extends){
+      temp[prop] = Child.__extends[prop];
+    }
+    Child.__extends = Child.prototype.__extends = temp;
+  }
+
   for (prop in Parent) {
-    if (!(prop in Child)) {
+    if (!Child[prop]) {
       Child[prop] = Parent[prop];
     }
   }
   for (prop in Parent.prototype) {
-    if (!(prop in Child.prototype)) {
+    if (!Child.prototype[prop]) {
       Child.prototype[prop] = Parent.prototype[prop];
     }
   }
@@ -41,7 +55,7 @@ function extend(Child, Parent) {
 
 function extendAll() {
   var args = toArray(arguments);
-  var Child = args.splice(0, 1)[0];
+  var Child = args.shift();
   var len = args.length;
   var i;
   if (!len) {
@@ -87,7 +101,7 @@ function objectToMapStringString(obj) {
   var map = Map.createWithStringKeysStringValuesSync();
   for (key in obj) {
     if (obj.hasOwnProperty(key)) {
-      map.putSync(""+key, ""+obj[key]);
+      map.putSync(''+key, ''+obj[key]);
     }
   }
   return map;

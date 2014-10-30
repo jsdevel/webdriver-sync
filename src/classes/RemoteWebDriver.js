@@ -1,3 +1,5 @@
+'use strict';
+
 var Class = require('../imports').RemoteWebDriver;
 var URL = require('../imports').URL;
 var addFinalProp = require('../utils').addFinalProp;
@@ -7,6 +9,7 @@ var assert = require('../assert');
 var ErrorHandler = require('./ErrorHandler');
 var Instance = require('./Instance');
 var RemoteStatus = require('./RemoteStatus');
+var Level = require('./Level');
 var SessionId = require('./SessionId');
 
 var Capabilities = require('../interfaces/Capabilities');
@@ -41,7 +44,7 @@ extendAll(
   JavascriptExecutor,
   SearchContext,
   WebDriver
-  );
+);
 
 function RemoteWebDriver(
   capabilitiesOrExecutorOrRemoteAddress,
@@ -55,40 +58,40 @@ function RemoteWebDriver(
     if (
       !assert.isString(first)
       &&
-      !assert(first).isInstanceof(CommandExecutor).isValid
+      !assert(first).extends(CommandExecutor).isValid
       &&
-      !assert(first).isInstanceof(Capabilities).isValid
+      !assert(first).extends(Capabilities).isValid
       ) {
       throw new Error(
-        "The first argument must be a string, CommandExecutor, " +
-        "or Capabilities."
+        'The first argument must be a string, CommandExecutor, ' +
+        'or Capabilities.'
         );
     }
     if (
       len > 1
       &&
-      !assert(desiredCapabilities).isInstanceof(Capabilities)
+      !assert(desiredCapabilities).extends(Capabilities)
       ) {
       throw new Error(
-        "The second argument must be an isntance of Capabilities."
+        'The second argument must be an isntance of Capabilities.'
         );
     }
     if (
       len === 3
       &&
-      !assert(requiredCapabilities).isInstanceof(Capabilities)
+      !assert(requiredCapabilities).extends(Capabilities)
       ) {
       throw new Error(
-        "The third argument must be an isntance of Capabilities."
+        'The third argument must be an isntance of Capabilities.'
         );
     }
   } else {
-    throw new Error("Expected to see 1 to 3 arguments.");
+    throw new Error('Expected to see 1 to 3 arguments.');
   }
   switch (len) {
     case 1:
-      assert(first).isInstanceof(Instance).throws(
-        "a single agument must be an instance of Instance"
+      assert(first).extends(Instance).throws(
+        'a single agument must be an instance of Instance'
         );
       instance = new Class(first._instance);
       break;
@@ -112,7 +115,7 @@ function RemoteWebDriver(
           desiredCapabilities._instance,
           requiredCapabilities._instance
           );
-      } else if (assert(first).isInstanceof(CommandExecutor).isValid) {
+      } else if (assert(first).extends(CommandExecutor).isValid) {
         instance = new Class(
           first._instance,
           desiredCapabilities._instance,
@@ -120,13 +123,13 @@ function RemoteWebDriver(
           );
       } else {
         throw new Error(
-          "The first argment wasn't a string or an instance of CommandExecutor."
-          );
+          'first argment wasn\'t a string or an instance of CommandExecutor.'
+        );
       }
       break;
   }
 
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 RemoteWebDriver.prototype.getCommandExecutor = function() {
@@ -156,14 +159,17 @@ RemoteWebDriver.prototype.getSessionId = function() {
 };
 
 RemoteWebDriver.prototype.setFileDetector = function(detector) {
-  assert(detector).isInstanceof(FileDetector).throws(
-    "detector wasn't an instance of FileDetector"
+  assert(detector).extends(FileDetector).throws(
+    'detector wasn\'t an instance of FileDetector'
     );
   this._instance.setFileDetectorSync(detector._instance);
 };
 
 RemoteWebDriver.prototype.setLogLevel = function(level) {
-  this._instance.setLogLevelSync(level);
+  assert(level)
+    .extends(Level)
+    .throws('level must be an instance of Level');
+  this._instance.setLogLevelSync(level._instance);
 };
 RemoteWebDriver.prototype.toString = function() {
   return this._instance.toStringSync();

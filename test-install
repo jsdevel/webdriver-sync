@@ -1,14 +1,6 @@
 #!/bin/bash
-set -e
-if [ -n "$ISSACS_HACK_FOR_PREPUBLISH" ];then
-  exit
-fi
-
-export ISSACS_HACK_FOR_PREPUBLISH="foo"
-
-echo 'CALLING prepublish.bash'
-SCRIPT_DIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
-PROJECT_DIR=$(dirname $SCRIPT_DIR)
+# Use this file to test the install.
+PROJECT_DIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 #Perform a sanity check on the published module to verify that it works.
 tmpDir=/tmp/webdriver-sync

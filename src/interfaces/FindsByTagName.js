@@ -1,3 +1,5 @@
+'use strict';
+
 var WebElement = require('./WebElement');
 var addFinalProp = require('../utils').addFinalProp;
 var collectionsToArrayList = require('../utils').collectionsToArrayList;
@@ -5,7 +7,7 @@ var collectionsToArrayList = require('../utils').collectionsToArrayList;
 module.exports = FindsByTagName;
 
 function FindsByTagName(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 
 FindsByTagName.prototype.findElementByTagName = function(using) {

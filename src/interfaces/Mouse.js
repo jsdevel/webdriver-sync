@@ -1,3 +1,5 @@
+'use strict';
+
 var addFinalProp = require('../utils').addFinalProp;
 var Coordinates = require('./Coordinates');
 var Long = require('../imports').Long;
@@ -5,7 +7,7 @@ var Long = require('../imports').Long;
 module.exports = Mouse;
 
 function Mouse(instance) {
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 Mouse.prototype.click = function(where) {
   assertCoordinates(where);
@@ -40,7 +42,7 @@ Mouse.prototype.mouseUp = function(where) {
 
 function asssertCoordinates(where) {
   if (!(where instanceof Coordinates)) {
-    throw new Error("where must be an instanceof Coordinates");
+    throw new Error('where must be an instanceof Coordinates');
   }
 }
 
@@ -48,5 +50,5 @@ function assertCoordinates(coords){
   if(coords instanceof Coordinates){
     return;
   }
-  throw new Error("the first argument wasn't an instance of Coordinates");
+  throw new Error('the first argument wasn\'t an instance of Coordinates');
 }

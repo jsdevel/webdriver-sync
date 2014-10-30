@@ -1,3 +1,6 @@
+'use strict';
+
+var java = require('java');
 var Class = require('../imports').DesiredCapabilities;
 var Capabilities = require('../interfaces/Capabilities');
 var Instance = require('../classes/Instance');
@@ -7,19 +10,14 @@ var addFinalProp = require('../utils').addFinalProp;
 
 module.exports = DesiredCapabilities;
 
-extendAll(
-  DesiredCapabilities,
-  Capabilities
-  );
+extendAll(DesiredCapabilities, Capabilities);
 
-function DesiredCapabilities(
-  capabilities
-  ) {
+function DesiredCapabilities(capabilities) {
   var instance;
-  if (assert(capabilities).isInstanceof(Instance).isValid) {
+  if (assert(capabilities).extends(Instance).isValid) {
     instance = capabilities._instance;
   }
-  addFinalProp(this, "_instance", instance);
+  addFinalProp(this, '_instance', instance);
 }
 DesiredCapabilities.android =
   DesiredCapabilities.prototype.android = function() {
@@ -69,3 +67,14 @@ DesiredCapabilities.safari =
   DesiredCapabilities.prototype.safari = function() {
     return new DesiredCapabilities(new Instance(Class.safariSync()));
   };
+
+
+DesiredCapabilities.prototype.setCapability = function(name, value){
+  if (value) {
+    if (value instanceof Object && '_instance' in value)
+      value = value._instance;
+    else if (value instanceof Array)
+      value = java.newArray('java.lang.String', value);
+  }
+  this._instance.setCapabilitySync(name, value);
+};
