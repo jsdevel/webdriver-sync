@@ -65,8 +65,8 @@ ChromeOptions.prototype.setBinary = function(path) {
   this._instance.setBinarySync(path);
 };
 
-ChromeOptions.prototype.setExperimentalOptions = function(name, value) {
-  this._instance.setExperimentalOptionsSync(name, value);
+ChromeOptions.prototype.setExperimentalOption = function(name, value) {
+  this._instance.setExperimentalOptionSync(name, value);
 };
 
 ChromeOptions.prototype.toJson = function() {
