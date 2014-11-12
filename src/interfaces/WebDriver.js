@@ -37,7 +37,7 @@ WebDriver.prototype.getTitle = function() {
   return this._instance.getTitleSync();
 };
 WebDriver.prototype.getWindowHandle = function() {
-  return this._instance.getWindowHandle();
+  return this._instance.getWindowHandleSync();
 };
 WebDriver.prototype.getWindowHandles = function() {
   return collectionToArray(this._instance.getWindowHandlesSync());
