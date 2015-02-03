@@ -111,6 +111,10 @@ function toArray(arr) {
   return Array.prototype.slice.call(arr);
 }
 
+function toInstance(proposal) {
+  return proposal && proposal._instance || proposal;
+}
+
 function toStringArray(arr) {
   return toArray(arr).map(function(v) {
     return (new String(v)).toString();
@@ -125,4 +129,5 @@ module.exports.mapToObject = mapToObject;
 module.exports.objectToMap = objectToMap;
 module.exports.objectToMapStringString = objectToMapStringString;
 module.exports.toArray = toArray;
+module.exports.toInstance = toInstance;
 module.exports.toStringArray = toStringArray;

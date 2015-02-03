@@ -51,7 +51,7 @@ function coerce(result) {
 }
 
 function getArgs(from) {
-  var args = [].slice.apply(from);
+  var args = [].slice.apply(from).map(utils.toInstance);
   var script = args.shift();
   var varArgs = java.newArray.apply(java, ['java.lang.Object', args]);
   return [script, varArgs];
