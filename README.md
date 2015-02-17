@@ -215,6 +215,17 @@ var driver = new ChromeDriver(service);
 //Running Headless!
 ````
 
+## Caveats
+* Because `webdriver-sync` is synchronous, you can't `driver.get()` a server you've started in the same process (thanks to @jugglinmike for discovering this!) I.E.
+```javascript
+var driver = new (require('webdriver-sync').ChromeDriver);
+
+require('http').createServer(function(req, res) {
+  res.end('This is never reached!');
+}).listen('localhost');
+
+driver.get('http://localhost');//This never completes.
+```
 ## LICENSE
 ``````
 The MIT License (MIT)
