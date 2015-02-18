@@ -3,6 +3,7 @@
 var toStringArray = require('../utils').toStringArray;
 var addFinalProp = require('../utils').addFinalProp;
 
+module.exports = Keyboard;
 
 function Keyboard(instance) {
   addFinalProp(this, '_instance', instance);
