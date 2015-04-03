@@ -7,6 +7,8 @@ var assert = require('../assert');
 var extendAll = require('../utils').extendAll;
 var addFinalProp = require('../utils').addFinalProp;
 
+module.exports = UselessFileDetector;
+
 extendAll(UselessFileDetector, FileDetector);
 
 function UselessFileDetector(instance) {

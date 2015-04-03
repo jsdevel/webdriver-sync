@@ -9,6 +9,8 @@ var addFinalProp = require('../utils').addFinalProp;
 
 extendAll(LocalFileDetector, FileDetector);
 
+module.exports = LocalFileDetector;
+
 function LocalFileDetector(instance) {
   if (assert(instance).extends(Instance).isValid) {
     instance = instance._instance;

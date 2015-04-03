@@ -4,6 +4,8 @@ var File = require('../classes/File');
 var Instance = require('../classes/Instance');
 var addFinalProp = require('../utils').addFinalProp;
 
+module.exports = FileDetector;
+
 function FileDetector(instance) {
   addFinalProp(this, '_instance', instance);
 }
