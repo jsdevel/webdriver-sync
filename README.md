@@ -46,7 +46,7 @@ driver.quit();
 * Run Chrome, Firefox, Safari, PhantomJS, Internet Explorer, and RemoteWebDriver (Android to come)!
 * Reduce code by embracing a synchronous API!
 * Reduce verbosity found in statically typed langs like java and c#
-* Dependency management for 3rd party binaries I.E. chromedriver and selenium-server-standalone-x.x.x.jar.
+* Dependency management for 3rd party binaries I.E. ChromeDriver and selenium-server-standalone-x.x.x.jar.
 * Always up to date binary dependencies when you update your version of `webdriver-sync`.
 * Run your automated tests against your app much faster on `travis-ci`.
 * Connect to Sauce using the RemoteWebDriver or other drivers that extend RemoteWebDriver.
@@ -77,7 +77,7 @@ driver.get('http://google.com');
 ###ChromeDriver
 There are 2 ways to run Chrome.
 
-The straightforward way is slower as it has to start chromedriver each time it's instantiated:
+The straightforward way is slower as it has to start ChromeDriver each time it's instantiated:
 ```javascript
 var wd = require('webdriver-sync');
 var ChromeDriver = wd.ChromeDriver;
@@ -166,7 +166,7 @@ Binaries will be downloaded to one of the following locations (listed in order o
 
 You can further override the download location for binaries as follows:
 
-* Chromdriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
+* ChromeDriver - Place `chromedriver` or `chromedriver.exe` (for windows) on your
 path.
 * Selenium jar - Set `SELENIUM_SERVER_STANDALONE_JAR` in your env and have it point to the location
 where you have it on disk.  You should never do this, as the API is only tested
@@ -195,7 +195,7 @@ value:
 You can run Chrome, Firefox, Safari, and PhantomJS headless with `webdriver-sync`!
 You must have `Xvfb` installed, or an equivalent.
 
-Here's how Chromdriver can be run headless:
+Here's how ChromeDriver can be run headless:
 ````shell
 #Run this on a tty
 export DISPLAY=:99
