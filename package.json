@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "async": "~0.2.9",
-    "java": "0.4.6",
+    "java": "0.5.2",
     "selenium-binaries": "0.3.x"
   },
   "devDependencies": {

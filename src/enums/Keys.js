@@ -13,12 +13,9 @@ function Keys(instance){
 //METHODS
 //static
 Keys.prototype.chord=function(){
-  return Class.chordSync(
-    java.newArray(
-      'java.lang.String'
-      , [].slice.call(arguments).map(function(v){return ''+v;})
-    )
-  );
+  return Class.chordSync.apply(Class, [].slice.call(arguments).map(function(v){
+    return ''+v;
+  }));
 };
 
 //see below Keys.prototype.getKeyFromUnicode=getKeyFromUnicode;
