@@ -88,11 +88,12 @@ driver.get('http://google.com');
 This way uses a service and is much faster overall, but requires more setup.  You'd likely want to wrap this in a module with a getter for a new driver when you need one:
 ````javascript
 var wd = require('webdriver-sync');
+var seleniumBinaries = require('selenium-binaries');
 var ChromeDriverService = wd.ChromeDriverService;
 var ChromeDriver = wd.ChromeDriver;
 var service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
-    .usingDriverExecutable(new File(findsChromeDriver.find()))
+    .usingDriverExecutable(new File(seleniumBinaries.chromedriver))
     .build();
 
 var driver = new ChromeDriver(service);
@@ -205,9 +206,10 @@ npm test
 
 ````javascript
 //Use this in your tests for ChromeDriverService
+var seleniumBinaries = require('selenium-binaries');
 var service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
-    .usingDriverExecutable(new File(findsChromeDriver.find()))
+    .usingDriverExecutable(new File(seleniumBinaries.chromedriver))
     .withEnvironment({"DISPLAY":":99.0"})
     .build();
 
