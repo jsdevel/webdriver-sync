@@ -43,7 +43,7 @@
     "javascript"
   ],
   "author": "Joseph Spencer",
-  "license": "MIT license (MIT)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jsdevel/webdriver-sync/issues"
   }
