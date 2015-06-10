@@ -26,6 +26,7 @@ var FindsByTagName = require('../interfaces/FindsByTagName');
 var FindsByXPath = require('../interfaces/FindsByXPath');
 var JavascriptExecutor = require('../interfaces/JavascriptExecutor');
 var SearchContext = require('../interfaces/SearchContext');
+var TakesScreenshot = require('../interfaces/TakesScreenshot');
 var WebDriver = require('../interfaces/WebDriver');
 
 module.exports = RemoteWebDriver;
@@ -43,6 +44,7 @@ extendAll(
   FindsByXPath,
   JavascriptExecutor,
   SearchContext,
+  TakesScreenshot,
   WebDriver
 );
 
