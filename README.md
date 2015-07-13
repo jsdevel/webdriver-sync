@@ -133,7 +133,7 @@ For example:
 
 ```javascript
 driver.findElement(webdriver.By.cssSelector('button')).click();
-driver.wait(function() {
+webdriver.wait(function() {
   return driver.findElements(webdriver.By.cssSelector('.thumbnail').length > 0;
 }, { timeout: 1000, period: 100 });
 ```
