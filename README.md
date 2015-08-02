@@ -42,7 +42,7 @@ driver.quit();
 
 ## Highlights
 
-* 100% synchronous selenium in javascript without promises or async ceremony!
+* 100% synchronous selenium in JavaScript without promises or async ceremony!
 * Run Chrome, Firefox, Safari, PhantomJS, Internet Explorer, and RemoteWebDriver (Android to come)!
 * Reduce code by embracing a synchronous API!
 * Reduce verbosity found in statically typed langs like java and c#
@@ -107,7 +107,7 @@ you would expect:
 * forEach
 * map
 
-Because `webdriver-sync` is completely synchronous by nature, we're able to leverage native javascript methods without 3rd party libaries for `asyncrony`.
+Because `webdriver-sync` is completely synchronous by nature, we're able to leverage native JavaScript methods without 3rd party libaries for `asyncrony`.
 
 Here we execute an async script, return a collection of divs, and console.log the inner text of each div.  Notice that our control flow with other assertions are not affected in any way:
 ````javascript
