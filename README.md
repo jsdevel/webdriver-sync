@@ -1,4 +1,4 @@
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Gitter chat][gitter-image]][gitter-url]
 
 # webdriver-sync
 > Selenium testing without nested callbacks or promises!
@@ -51,30 +51,36 @@ driver.quit();
 * Run your automated tests against your app much faster on `travis-ci`.
 * Connect to Sauce using the RemoteWebDriver or other drivers that extend RemoteWebDriver.
 
-##Instantiating Drivers
+## Where can I file an issue?
+
+We've disabled issues in the repository, but you can reach out to the community on Gitter!
+
+[![Gitter chat][gitter-image]][gitter-url]
+
+## Instantiating Drivers
 Here are a few examples on how you can instantiate drivers for testing:
-###InternetExplorerDriver
+### InternetExplorerDriver
 ```javascript
 var wd = require('webdriver-sync');
 var IEDriver = wd.InternetExplorerDriver;
 var driver = new IEDriver();
 driver.get('http://google.com');
 ```
-###PhantomJS
+### PhantomJS
 ```javascript
 var wd = require('webdriver-sync');
 var PhantomJSDriver = wd.PhantomJSDriver;
 var driver = new PhantomJSDriver();
 driver.get('http://google.com');
 ```
-###Firefox
+### Firefox
 ```javascript
 var wd = require('webdriver-sync');
 var FirefoxDriver = wd.FirefoxDriver;
 var driver = new FirefoxDriver();
 driver.get('http://google.com');
 ```
-###ChromeDriver
+### ChromeDriver
 There are 2 ways to run Chrome.
 
 The straightforward way is slower as it has to start ChromeDriver each time it's instantiated:
@@ -99,7 +105,7 @@ var service = new ChromeDriverService.Builder()
 var driver = new ChromeDriver(service);
 driver.get('http://google.com');
 ````
-##Dealing with arrays and data
+## Dealing with arrays and data
 `webdriver-sync` allows you to treat data as you normally would.  For Arrays, you've got all the methods
 you would expect:
 
@@ -173,7 +179,7 @@ path.
 where you have it on disk.  You should never do this, as the API is only tested
 against specific versions of selenium, but it is available.
 
-##Documentation
+## Documentation
 As `webdriver-sync` is a wrapper around the java API, you can browse any of the
 javadocs online.  You can quite literally use this module the same way you
 would in java without the static typing.
@@ -184,7 +190,7 @@ Here are some links:
 * [selenium](http://docs.seleniumhq.org/)
 
 
-##LOGGING
+## LOGGING
 By default, `webdriver-sync` disables any output from the selenium java bindings.  To
 change this behavior, you can set either of the following env vars to any non-empty
 value:
@@ -192,7 +198,7 @@ value:
 * WEBDRIVER_SYNC_ENABLE_SELENIUM_STDOUT
 * WEBDRIVER_SYNC_ENABLE_SELENIUM_STDERR
 
-##Running Headless
+## Running Headless
 You can run Chrome, Firefox, Safari, and PhantomJS headless with `webdriver-sync`!
 You must have `Xvfb` installed, or an equivalent.
 
@@ -256,7 +262,7 @@ THE SOFTWARE.
 ## CREDIT when it is due!
 Special thanks to the developers of <a href="https://github.com/joeferner/node-java">node-java</a>!!!
 
-###Contributors (listed chronologically).
+### Contributors (listed chronologically).
 
 Anyone who contributes to webdriver-sync, either through code changes or testing
 will be listed here when their efforts are significant:
@@ -276,3 +282,6 @@ will be listed here when their efforts are significant:
 
 [travis-url]: https://travis-ci.org/jsdevel/webdriver-sync
 [travis-image]: http://img.shields.io/travis/jsdevel/webdriver-sync.svg
+
+[gitter-url]: https://gitter.im/jsdevel/webdriver-sync
+[gitter-image]: https://badges.gitter.im/jsdevel/webdriver-sync.png
