@@ -155,7 +155,7 @@ describe('Cookie', function() {
     assert(!options.getCookieNamed('_5'), 'deleting cookies failed.');
   });
 
-  it('sets secure cookies', function() {
+  xit('sets secure cookies', function() {
     var cookie;
     driver.get('http://www.google.com/news/');
     //test 6 arguments
