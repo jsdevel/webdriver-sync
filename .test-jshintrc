@@ -23,6 +23,7 @@
     "before":false,
     "beforeEach":false,
     "describe":false,
-    "it":false
+    "it":false,
+    "xit":false
   }
 }
