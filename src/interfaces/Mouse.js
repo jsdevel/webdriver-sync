@@ -11,33 +11,33 @@ function Mouse(instance) {
 }
 Mouse.prototype.click = function(where) {
   assertCoordinates(where);
-  this._instance.clickSync(where);
+  this._instance.clickSync(where._instance);
 };
 Mouse.prototype.contextClick = function(where) {
   assertCoordinates(where);
-  this._instance.contextClickSync(where);
+  this._instance.contextClickSync(where._instance);
 };
 Mouse.prototype.doubleClick = function(where) {
   assertCoordinates(where);
-  this._instance.doubleClickSync(where);
+  this._instance.doubleClickSync(where._instance);
 
 };
 Mouse.prototype.mouseDown = function(where) {
   assertCoordinates(where);
-  this._instance.mouseDownSync(where);
+  this._instance.mouseDownSync(where._instance);
 };
 Mouse.prototype.mouseMove = function(where, xOffset, yOffset) {
   assertCoordinates(where);
   if (typeof xOffset === 'number' && typeof yOffset === 'number') {
-    this._instance.mouseMoveSync(where);
+    this._instance.mouseMoveSync(where._instance);
   } else {
-    this._instance.mouseMoveSync(where, new Long(xOffset), new Long(yOffset));
+    this._instance.mouseMoveSync(where._instance, new Long(xOffset), new Long(yOffset));
   }
 
 };
 Mouse.prototype.mouseUp = function(where) {
   assertCoordinates(where);
-  this._instance.mouseUpSync(where);
+  this._instance.mouseUpSync(where._instance);
 };
 
 function asssertCoordinates(where) {
