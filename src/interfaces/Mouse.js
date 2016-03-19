@@ -31,7 +31,8 @@ Mouse.prototype.mouseMove = function(where, xOffset, yOffset) {
   if (typeof xOffset === 'number' && typeof yOffset === 'number') {
     this._instance.mouseMoveSync(where._instance);
   } else {
-    this._instance.mouseMoveSync(where._instance, new Long(xOffset), new Long(yOffset));
+    this._instance.mouseMoveSync(where._instance, new Long(xOffset),
+        new Long(yOffset));
   }
 
 };

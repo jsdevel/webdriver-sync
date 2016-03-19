@@ -32,7 +32,7 @@ WebElement.prototype.getLocation = function() {
   return new Point(this._instance.getLocationSync());
 };
 WebElement.prototype.getCoordinates = function() {
-    return new Coordinates(this._instance.getCoordinatesSync());
+  return new Coordinates(this._instance.getCoordinatesSync());
 };
 WebElement.prototype.getSize = function() {
   return new Dimension(this._instance.getSizeSync());

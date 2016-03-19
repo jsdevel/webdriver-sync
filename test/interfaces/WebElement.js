@@ -30,7 +30,8 @@ describe('WebElement', function() {
       while(timesToTest--){
         assert.equal(
             el.getAttribute('href'),
-            driver.findElementByXPath('.//a[contains(string(),"' + el.getText() + '")]').getAttribute('href')
+            driver.findElementByXPath('.//a[contains(string(),"' +
+              el.getText() + '")]').getAttribute('href')
         );
       }
     });
