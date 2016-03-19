@@ -25,11 +25,13 @@ describe('WebElement', function() {
 
   describe('#getText', function() {
     it('is consistent', function() {
-      var expected = 'About';
-      var el = driver.findElement(By.linkText('About'));
+      var el = driver.findElementByXPath('.//a[contains(@href, "about")]');
       var timesToTest = 100;
       while(timesToTest--){
-        el.getText().should.equal(expected);
+        assert.equal(
+            el.getAttribute('href'),
+            driver.findElementByXPath('.//a[contains(string(),"' + el.getText() + '")]').getAttribute('href')
+        );
       }
     });
   });

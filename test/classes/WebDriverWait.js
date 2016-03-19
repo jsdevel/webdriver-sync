@@ -37,7 +37,7 @@ describe('WebDriverWait', function() {
   describe('#until', function() {
     it('should take an ExpectedCondition', function() {
       (new WebDriverWait(driver, 100, 10)).until(
-        ExpectedConditions.elementToBeClickable(By.linkText('Sign in'))
+        ExpectedConditions.elementToBeClickable(By.xpath('.//a[contains(@href, "accounts.google.com")]'))
       );
     });
 
