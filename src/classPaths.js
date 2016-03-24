@@ -16,6 +16,7 @@ module.exports = {
   ExpectedConditions: 'org.openqa.selenium.support.ui.ExpectedConditions',
   File: 'java.io.File',
   FirefoxDriver: 'org.openqa.selenium.firefox.FirefoxDriver',
+  MarionetteDriver: 'org.openqa.selenium.firefox.MarionetteDriver',
   FirefoxProfile: 'org.openqa.selenium.firefox.FirefoxProfile',
   PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',

@@ -6,7 +6,7 @@
   "scripts": {
     "lint-src": "node_modules/.bin/jshint --config .jshintrc src",
     "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test",
-    "mocha": "node_modules/.bin/mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
+    "mocha": "node_modules/.bin/mocha -r should --no-timeouts test/classes/FirefoxDriver.js",
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
   "dependencies": {

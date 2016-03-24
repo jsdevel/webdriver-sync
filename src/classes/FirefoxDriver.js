@@ -1,6 +1,6 @@
 'use strict';
 
-var Class = require('../imports').FirefoxDriver;
+var Class = require('../imports').MarionetteDriver;
 var Capabilities = require('../interfaces/Capabilities');
 var FirefoxProfile = require('../classes/FirefoxProfile');
 var Killable = require('../interfaces/Killable');
