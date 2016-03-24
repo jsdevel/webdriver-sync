@@ -12,7 +12,7 @@
   "dependencies": {
     "async": "~0.2.9",
     "java": "0.6.0",
-    "selenium-binaries": "0.4.x"
+    "selenium-binaries": "SkReD/selenium-binaries"
   },
   "devDependencies": {
     "jshint": "2.3.0",
