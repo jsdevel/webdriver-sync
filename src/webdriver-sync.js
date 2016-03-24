@@ -69,9 +69,6 @@ module.exports = {
   get PhantomJSDriver() {
     return require('./classes/PhantomJSDriver');
   },
-  get HtmlUnitDriver() {
-    return require('./classes/HtmlUnitDriver');
-  },
   get InternetExplorerDriver() {
     return require('./classes/InternetExplorerDriver');
   },
@@ -89,6 +86,9 @@ module.exports = {
   },
   get LoggingPreferences() {
     return require('./classes/LoggingPreferences');
+  },
+  get MarionetteDriver() {
+    return require('./classes/MarionetteDriver');
   },
   get Point() {
     return require('./classes/Point');

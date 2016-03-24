@@ -2,6 +2,7 @@
 
 var SearchContext = require('./SearchContext');
 var Dimension = require('../classes/Dimension');
+var Coordinates = require('./Coordinates');
 var Keys = require('../enums/Keys');
 var Point = require('../classes/Point');
 var addFinalProp = require('../utils').addFinalProp;
@@ -29,6 +30,9 @@ WebElement.prototype.getCssValue = function(propertyName) {
 };
 WebElement.prototype.getLocation = function() {
   return new Point(this._instance.getLocationSync());
+};
+WebElement.prototype.getCoordinates = function() {
+  return new Coordinates(this._instance.getCoordinatesSync());
 };
 WebElement.prototype.getSize = function() {
   return new Dimension(this._instance.getSizeSync());

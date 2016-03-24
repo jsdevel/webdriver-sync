@@ -7,6 +7,7 @@ var classPaths = require('./classPaths');
 var seleniumBinaries = require('selenium-binaries');
 var seleniumJar = seleniumBinaries.seleniumserver;
 var chromeDriverPath = seleniumBinaries.chromedriver;
+var firefoxDriverPath = seleniumBinaries.firefoxdriver;
 var ieDriverPath = seleniumBinaries.iedriver;
 
 java.classpath.push(seleniumJar);
@@ -20,6 +21,15 @@ if(chromeDriverPath) {
     'setProperty',
     'webdriver.chrome.driver',
     chromeDriverPath
+  );
+}
+
+if(firefoxDriverPath) {
+  java.callStaticMethodSync(
+      'java.lang.System',
+      'setProperty',
+      'webdriver.gecko.driver',
+      firefoxDriverPath
   );
 }
 
@@ -51,8 +61,6 @@ if(ieDriverPath) {
  * EventFiringMouse
  * EventFiringWebDriver
  * ExtensionConnection
- * HtmlUnitDriver
- * HtmlUnitDriver.HtmlUnitWindow
  * HtmlUnitKeyboard
  * HtmlUnitMouse
  * HtmlUnitWebElement
@@ -121,14 +129,17 @@ module.exports = {
   get FirefoxDriver() {
     return java.import(classPaths.FirefoxDriver);
   },
+  get MarionetteDriver() {
+    return java.import(classPaths.MarionetteDriver);
+  },
+  get GeckoDriverService() {
+    return java.import(classPaths.GeckoDriverService);
+  },
   get FirefoxProfile() {
     return java.import(classPaths.FirefoxProfile);
   },
   get PhantomJSDriver() {
     return java.import(classPaths.PhantomJSDriver);
-  },
-  get HtmlUnitDriver() {
-    return java.import(classPaths.HtmlUnitDriver);
   },
   get InternetExplorerDriver() {
     return java.import(classPaths.InternetExplorerDriver);

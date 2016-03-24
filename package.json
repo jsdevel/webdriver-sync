@@ -4,15 +4,15 @@
   "description": "Selenium testing without nested callbacks or promises!",
   "main": "src/webdriver-sync.js",
   "scripts": {
-    "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
-    "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
+    "lint-src": "node_modules/.bin/jshint --config .jshintrc src",
+    "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test",
     "mocha": "node_modules/.bin/mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
   "dependencies": {
     "async": "~0.2.9",
     "java": "0.6.0",
-    "selenium-binaries": "0.4.x"
+    "selenium-binaries": "SkReD/selenium-binaries"
   },
   "devDependencies": {
     "jshint": "2.3.0",
