@@ -69,9 +69,6 @@ module.exports = {
   get PhantomJSDriver() {
     return require('./classes/PhantomJSDriver');
   },
-  get HtmlUnitDriver() {
-    return require('./classes/HtmlUnitDriver');
-  },
   get InternetExplorerDriver() {
     return require('./classes/InternetExplorerDriver');
   },

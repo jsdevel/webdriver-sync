@@ -20,7 +20,6 @@ module.exports = {
   GeckoDriverService: 'org.openqa.selenium.firefox.GeckoDriverService',
   FirefoxProfile: 'org.openqa.selenium.firefox.FirefoxProfile',
   PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
-  HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',
   InternetExplorerDriver: 'org.openqa.selenium.ie.InternetExplorerDriver',
   Keys: 'org.openqa.selenium.Keys',
   Level: 'java.util.logging.Level',
