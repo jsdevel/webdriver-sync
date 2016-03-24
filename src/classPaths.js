@@ -17,6 +17,7 @@ module.exports = {
   File: 'java.io.File',
   FirefoxDriver: 'org.openqa.selenium.firefox.FirefoxDriver',
   MarionetteDriver: 'org.openqa.selenium.firefox.MarionetteDriver',
+  GeckoDriverService: 'org.openqa.selenium.firefox.GeckoDriverService',
   FirefoxProfile: 'org.openqa.selenium.firefox.FirefoxProfile',
   PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',

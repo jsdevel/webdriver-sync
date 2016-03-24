@@ -90,6 +90,9 @@ module.exports = {
   get LoggingPreferences() {
     return require('./classes/LoggingPreferences');
   },
+  get MarionetteDriver() {
+    return require('./classes/MarionetteDriver');
+  },
   get Point() {
     return require('./classes/Point');
   },

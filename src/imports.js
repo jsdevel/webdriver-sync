@@ -28,7 +28,7 @@ if(firefoxDriverPath) {
   java.callStaticMethodSync(
       'java.lang.System',
       'setProperty',
-      'webdriver.firefox.driver',
+      'webdriver.gecko.driver',
       firefoxDriverPath
   );
 }
@@ -130,6 +130,12 @@ module.exports = {
   },
   get FirefoxDriver() {
     return java.import(classPaths.FirefoxDriver);
+  },
+  get MarionetteDriver() {
+    return java.import(classPaths.MarionetteDriver);
+  },
+  get GeckoDriverService() {
+    return java.import(classPaths.GeckoDriverService);
   },
   get FirefoxProfile() {
     return java.import(classPaths.FirefoxProfile);
