@@ -31,14 +31,6 @@ DesiredCapabilities.firefox =
   DesiredCapabilities.prototype.firefox = function() {
     return new DesiredCapabilities(new Instance(Class.firefoxSync()));
   };
-DesiredCapabilities.htmlUnit =
-  DesiredCapabilities.prototype.htmlUnit = function() {
-    return new DesiredCapabilities(new Instance(Class.htmlUnitSync()));
-  };
-DesiredCapabilities.htmlUnitWithJs =
-  DesiredCapabilities.prototype.htmlUnitWithJs = function() {
-    return new DesiredCapabilities(new Instance(Class.htmlUnitWithJsSync()));
-  };
 DesiredCapabilities.internetExplorer =
   DesiredCapabilities.prototype.internetExplorer = function() {
     return new DesiredCapabilities(new Instance(Class.internetExplorerSync()));

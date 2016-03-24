@@ -61,8 +61,6 @@ if(ieDriverPath) {
  * EventFiringMouse
  * EventFiringWebDriver
  * ExtensionConnection
- * HtmlUnitDriver
- * HtmlUnitDriver.HtmlUnitWindow
  * HtmlUnitKeyboard
  * HtmlUnitMouse
  * HtmlUnitWebElement
@@ -142,9 +140,6 @@ module.exports = {
   },
   get PhantomJSDriver() {
     return java.import(classPaths.PhantomJSDriver);
-  },
-  get HtmlUnitDriver() {
-    return java.import(classPaths.HtmlUnitDriver);
   },
   get InternetExplorerDriver() {
     return java.import(classPaths.InternetExplorerDriver);
