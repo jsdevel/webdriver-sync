@@ -63,7 +63,7 @@ describe('webdriver-sync', function(){
       driver.getPageSource();
     });
 
-    it('sould be able to start HtmlUnit', function(){
+    xit('sould be able to start HtmlUnit', function(){
       var htmlDriver = new wd.HtmlUnitDriver();
       htmlDriver.quit();
     });
