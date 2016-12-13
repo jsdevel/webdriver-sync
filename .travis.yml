@@ -11,7 +11,7 @@ before_install:
   - "sudo apt-get install ttf-mscorefonts-installer"
 #  - "sudo apt-get install x-ttcidfont-conf"
   - "sudo mkfontdir"
-  - "sudo apt-get install defoma libgl1-mesa-dri xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic libappindicator1"
+#  - "sudo apt-get install defoma libgl1-mesa-dri xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic libappindicator1"
   - "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
   - "sudo mkdir -p /usr/share/desktop-directories"
   - "sudo dpkg -i google-chrome-stable_current_amd64.deb"
