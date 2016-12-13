@@ -2,14 +2,10 @@ language: node_js
 node_js:
   - "0.12"
   - "0.10"
+dist: trusty
+sudo: required
 before_install:
   - "sudo apt-get remove chromium-browser"
-  - "echo /etc/apt/sources.list"
-  - "cat /etc/apt/sources.list"
-  - "echo /etc/apt/sources.list.d/"
-  - "ls -l /etc/apt/sources.list.d/"
-  - "cat /etc/apt/sources.list.d/*"
-  - "sudo add-apt-repository main -y"
   - "sudo apt-get update"
   - "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections"
   - "sudo apt-get install ttf-mscorefonts-installer"
