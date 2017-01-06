@@ -7,6 +7,7 @@ var classPaths = require('./classPaths');
 var seleniumBinaries = require('selenium-binaries');
 var seleniumJar = seleniumBinaries.seleniumserver;
 var chromeDriverPath = seleniumBinaries.chromedriver;
+var geckoDriverPath = seleniumBinaries.geckodriver;
 var ieDriverPath = seleniumBinaries.iedriver;
 
 java.classpath.push(seleniumJar);
@@ -20,6 +21,15 @@ if(chromeDriverPath) {
     'setProperty',
     'webdriver.chrome.driver',
     chromeDriverPath
+  );
+}
+
+if(geckoDriverPath) {
+  java.callStaticMethodSync(
+    'java.lang.System',
+    'setProperty',
+    'webdriver.gecko.driver',
+    geckoDriverPath
   );
 }
 
