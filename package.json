@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "async": "~0.2.9",
-    "java": "0.6.1",
-    "selenium-binaries": "0.4.x"
+    "java": "0.8.0",
+    "selenium-binaries": "0.10.x"
   },
   "devDependencies": {
     "jshint": "2.3.0",
