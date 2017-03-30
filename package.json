@@ -1,6 +1,6 @@
 {
   "name": "webdriver-sync",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Selenium testing without nested callbacks or promises!",
   "main": "src/webdriver-sync.js",
   "scripts": {
@@ -10,9 +10,9 @@
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
   "dependencies": {
-    "async": "~0.2.9",
-    "java": "0.6.1",
-    "selenium-binaries": "0.4.x"
+    "async": "^2.2.0",
+    "java": "^0.8.0",
+    "selenium-binaries": "^0.11.0"
   },
   "devDependencies": {
     "jshint": "2.3.0",
