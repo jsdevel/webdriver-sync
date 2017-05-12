@@ -10,16 +10,16 @@
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
   "dependencies": {
-    "async": "~0.2.9",
-    "java": "0.6.1",
-    "selenium-binaries": "0.4.x"
+    "async": "~2.4.0",
+    "java": "^0.8.0",
+    "selenium-binaries": "0.11.x"
   },
   "devDependencies": {
-    "jshint": "2.3.0",
-    "mocha": "^1.21.3",
-    "proxyquire": "^1.0.1",
+    "jshint": "2.9.4",
+    "mocha": "^3.3.0",
+    "proxyquire": "^1.7.11",
     "should": "*",
-    "sinon": "^1.10.2"
+    "sinon": "^2.2.0"
   },
   "repository": {
     "type": "git",
