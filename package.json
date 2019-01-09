@@ -56,7 +56,7 @@
   "dependencies": {
     "async": "~2.4.0",
     "java": "^0.8.0",
-    "selenium-binaries": "0.13.1"
+    "selenium-binaries": "0.13.2"
   },
   "description": "Selenium testing without nested callbacks or promises!",
   "devDependencies": {
@@ -115,5 +115,5 @@
     "mocha": "mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
