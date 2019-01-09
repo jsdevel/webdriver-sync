@@ -1,30 +1,78 @@
 {
-  "name": "webdriver-sync",
-  "version": "0.17.0",
-  "description": "Selenium testing without nested callbacks or promises!",
-  "main": "src/webdriver-sync.js",
-  "scripts": {
-    "lint-src": "node_modules/.bin/jshint --config .jshintrc src/**/*.js",
-    "lint-test": "node_modules/.bin/jshint --config .test-jshintrc test/**/*.js",
-    "mocha": "node_modules/.bin/mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
-    "test": "npm run lint-src && npm run lint-test && npm run mocha"
+  "_args": [
+    [
+      {
+        "raw": "webdriver-sync",
+        "scope": null,
+        "escapedName": "webdriver-sync",
+        "name": "webdriver-sync",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/nick"
+    ]
+  ],
+  "_from": "webdriver-sync@latest",
+  "_id": "webdriver-sync@1.0.0",
+  "_inCache": true,
+  "_location": "/webdriver-sync",
+  "_nodeVersion": "5.0.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/webdriver-sync-1.0.0.tgz_1494605076763_0.08031281386502087"
+  },
+  "_npmUser": {
+    "name": "jsdevel",
+    "email": "js.developer.undefined@gmail.com"
+  },
+  "_npmVersion": "3.3.6",
+  "_phantomChildren": {
+    "lodash": "4.17.4"
+  },
+  "_requested": {
+    "raw": "webdriver-sync",
+    "scope": null,
+    "escapedName": "webdriver-sync",
+    "name": "webdriver-sync",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/webdriver-sync/-/webdriver-sync-1.0.0.tgz",
+  "_shasum": "9a0fe120a8f6a1ae2e9b8c56fb7109320674f503",
+  "_shrinkwrap": null,
+  "_spec": "webdriver-sync",
+  "_where": "/home/nick",
+  "author": {
+    "name": "Joseph Spencer"
+  },
+  "bugs": {
+    "url": "https://github.com/jsdevel/webdriver-sync/issues"
   },
   "dependencies": {
-    "async": "~0.2.9",
-    "java": "0.8.0",
-    "selenium-binaries": "0.10.x"
+    "async": "~2.4.0",
+    "java": "^0.8.0",
+    "selenium-binaries": "https://github.com/NickTulett/selenium-binaries/tarball/master"
   },
+  "description": "Selenium testing without nested callbacks or promises!",
   "devDependencies": {
-    "jshint": "2.3.0",
-    "mocha": "^1.21.3",
-    "proxyquire": "^1.0.1",
+    "jshint": "2.9.4",
+    "mocha": "^3.3.0",
+    "proxyquire": "^1.7.11",
     "should": "*",
-    "sinon": "^1.10.2"
+    "sinon": "^2.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jsdevel/webdriver-sync.git"
+  "directories": {},
+  "dist": {
+    "shasum": "9a0fe120a8f6a1ae2e9b8c56fb7109320674f503",
+    "tarball": "https://registry.npmjs.org/webdriver-sync/-/webdriver-sync-1.0.0.tgz"
   },
+  "gitHead": "a2775a48ce84de370e75691b6e01bd1911e5616d",
+  "homepage": "https://github.com/jsdevel/webdriver-sync#readme",
   "keywords": [
     "webdriver",
     "selenium",
@@ -42,9 +90,30 @@
     "node",
     "javascript"
   ],
-  "author": "Joseph Spencer",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jsdevel/webdriver-sync/issues"
-  }
+  "main": "src/webdriver-sync.js",
+  "maintainers": [
+    {
+      "name": "jsdevel",
+      "email": "js.developer.undefined@gmail.com"
+    },
+    {
+      "name": "nicktulett",
+      "email": "nicktulett@gmail.com"
+    }
+  ],
+  "name": "webdriver-sync",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsdevel/webdriver-sync.git"
+  },
+  "scripts": {
+    "lint-src": "jshint --config .jshintrc src/**/*.js",
+    "lint-test": "jshint --config .test-jshintrc test/**/*.js",
+    "mocha": "mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
+    "test": "npm run lint-src && npm run lint-test && npm run mocha"
+  },
+  "version": "1.0.0"
 }
