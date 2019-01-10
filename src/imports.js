@@ -137,9 +137,11 @@ module.exports = {
   get PhantomJSDriver() {
     return java.import(classPaths.PhantomJSDriver);
   },
+  /* Note: 2.53.0 broke this.  I believe another jar needs to be downloaded now :(
   get HtmlUnitDriver() {
     return java.import(classPaths.HtmlUnitDriver);
   },
+  */
   get InternetExplorerDriver() {
     return java.import(classPaths.InternetExplorerDriver);
   },
