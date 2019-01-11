@@ -5,9 +5,8 @@ node_js:
   - "8"
 addons:
   chrome: stable
-before_script:
+before_install:
   rm -rf ./node_modules package-lock.json
-  npm install
 install: "npm install"
 cache:
   directories:
