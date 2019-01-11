@@ -9,7 +9,7 @@ before_install:
   - "sudo chown root /opt/google/chrome/chrome-sandbox"
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"  
   - # start your web application and listen on `localhost`
-  - google-chrome-stable #--no-sandbox #--headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - #google-chrome-stable #--no-sandbox #--headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - #export DISPLAY=:99.0
   - #sh -e /etc/init.d/xvfb start
   - #sleep 3  
