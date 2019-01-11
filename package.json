@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "async": "~2.4.0",
-    "java": "^0.8.0",
+    "java": "0.8.0",
     "selenium-binaries": "0.13.4"
   },
   "description": "Selenium testing without nested callbacks or promises!",
