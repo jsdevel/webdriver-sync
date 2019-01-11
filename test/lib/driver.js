@@ -19,7 +19,7 @@ if(process.env.TRAVIS){
   service = new ChromeDriverService.Builder()
     .usingAnyFreePort()
     .usingDriverExecutable(new File(seleniumBinaries.chromedriver))
-    //.withEnvironment({'DISPLAY':':99.0'})
+    .withEnvironment({'DISPLAY':':99.0'})
     //.withSilent(true)
     //.withVerbose(true)
     .build();
