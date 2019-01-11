@@ -3,6 +3,8 @@ sudo: required
 language: node_js
 node_js:
   - "0.8"
+npm:
+  - "5.6.0"
 addons:
   chrome: stable
 install: "npm install"
