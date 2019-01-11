@@ -34,7 +34,7 @@ describe('ExpectedConditions', function() {
     validate(ExpectedConditions.presenceOfElementLocated(by));
     validate(ExpectedConditions.refreshed(ExpectedConditions.alertIsPresent()));
     validate(ExpectedConditions.stalenessOf(element));
-    validate(ExpectedConditions.textToBePresentInElement(by, 'ads'));
+    validate(ExpectedConditions.textToBePresentInElement(element, 'ads'));
     validate(ExpectedConditions.textToBePresentInElement(element, 'ads'));
     validate(ExpectedConditions.textToBePresentInElementValue(by, 'adsf'));
     validate(ExpectedConditions.textToBePresentInElementValue(element, 'adsf'));

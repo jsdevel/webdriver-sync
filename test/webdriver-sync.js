@@ -88,7 +88,7 @@ describe('webdriver-sync', function(){
         wd.exportTo(target);
         assert('ChromeDriver' in target, 'ChromeDriver');
         assert('Keys' in target, 'Keys');
-        assert('PhantomJSDriver' in target, 'PhantomJSDriver');
+        // assert('PhantomJSDriver' in target, 'PhantomJSDriver');
         assert('SafariDriver' in target, 'SafariDriver');
         assert(!('exportTo' in target), 'exportTo');
         assert(!('sleep' in target), 'sleep');

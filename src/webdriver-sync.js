@@ -66,9 +66,9 @@ module.exports = {
   get FirefoxProfile() {
     return require('./classes/FirefoxProfile');
   },
-  get PhantomJSDriver() {
-    return require('./classes/PhantomJSDriver');
-  },
+  // get PhantomJSDriver() {
+  //   return require('./classes/PhantomJSDriver');
+  // },
   get HtmlUnitDriver() {
     return require('./classes/HtmlUnitDriver');
   },
@@ -111,9 +111,9 @@ module.exports = {
   get UselessFileDetector() {
     return require('./classes/UselessFileDetector');
   },
-  get UserAndPassword() {
-    return require('./classes/UserAndPassword');
-  },
+  // get UserAndPassword() {
+  //   return require('./classes/UserAndPassword');
+  // },
   get WebDriverWait() {
     return require('./classes/WebDriverWait');
   },

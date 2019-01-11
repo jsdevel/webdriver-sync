@@ -134,9 +134,9 @@ module.exports = {
   get FirefoxProfile() {
     return java.import(classPaths.FirefoxProfile);
   },
-  get PhantomJSDriver() {
-    return java.import(classPaths.PhantomJSDriver);
-  },
+  // get PhantomJSDriver() {
+  //   return java.import(classPaths.PhantomJSDriver);
+  // },
   /* Note: 2.53.0 broke this.  I believe another jar needs to be downloaded now :(
   get HtmlUnitDriver() {
     return java.import(classPaths.HtmlUnitDriver);
@@ -196,9 +196,9 @@ module.exports = {
   get UselessFileDetector() {
     return java.import(classPaths.UselessFileDetector);
   },
-  get UserAndPassword() {
-    return java.import(classPaths.UserAndPassword);
-  },
+  // get UserAndPassword() {
+  //   return java.import(classPaths.UserAndPassword);
+  // },
   get WebDriverWait() {
     return java.import(classPaths.WebDriverWait);
   }
