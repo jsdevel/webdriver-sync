@@ -54,7 +54,7 @@
     "url": "https://github.com/jsdevel/webdriver-sync/issues"
   },
   "dependencies": {
-    "async": "~2.4.0",
+    "async": "2.4.1",
     "java": "0.8.0",
     "selenium-binaries": "0.13.4"
   },
