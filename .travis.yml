@@ -7,16 +7,7 @@ addons:
   chrome: stable
 before_install:
   - # start your web application and listen on `localhost`
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - "export CHROME_SANDBOX=/opt/google/chrome/chrome-sandbox"
-  - "sudo rm -f $CHROME_SANDBOX"
-  - "sudo wget https://googledrive.com/host/0B5VlNZ_Rvdw6NTJoZDBSVy1ZdkE -O $CHROME_SANDBOX"
-  - "sudo chown root:root $CHROME_SANDBOX; sudo chmod 4755 $CHROME_SANDBOX"
-  - "sudo md5sum $CHROME_SANDBOX"
-  - "sudo chmod 1777 /dev/shm"
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - "sleep 2"  
+  - google-chrome-stable --no-sandbox --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 install: "npm install"
 cache:
   directories:
