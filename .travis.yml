@@ -2,8 +2,7 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - "0.12"
-  - "0.10"
+  - "0.8"
 addons:
   chrome: stable
 install: "npm install"
