@@ -31,6 +31,11 @@ service.start();
 
 module.exports = {
   get driver() {
-    return new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
+    var caps = DesiredCapabilities.chrome();
+    var chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments('headless');
+    chromeOptions.addArguments('window-size=1920x1080');
+    caps.setCapability('chromeOptions', chromeOptions);
+    return new RemoteWebDriver(service.getUrl(), caps);
   }
 };
