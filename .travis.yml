@@ -4,13 +4,8 @@ language: node_js
 node_js:
   - "0.12"
   - "0.10"
-  - "0.8"
-  - "0.6"
 addons:
   chrome: stable
 install: "npm install"
-cache:
-  directories:
-    - node_modules
 notifications:
   email: false
