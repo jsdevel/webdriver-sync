@@ -6,7 +6,10 @@ node_js:
   - "8"
 addons:
   chrome: stable
-before_install:
+  apt:
+    packages:
+      - oracle-java8-installer  
+script:
   - jdk_switcher use oraclejdk8  
 install: "npm install"
 cache:
