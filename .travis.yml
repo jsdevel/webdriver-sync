@@ -8,5 +8,8 @@ npm:
 addons:
   chrome: stable
 install: "npm install"
+cache:
+  directories:
+    - node_modules
 notifications:
   email: false
