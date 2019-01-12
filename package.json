@@ -56,12 +56,12 @@
   "dependencies": {
     "async": "~2.4.0",
     "java": "^0.11.0",
-    "selenium-binaries": "0.13.4"
+    "selenium-binaries": "^0.13.6"
   },
   "description": "Selenium testing without nested callbacks or promises!",
   "devDependencies": {
-    "jshint": "2.9.4",
-    "mocha": "^3.3.0",
+    "jshint": "^2.9.7",
+    "mocha": "^5.2.0",
     "proxyquire": "^1.7.11",
     "should": "*",
     "sinon": "^2.2.0"
