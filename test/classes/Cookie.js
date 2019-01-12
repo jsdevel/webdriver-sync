@@ -117,11 +117,11 @@ describe('Cookie', function() {
     assert.equal(options.getCookieNamed('_2').getValue(), '2');
 
     //test 3 arguments and path
-    driver.get('http://www.google.com/news/');
-    cookie = new Cookie('_3', '3', '/news');
+    driver.get('https://www.google.com/');
+    cookie = new Cookie('_3', '3', '/');
     options.addCookie(cookie);
     assert.equal(options.getCookieNamed('_3').getValue(), '3');
-    assert.equal(options.getCookieNamed('_3').getPath(), '/news');
+    assert.equal(options.getCookieNamed('_3').getPath(), '/');
 
     //test 4 arguments
     cookie = new Cookie('_4', '4', '/', new Date(Date.now() + 30000));
@@ -141,13 +141,13 @@ describe('Cookie', function() {
     cookie = new Cookie(
       '_5',
       '5',
-      'maps.google.com',
+      'maps.apple.com',
       '/',
       new Date(Date.now() + (3600 * 1000))
     );
-    assert.throws(function() {
-      options.addCookie(cookie);
-    }, 'allowed to add a cookie for a different domain.');
+    assert.equal(options.getCookieNamed('_5'), 
+      null, 
+      'allowed to add a cookie for a different domain.');
 
     options.deleteCookie(cookie);
     options.deleteCookieNamed('_5');

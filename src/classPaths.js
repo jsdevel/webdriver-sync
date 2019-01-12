@@ -17,7 +17,7 @@ module.exports = {
   File: 'java.io.File',
   FirefoxDriver: 'org.openqa.selenium.firefox.FirefoxDriver',
   FirefoxProfile: 'org.openqa.selenium.firefox.FirefoxProfile',
-  PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
+  // PhantomJSDriver: 'org.openqa.selenium.phantomjs.PhantomJSDriver',
   HtmlUnitDriver: 'org.openqa.selenium.htmlunit.HtmlUnitDriver',
   InternetExplorerDriver: 'org.openqa.selenium.ie.InternetExplorerDriver',
   Keys: 'org.openqa.selenium.Keys',
@@ -39,7 +39,7 @@ module.exports = {
   TimeUnit: 'java.util.concurrent.TimeUnit',
   URL: 'java.net.URL',
   UselessFileDetector: 'org.openqa.selenium.remote.UselessFileDetector',
-  UserAndPassword: 'org.openqa.selenium.security.UserAndPassword',
+  // UserAndPassword: 'org.openqa.selenium.security.UserAndPassword',
   WebDriverWait: 'org.openqa.selenium.support.ui.WebDriverWait',
   WebElement: 'org.openqa.selenium.WebElement'
 };
