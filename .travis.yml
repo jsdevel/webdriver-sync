@@ -9,6 +9,14 @@ jdk:
   - oraclejdk8
   - oraclejdk9
   - oraclejdk11
+matrix:
+  include:
+    - node_js: "8"
+      jdk: oraclejdk8
+    - node_js: "10"
+      jdk: oraclejdk9
+    - node_js: "11"
+      jdk: oraclejdk11
 addons:
   chrome: stable
   firefox: latest
