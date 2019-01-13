@@ -6,9 +6,9 @@ node_js:
   - "10"
   - "11"
 jdk:
-  - "oraclejdk8"
-  - "oraclejdk9"
-  - "oraclejdk11"
+  - oraclejdk8
+  - oraclejdk9
+  - oraclejdk11
 addons:
   chrome: stable
   firefox: latest
