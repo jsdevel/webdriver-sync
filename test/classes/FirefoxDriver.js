@@ -10,8 +10,8 @@ describe('FirefoxDriver', function() {
     firefoxDriver.quit();
   });
 
-  it('should allow FirefoxProfile as a constructor argument', function(){
-    var ff = new FirefoxDriver(new FirefoxProfile());
-    ff.quit();
-  });
+  // it('should allow FirefoxProfile as a constructor argument', function(){
+  //   var ff = new FirefoxDriver(new FirefoxProfile());
+  //   ff.quit();
+  // });
 });

@@ -37,7 +37,7 @@ describe('By', function() {
 
   describe('#linkText', function() {
     it('can be used', function() {
-      driver.findElements(By.linkText('GitHub')).length.should.equal(1);
+      driver.findElements(By.linkText('GitHub')).length.should.equal(2);
     });
   });
 
@@ -52,7 +52,7 @@ describe('By', function() {
     it('can be used', function() {
       driver.findElements(
         By.partialLinkText('Download')
-      ).length.should.equal(1);
+      ).length.should.equal(2);
     });
   });
 

@@ -63,7 +63,7 @@ describe('webdriver-sync', function(){
       driver.getPageSource();
     });
 
-    xit('sould be able to start HtmlUnit', function(){
+    xit('should be able to start HtmlUnit', function(){
       var htmlDriver = new wd.HtmlUnitDriver();
       htmlDriver.quit();
     });
@@ -88,7 +88,7 @@ describe('webdriver-sync', function(){
         wd.exportTo(target);
         assert('ChromeDriver' in target, 'ChromeDriver');
         assert('Keys' in target, 'Keys');
-        assert('PhantomJSDriver' in target, 'PhantomJSDriver');
+        // assert('PhantomJSDriver' in target, 'PhantomJSDriver');
         assert('SafariDriver' in target, 'SafariDriver');
         assert(!('exportTo' in target), 'exportTo');
         assert(!('sleep' in target), 'sleep');
