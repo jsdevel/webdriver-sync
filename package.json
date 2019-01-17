@@ -115,5 +115,5 @@
     "mocha": "mocha -r should --no-timeouts test/*.js test/classes/*.js test/enums/*.js test/interfaces/*.js",
     "test": "npm run lint-src && npm run lint-test && npm run mocha"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
